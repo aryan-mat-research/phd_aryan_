@@ -1,0 +1,42 @@
+/* Project detail pages — external stylesheet */
+:root {
+  --pd-ink: #111;
+  --pd-muted: #666;
+  --pd-line: #dedede;
+  --pd-soft: #f6f6f6;
+  --pd-serif: var(--serif);
+  --pd-mono: var(--sans);
+}
+*{box-sizing:border-box}.pd{padding-bottom:4rem;color:var(--pd-ink)}.pd a{color:inherit;text-underline-offset:4px}.pd-breadcrumb{display:flex;gap:.8rem;flex-wrap:wrap;margin:1.6rem 0;color:var(--pd-muted);font: .75rem var(--pd-mono)}.pd-hero{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(260px,.95fr);gap:2.5rem;align-items:center;padding:2rem 0 3rem;border-bottom:1px solid var(--pd-line)}.pd-eyebrow{font: .72rem/1.6 var(--pd-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--pd-muted);margin:0 0 .8rem}.pd h1,.pd h2,.pd h3{font-family:var(--pd-serif);font-weight:400;letter-spacing:-.025em}.pd h1{font-size:clamp(2.5rem,5.5vw,5rem);line-height:1.02;margin:.3rem 0 1.2rem}.pd h2{font-size:clamp(1.8rem,3vw,2.6rem);line-height:1.1;margin:.4rem 0 1rem}.pd h3{font-size:1.4rem;margin:1.5rem 0 .6rem}.pd-lede{font-size:1.08rem;line-height:1.8;color:#444;max-width:65ch}.pd-tags{display:flex;flex-wrap:wrap;gap:.4rem;list-style:none;padding:0;margin:1.3rem 0 0}.pd-tags li{border:1px solid #ddd;padding:.3rem .55rem;font-size:.76rem;color:#444}.pd-figure{position:relative;margin:0;border:1px solid var(--pd-line);background:#f1f1f1;min-height:260px;aspect-ratio:4/3;display:flex;flex-direction:column;justify-content:center;overflow:hidden}.pd-figure img{width:100%;height:100%;max-height:470px;object-fit:contain;display:block}.pd-figure figcaption{font-size:.76rem;line-height:1.5;color:#555;padding:.7rem;background:#fff;border-top:1px solid var(--pd-line)}.pd-figure-placeholder{min-height:240px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:2rem;color:#555;background:repeating-linear-gradient(135deg,#f7f7f7,#f7f7f7 12px,#ededed 12px,#ededed 13px)}.pd-figure-placeholder strong{font: .75rem var(--pd-mono);text-transform:uppercase;letter-spacing:.08em}.pd-figure-placeholder span{max-width:34ch;font-size:.85rem;line-height:1.7;margin-top:.7rem}.pd-toc{display:flex;flex-wrap:wrap;gap:.5rem 1.3rem;padding:1.1rem 0;border-bottom:1px solid var(--pd-line);font-size:.85rem}.pd-section{padding:2.7rem 0;border-bottom:1px solid var(--pd-line);scroll-margin-top:1rem;max-width:900px}.pd-section>p:not(.pd-eyebrow),.pd-section li{line-height:1.8;color:#444}.pd-section ul,.pd-section ol{padding-left:1.3rem}.pd-note{background:var(--pd-soft);border-left:2px solid #111;padding:1rem 1.1rem;font-size:.9rem;line-height:1.75!important}.pd-table-wrap{overflow-x:auto;margin:1.2rem 0}.pd table{border-collapse:collapse;width:100%;font-size:.85rem;min-width:580px}.pd th,.pd td{border:1px solid var(--pd-line);padding:.75rem;text-align:left;vertical-align:top}.pd th{background:#f7f7f7;font-weight:600}.pd-small{font-size:.8rem;color:var(--pd-muted)!important}.pd code{overflow-wrap:anywhere;background:#f4f4f4;padding:.12rem .25rem}.pd-references li{margin-bottom:.7rem}.pd-footer{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;padding:2rem 0;font-size:.9rem}
+@media(max-width:760px){.pd-hero{grid-template-columns:1fr;gap:1.5rem}.pd-figure{min-height:210px}.pd-section{padding:2rem 0}.pd-breadcrumb{font-size:.68rem}}
+
+/* ===== Match site-wide typography (home page) ===== */
+.pd { font-family: var(--sans); font-size: 14px; line-height: 1.7; }
+
+.pd h1, .pd h2, .pd h3 {
+  font-family: var(--serif);
+  font-weight: 400;
+  letter-spacing: -0.7px;
+}
+.pd h1 { font-size: clamp(36px, 4.2vw, 54px); line-height: 1.15; }
+.pd h2 { font-size: 32px; line-height: 1.15; }
+.pd h3 { font-size: 24px; line-height: 1.2; }
+
+.pd-eyebrow {
+  font-family: var(--sans);
+  font-size: 10px;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+}
+.pd-breadcrumb { font-family: var(--sans); font-size: 11px; }
+
+.pd-lede { font-family: var(--serif); font-size: clamp(19px, 2vw, 24px); line-height: 1.55; }
+.pd-section > p:not(.pd-eyebrow), .pd-section li { font-size: 14px; }
+.pd table { font-size: 13px; }
+.pd-tags li { font-size: 11px; }
+.pd-figure figcaption { font-size: 12px; }
+
+@media (max-width: 700px) {
+  .pd h2 { font-size: 28px; }
+  .pd h3 { font-size: 22px; }
+}

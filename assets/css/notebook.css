@@ -1,0 +1,265 @@
+/* Notebook page: curated, project-wise research library */
+.notebook-library{--lib-line:var(--line,#dedede);--lib-muted:var(--muted,#666);padding-bottom:72px}
+.notebook-library a{text-underline-offset:4px}
+.library-hero{padding:38px 0 30px;border-bottom:1px solid var(--lib-line)}
+.library-hero-grid{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(220px,.7fr);align-items:end;gap:34px}
+.library-hero h1{max-width:780px;margin:12px 0 18px;font-size:clamp(2.7rem,7vw,5.6rem);font-weight:500;line-height:.98;letter-spacing:-.065em}
+.library-hero h1 span{color:var(--accent,#68745f)}
+.library-intro{max-width:650px;margin:0;color:var(--lib-muted);font-size:1.06rem;line-height:1.8}
+.library-side-note{padding:19px 20px;border:1px solid var(--lib-line);border-radius:14px}
+.side-note-label{color:var(--lib-muted);font-size:.69rem;letter-spacing:.12em;text-transform:uppercase}
+.library-side-note p{margin:10px 0 0;font-size:.91rem;line-height:1.7}
+.library-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}
+.library-tags span{padding:7px 11px;border:1px solid var(--lib-line);border-radius:30px;color:var(--lib-muted);font-size:.76rem}
+.library-section{padding-top:40px}
+.library-section-heading{display:flex;align-items:end;justify-content:space-between;gap:20px;margin-bottom:19px}
+.library-section-heading h2{margin:6px 0 0;font-size:clamp(1.6rem,3vw,2.25rem);font-weight:500;letter-spacing:-.04em}
+.section-aside{max-width:260px;margin:0 0 3px;color:var(--lib-muted);font-size:.86rem;line-height:1.6;text-align:right}
+.project-shelves{display:grid;gap:12px}
+.project-shelf{min-width:0;border:1px solid var(--lib-line);border-radius:15px;background:var(--surface,#fff);overflow:hidden}
+.project-shelf[open]{box-shadow:0 5px 20px rgba(0,0,0,.025)}
+.project-shelf summary{display:grid;grid-template-columns:42px minmax(0,1fr) auto;align-items:center;gap:15px;padding:18px 20px;cursor:pointer;list-style:none}
+.project-shelf summary::-webkit-details-marker{display:none}
+.project-shelf summary::after{content:'+';grid-column:3;grid-row:1;color:var(--lib-muted);font-size:1.3rem;margin-left:8px}
+.project-shelf[open] summary::after{content:'−'}
+.shelf-number{display:grid;place-items:center;width:38px;height:38px;border:1px solid var(--lib-line);border-radius:50%;color:var(--lib-muted);font-size:.74rem;font-variant-numeric:tabular-nums}
+.shelf-title-wrap{display:grid;gap:5px;min-width:0}
+.shelf-title-wrap strong{font-size:1.1rem;font-weight:550;letter-spacing:-.02em}
+.shelf-title-wrap small{color:var(--lib-muted);font-size:.82rem;line-height:1.5}
+.shelf-count{padding-right:24px;color:var(--lib-muted);font-size:.72rem;white-space:nowrap}
+.shelf-content{padding:0 22px 22px 77px}
+.shelf-intro{margin:0 0 13px;color:var(--lib-muted);font-size:.88rem;line-height:1.7}
+.paper-list{display:grid;gap:0;margin:0;padding:0;list-style:none;border-top:1px solid var(--lib-line)}
+.paper-list li{display:grid;gap:4px;padding:12px 0;border-bottom:1px solid var(--lib-line)}
+.paper-list a,.resource-title{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;color:inherit;font-size:.9rem;line-height:1.55;text-decoration:none}
+.paper-list a span{flex:0 0 auto;color:var(--lib-muted);transition:transform .2s ease}
+.paper-list a:hover{text-decoration:underline}
+.paper-list a:hover span{transform:translate(2px,-2px)}
+.paper-list small{color:var(--lib-muted);font-size:.77rem;line-height:1.6}
+.local-note{margin-top:17px;padding:15px 16px;border:1px dashed var(--lib-line);border-radius:10px}
+.local-note strong{font-size:.87rem;font-weight:600}
+.local-note p{margin:6px 0 0;color:var(--lib-muted);font-size:.81rem;line-height:1.7}
+.local-note code{font-size:.78rem;overflow-wrap:anywhere}
+.card-footnote{margin:15px 0 0;color:var(--lib-muted);font-size:.75rem;line-height:1.6}
+.library-bottom{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:18px;margin-top:28px;padding:22px;border:1px solid var(--lib-line);border-radius:15px}
+.bottom-mark{display:grid;place-items:center;width:42px;height:42px;border-radius:50%;background:var(--soft,#f5f5f2);font-size:1.2rem}
+.library-bottom h2{margin:0 0 5px;font-size:1.08rem;font-weight:500}
+.library-bottom p{margin:0;color:var(--lib-muted);font-size:.84rem;line-height:1.6}
+.library-back-link{white-space:nowrap;font-size:.84rem;text-decoration:none}
+.library-back-link:hover{text-decoration:underline}
+@media(max-width:760px){.library-hero-grid{grid-template-columns:1fr;gap:22px}.library-section-heading{align-items:flex-start;flex-direction:column}.section-aside{text-align:left}.project-shelf summary{grid-template-columns:36px minmax(0,1fr) auto;gap:11px;padding:15px}.shelf-number{width:34px;height:34px}.shelf-count{display:none}.project-shelf summary::after{grid-column:3}.shelf-content{padding:0 16px 18px}.library-bottom{grid-template-columns:auto 1fr}.library-back-link{grid-column:2;white-space:normal}}
+@media(prefers-reduced-motion:reduce){.paper-list a span{transition:none}}
+
+
+
+/* =========================================
+   NOTEBOOK PAGE — ACADEMIC MINIMAL
+   Matches the Contact page's Georgia serif headings,
+   restrained palette, spacing, and quiet interactions.
+   ========================================= */
+
+.notebook-library {
+  --library-ink: #171717;
+  --library-muted: #686868;
+  --library-border: #dedede;
+  --library-soft: #f7f7f7;
+  padding-bottom: 58px;
+  color: var(--library-ink);
+}
+
+/* Hero */
+.library-hero {
+  max-width: 900px;
+  padding: 43px 0 31px;
+  border-bottom: 1px solid var(--library-border);
+}
+
+.library-hero .eyebrow {
+  margin: 0 0 13px;
+  color: #777;
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 1.25px;
+  text-transform: uppercase;
+}
+
+.library-hero-grid { max-width: 760px; }
+
+.library-hero h1 {
+  margin: 0 0 17px;
+  color: var(--library-ink);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(36px, 5vw, 49px);
+  font-weight: 400;
+  letter-spacing: -1.4px;
+  line-height: 1.13;
+}
+
+.library-hero h1 span { color: #8a8a8a; }
+
+.library-intro {
+  max-width: 680px;
+  margin: 0;
+  color: var(--library-muted);
+  font-size: 14px;
+  line-height: 1.9;
+}
+
+.library-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 21px;
+}
+
+.library-tags span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 29px;
+  padding: 6px 10px;
+  border: 1px solid #e2e2e2;
+  border-radius: 4px;
+  color: #555;
+  font-size: 10.5px;
+  line-height: 1.4;
+}
+
+/* Library list */
+.library-section { padding-top: 27px; }
+.project-shelves {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--library-border);
+}
+
+.project-shelf {
+  min-width: 0;
+  border-bottom: 1px solid var(--library-border);
+  background: #fff;
+}
+
+.project-shelf > summary {
+  position: relative;
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr) auto 18px;
+  align-items: center;
+  gap: 17px;
+  min-height: 91px;
+  padding: 18px 5px 18px 2px;
+  cursor: pointer;
+  list-style: none;
+}
+
+/* =========================================
+   NOTEBOOK PAGE — ACADEMIC MINIMAL
+   Matches the serif headings and quiet spacing
+   of the Contact page without changing shared CSS.
+   ========================================= */
+.notebook-library {
+  --library-ink: #171717;
+  --library-muted: #686868;
+  --library-border: #dedede;
+  --library-soft: #f7f7f7;
+  padding-bottom: 20px;
+}
+
+.library-hero { max-width: 790px; padding: 43px 0 34px; }
+.library-hero .eyebrow,
+.library-section-heading .eyebrow,
+.library-bottom .eyebrow {
+  margin: 0 0 12px; color: #777; font-size: 10.5px; font-weight: 500;
+  letter-spacing: 1.25px; text-transform: uppercase;
+}
+.library-hero h1,
+.library-hero h2 {
+  margin: 0 0 15px; color: var(--library-ink);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(36px, 5vw, 49px); font-weight: 400;
+  letter-spacing: -1.4px; line-height: 1.13;
+}
+.library-hero h1 span, .library-hero h2 span { color: #777; }
+.library-intro { max-width: 640px; margin: 0; color: var(--library-muted); font-size: 14px; line-height: 1.9; }
+.library-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 21px; }
+.library-tags span { padding: 7px 10px; border: 1px solid #e5e5e5; border-radius: 5px; color: #555; font-size: 10.5px; line-height: 1.4; }
+
+/* Optional section heading if you choose to uncomment it in the HTML */
+.library-section-heading { display: flex; align-items: end; justify-content: space-between; gap: 25px; margin: 0 0 18px; padding: 23px 0 18px; border-top: 1px solid var(--library-border); }
+.library-section-heading h2 { margin: 0; color: var(--library-ink); font: 400 27px/1.3 Georgia, "Times New Roman", serif; letter-spacing: -.6px; }
+.library-section-heading .section-aside { max-width: 420px; margin: 0; color: var(--library-muted); font-size: 12px; line-height: 1.85; }
+
+/* Institution shelves are compact and collapsed by default. */
+.project-shelves { border-top: 1px solid var(--library-border); }
+.project-shelf { border-bottom: 1px solid var(--library-border); background: #fff; }
+.project-shelf > summary {
+  display: grid; grid-template-columns: 42px minmax(0, 1fr) auto; align-items: center; gap: 15px;
+  min-height: 86px; padding: 17px 3px; cursor: pointer; list-style: none;
+}
+.project-shelf > summary::-webkit-details-marker { display: none; }
+.shelf-number { align-self: start; padding-top: 4px; color: #858585; font-size: 10px; letter-spacing: 1px; font-variant-numeric: tabular-nums; }
+.shelf-title-wrap { display: flex; min-width: 0; flex-direction: column; gap: 5px; }
+.shelf-title-wrap strong { color: var(--library-ink); font: 400 21px/1.3 Georgia, "Times New Roman", serif; letter-spacing: -.25px; }
+.shelf-title-wrap small { color: var(--library-muted); font-size: 11.5px; line-height: 1.6; }
+.shelf-count { display: inline-flex; align-items: center; gap: 10px; color: #666; font-size: 10.5px; white-space: nowrap; }
+.shelf-count::after { content: "+"; display: inline-grid; width: 28px; height: 28px; place-items: center; border: 1px solid var(--library-border); border-radius: 50%; color: #555; font: 16px/1 Arial, sans-serif; transition: transform .2s ease, background .2s ease, color .2s ease; }
+.project-shelf > summary:hover .shelf-count::after { background: #171717; border-color: #171717; color: #fff; }
+.project-shelf[open] > summary { padding-bottom: 20px; }
+.project-shelf[open] > summary .shelf-count::after { content: "−"; }
+.project-shelf > summary:focus-visible, .paper-list a:focus-visible, .library-back-link:focus-visible { outline: 2px solid #555; outline-offset: 4px; }
+
+.shelf-content { padding: 0 0 29px 57px; animation: shelf-reveal .18s ease-out; }
+.shelf-intro { max-width: 720px; margin: 0 0 22px; color: #555; font-size: 12.5px; line-height: 1.85; }
+.sub-shelf { margin-top: 24px; padding-top: 21px; border-top: 1px solid #ededed; }
+.sub-shelf h3 { margin: 0 0 12px; color: var(--library-ink); font: 400 21px/1.4 Georgia, "Times New Roman", serif; letter-spacing: -.25px; }
+.sub-shelf-note { max-width: 720px; margin: 0 0 13px; color: var(--library-muted); font-size: 11.5px; line-height: 1.8; }
+
+/* Topic chips */
+.topic-chips { display: flex; flex-wrap: wrap; gap: 7px; margin: 13px 0 16px; padding: 0; list-style: none; }
+.topic-chips li { padding: 6px 9px; border: 1px solid #e5e5e5; border-radius: 4px; color: #555; font-size: 10.5px; line-height: 1.4; }
+
+/* Resources: simple rows, not boxed cards */
+.paper-list { display: grid; gap: 0; margin: 0; padding: 0; list-style: none; border-top: 1px solid #ededed; }
+.paper-list li { min-width: 0; padding: 12px 0 13px; border-bottom: 1px solid #ededed; }
+.paper-list a { color: #242424; font-size: 12px; font-weight: 500; line-height: 1.75; text-decoration: none; text-decoration-color: #bbb; text-underline-offset: 4px; overflow-wrap: anywhere; transition: color .18s ease, text-decoration-color .18s ease; }
+.paper-list a:hover { color: #777; text-decoration: underline; text-decoration-color: #aaa; }
+.paper-list a span { display: inline-block; margin-left: 3px; color: #888; font-size: 11px; }
+.paper-list small { display: block; margin-top: 3px; color: #777; font-size: 10.5px; line-height: 1.7; overflow-wrap: anywhere; }
+.resource-title { display: block; margin: 0 0 4px; color: #222; font-size: 12px; font-weight: 500; line-height: 1.6; }
+.card-footnote, .local-note, .sub-shelf .local-note { margin-top: 15px; padding: 13px 15px; border-left: 2px solid #d7d7d7; background: var(--library-soft); color: #666; font-size: 11.5px; line-height: 1.8; }
+.local-note strong { display: block; margin-bottom: 4px; color: #333; font-size: 11px; font-weight: 600; }
+.local-note p { margin: 0; }
+
+/* Closing strip */
+.library-bottom { display: grid; grid-template-columns: 35px minmax(0, 1fr) auto; align-items: center; gap: 18px; margin: 38px 0 47px; padding: 23px 25px; border: 1px solid var(--library-border); border-radius: 11px; background: var(--library-soft); }
+.bottom-mark { align-self: start; color: #777; font-size: 21px; line-height: 1.2; }
+.library-bottom h2 { margin: 0; color: var(--library-ink); font: 400 23px/1.3 Georgia, "Times New Roman", serif; letter-spacing: -.4px; }
+.library-bottom p { margin: 8px 0 0; color: #666; font-size: 11.5px; line-height: 1.8; }
+.library-back-link { color: #222; font-size: 11.5px; font-weight: 500; text-decoration: underline; text-decoration-color: #bbb; text-underline-offset: 5px; white-space: nowrap; }
+.library-back-link:hover { text-decoration-color: #222; }
+
+@keyframes shelf-reveal { from { opacity: .6; transform: translateY(-3px); } to { opacity: 1; transform: translateY(0); } }
+
+@media (max-width: 800px) {
+  .library-section-heading { align-items: start; flex-direction: column; gap: 9px; }
+  .shelf-content { padding-left: 42px; }
+  .library-bottom { grid-template-columns: 30px minmax(0, 1fr); }
+  .library-back-link { grid-column: 2; justify-self: start; margin-top: 3px; }
+}
+@media (max-width: 540px) {
+  .library-hero { padding: 28px 0 28px; }
+  .library-hero h1, .library-hero h2 { font-size: 36px; letter-spacing: -.9px; }
+  .library-intro { font-size: 13px; line-height: 1.85; }
+  .library-tags { gap: 6px; margin-top: 17px; }
+  .library-tags span { font-size: 10px; }
+  .project-shelf > summary { grid-template-columns: 27px minmax(0, 1fr) 29px; gap: 10px; min-height: 79px; padding: 15px 0; }
+  .shelf-title-wrap strong { font-size: 19px; }
+  .shelf-title-wrap small { font-size: 10.5px; }
+  .shelf-count { font-size: 0; }
+  .shelf-count::after { width: 27px; height: 27px; }
+  .shelf-content { padding: 0 0 23px; }
+  .sub-shelf h3 { font-size: 19px; }
+  .library-bottom { grid-template-columns: 25px minmax(0, 1fr); gap: 12px; margin: 30px 0 34px; padding: 19px; }
+  .library-bottom h2 { font-size: 21px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .shelf-count::after, .paper-list a, .project-shelf .shelf-content { transition: none; animation: none; }
+}

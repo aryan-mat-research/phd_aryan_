@@ -1,0 +1,456 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+  <title>Research | Aryan</title>
+  <meta content="An interactive research portfolio exploring computational materials science, 2D semiconductor growth, atomistic modeling, synthesis, and characterization." name="description">
+  <meta content="#ffffff" name="theme-color">
+  <link href="assets/css/style.css" rel="stylesheet">
+  <link href="assets/css/research.css" rel="stylesheet">
+  <script defer src="assets/js/site.js"></script>
+  <script defer src="assets/js/research.js"></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="header">
+    <div class="wrap nav">
+      <a class="brand" href="index.html">aryan.phd</a>
+      <button aria-expanded="false" aria-label="Toggle navigation" class="menu">Menu</button>
+      <nav aria-label="Main navigation" class="links">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a aria-current="page" href="research.html">Research</a>
+        <a href="experience.html">Experience</a>
+        <a href="notebook.html">Notebook</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap page rp" id="main">
+    <section aria-labelledby="rp-title" class="rp-hero">
+      <div class="rp-hero-grid">
+        <div>
+          <p class="eyebrow">Research / Project archive</p>
+          <p class="eyebrow">Selected work</p>
+          <h2 id="projects-title">Research projects</h2>
+        </div>
+        <p>Search by material, method, or topic. Open any project for its research question, methods, progress, and relevant links.</p>
+      </div>
+
+      <div class="rp-toolbar">
+        <label>
+          <span class="eyebrow" style="display:block;margin-bottom:.45rem">Search the archive</span>
+          <input autocomplete="off" class="rp-search" id="rp-search" placeholder="Try MoS₂, DFT, CVD, adsorption…" type="search">
+        </label>
+        <div>
+          <span class="eyebrow" style="display:block;margin-bottom:.45rem">Filter projects</span>
+          <div aria-label="Filter research projects" class="rp-filters" role="group">
+            <button aria-pressed="true" class="rp-filter" data-filter="all" type="button">All</button>
+            <button aria-pressed="false" class="rp-filter" data-filter="ongoing" type="button">Ongoing</button>
+            <button aria-pressed="false" class="rp-filter" data-filter="exploratory" type="button">Exploratory</button>
+            <button aria-pressed="false" class="rp-filter" data-filter="previous" type="button">Previous</button>
+          </div>
+        </div>
+      </div>
+
+      <p aria-live="polite" class="rp-count" id="rp-count">Showing 13 projects</p>
+
+      <div class="rp-grid" id="rp-grid">
+        <!-- IMAGE SPACE: replace data-image="" with a path such as assets/images/projects/cvd-mos2-fe-sem.jpg -->
+
+        <article class="rp-card" data-project="" data-search="cvd growth characterization 2d semiconductor mos2 mose2 wse2 ws2 tm d c Raman AFM FESEM XPS" data-status="ongoing" id="cvd">
+          <div class="rp-card-top"><span class="rp-number">01 / EXPERIMENTAL</span><span class="rp-status">Ongoing</span></div>
+          <figure class="rp-media" data-image="assets/images/cvd-tmdc-composite.jpg"> 
+            <!-- <img alt="CVD-grown TMDC sample or characterization image" loading="lazy"> -->
+              <img src="assets/images/cvd-tmdc-composite.jpg"
+         alt="Optical microscopy of CVD-grown MoS2, MoSe2, WS2 and WSe2 triangular flakes, with Raman spectra of MoSe2, WS2 and WSe2"
+         loading="lazy">
+            <!-- <div class="rp-placeholder"><span class="rp-placeholder-symbol">◫</span><strong>Insert real research image</strong><span>Example: optical microscopy, FESEM, AFM, or Raman map</span></div> -->
+            <!-- <figcaption>Figure 01 · Replace with a verified sample image and caption.</figcaption> -->
+          </figure>
+          <div class="rp-card-body">
+            <p class="rp-kicker">2D semiconductors · Experimental growth</p>
+            <h3>CVD Growth and Characterization of 2D Semiconductors</h3>
+            <p class="rp-summary">Experimental growth and characterization of transition-metal dichalcogenides, with attention to how growth conditions relate to morphology and structural characteristics.</p>
+            <ul class="rp-tags"><li>TMDCs</li><li>CVD</li><li>Raman</li><li>AFM / FESEM / XPS</li></ul>
+            <div class="rp-links">
+              <a class="rp-project-link" href="projects/cvd-growth-characterization.html">Full project details ↗</a>
+              <a class="rp-project-link" href="experience.html#iith">Related experience: IIT Hyderabad ↗</a>
+              <a class="rp-project-link" href="#kmc">Connected project: KMC ↗</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="rp-card" data-project="" data-search="kinetic monte carlo KMC growth modeling MoS2 MoSe2 Python differential evolution morphology RMSE" data-status="ongoing" id="kmc">
+          <div class="rp-card-top"><span class="rp-number">02 / COMPUTATIONAL</span><span class="rp-status">Ongoing</span></div>
+          
+<figure class="rp-media">
+  <img
+    src="./assets/images/KmC.jpg"
+    alt="Kinetic Monte Carlo simulation of two-dimensional crystal growth morphology"
+    loading="lazy"
+  >
+</figure>
+
+          <div class="rp-card-body">
+            <p class="rp-kicker">Growth kinetics · Computational modeling</p>
+            <h3>Kinetic Monte Carlo Modeling of 2D Materials Growth</h3>
+            <p class="rp-summary">KMC modeling of 2D crystal growth, focusing on nucleation, island expansion, edge-versus-plane growth, and quantitative comparison with morphology observations.</p>
+            <ul class="rp-tags"><li>KMC</li><li>Python</li><li>Parameter fitting</li><li>Growth kinetics</li></ul>
+            <div class="rp-links">
+              <a class="rp-project-link" href="projects/kmc-growth-modeling.html">Full project details ↗</a>
+              <a class="rp-project-link" href="experience.html#iith">Related experience: IIT Hyderabad ↗</a>
+              <a class="rp-project-link" href="#cvd">Connected project: CVD growth ↗</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="rp-card" data-project="" data-search="DFT AIMD MoO3 molybdenum oxide Quantum ESPRESSO amorphous disorder coordination radial distribution function RDF" data-status="ongoing" id="dft">
+          <div class="rp-card-top"><span class="rp-number">03 / COMPUTATIONAL</span><span class="rp-status">Ongoing</span></div>
+          <figure class="rp-media">
+  <img
+    src="./assets/images/AIMD.jpg"
+    alt="DFT and AIMD simulation of MoO₃ structural disorder"
+    loading="lazy"
+  >
+</figure>
+          
+          
+          <!-- <figure class="rp-media" data-image="">
+            <img alt="MoO3 atomic structure or radial distribution function plot" loading="lazy">
+            <div class="rp-placeholder"><span class="rp-placeholder-symbol">⌬</span><strong>Insert atomic structure or plot</strong><span>Example: relaxed MoO₃ structure, RDF, or coordination analysis</span></div>
+            <figcaption>Figure 03 · Add a structure rendered from your own calculation or an analysis plot.</figcaption>
+          </figure> -->
+          <div class="rp-card-body">
+            <p class="rp-kicker">First-principles simulation · Oxide structure</p>
+            <h3>DFT and AIMD Studies of MoO₃ Structural Disorder</h3>
+            <p class="rp-summary">First-principles modeling of MoO₃ to examine structural relaxation, local Mo–O coordination, and atomic environments in crystalline and disordered configurations.</p>
+            <ul class="rp-tags"><li>DFT</li><li>AIMD</li><li>Quantum ESPRESSO</li><li>Structure analysis</li></ul>
+            <div class="rp-links">
+              <a class="rp-project-link" href="projects/moo3-dft-aimd.html">Full project details ↗</a>
+              <a class="rp-project-link" href="experience.html#iith">Related experience: IIT Hyderabad ↗</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="rp-card" data-project="" data-search="sulfur selenium S2 Se2 MoO3 surface DFT NEB incorporation adsorption reaction pathway" data-status="exploratory" id="surface">
+          <div class="rp-card-top"><span class="rp-number">04 / ATOMISTIC MODELING</span><span class="rp-status">Exploratory</span></div>
+          <figure class="rp-media">
+  <img
+    src="./assets/images/MoO3_S_Se_figure.jpg"
+    alt="DFT and AIMD simulation of MoO₃ structural disorder with sulfur or selenium species"
+    loading="lazy"
+  >
+</figure>
+          
+          
+          <!-- <figure class="rp-media" data-image="">
+            <img alt="MoO3 surface slab with sulfur or selenium species" loading="lazy">
+            <div class="rp-placeholder"><span class="rp-placeholder-symbol">⌗</span><strong>Insert surface structure</strong><span>Example: slab model, adsorbed species, or candidate pathway</span></div>
+            <figcaption>Figure 04 · Use a clearly labelled structure and identify it as a candidate configuration.</figcaption>
+          </figure> -->
+          <div class="rp-card-body">
+            <p class="rp-kicker">Surface chemistry · Exploratory calculations</p>
+            <h3>Sulfur and Selenium Incorporation on MoO₃(010)</h3>
+            <p class="rp-summary">Exploratory first-principles investigation of sulfur- and selenium-containing species near a MoO₃ surface, including candidate configurations and possible reaction pathways.</p>
+            <ul class="rp-tags"><li>DFT</li><li>Surface modeling</li><li>S₂ / Se₂</li><li>NEB</li></ul>
+            <div class="rp-links">
+              <a class="rp-project-link" href="projects/sulfur-selenium-moo3-surface.html">Full project details ↗</a>
+              <a class="rp-project-link" href="experience.html#iith">Related experience: IIT Hyderabad ↗</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="rp-card" data-project="" data-search="oxide nanomaterials Pb2 lead adsorption ZnO Fe3O4 Fe3O4@ZnO cysteine synthesis characterization" data-status="previous" id="adsorbents">
+          <div class="rp-card-top"><span class="rp-number">05 / MATERIALS</span><span class="rp-status">Previous</span></div>
+          <figure class="rp-media">
+  <img
+    src="./assets/images/NiamtRA.png"
+    alt="FESEM kmc image of oxide nanomaterials for Pb²⁺ adsorption"
+    loading="lazy"
+  >
+</figure> 
+          
+          
+          <!-- <figure class="rp-media" data-image="">
+            <img alt="Oxide nanomaterial microscopy or adsorption experiment" loading="lazy">
+            <div class="rp-placeholder"><span class="rp-placeholder-symbol">◌</span><strong>Insert materials image</strong><span>Example: FESEM/TEM image, XRD pattern, or adsorption plot</span></div>
+            <figcaption>Figure 05 · Add a real characterization image or adsorption data plot.</figcaption>
+          </figure> -->
+          <div class="rp-card-body">
+            <p class="rp-kicker">Nanomaterials · Previous research</p>
+            <h3>Oxide Nanomaterials for Pb²⁺ Adsorption</h3>
+            <p class="rp-summary">Synthesis, characterization, and adsorption studies of ZnO, Fe₃O₄, Fe₃O₄@ZnO, and L-cysteine-functionalized materials.</p>
+            <ul class="rp-tags"><li>Nanoparticles</li><li>Surface chemistry</li><li>Adsorption</li><li>Characterization</li></ul>
+            <div class="rp-links">
+              <a class="rp-project-link" href="projects/oxide-nanomaterials-pb-adsorption.html">Full project details ↗</a>
+              <a class="rp-project-link" href="experience.html#niamt">Related experience: NIAMT Ranchi ↗</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="rp-card" data-project="" data-search="deterministic stochastic adsorption model Gillespie kinetic Monte Carlo Langmuir Freundlich Pb2" data-status="previous" id="adsorption-model">
+          <div class="rp-card-top"><span class="rp-number">06 / COMPUTATIONAL</span><span class="rp-status">Previous</span></div>
+          
+           <figure class="rp-media">
+  <img
+    src="./assets/images/KMC_model.jpg"
+    alt="Comparison of deterministic and stochastic adsorption models for Pb²⁺ uptake"
+    loading="lazy"
+  >
+</figure> 
+          
+          
+          
+          <!-- <figure class="rp-media" data-image="">
+            <img alt="Deterministic and stochastic adsorption model comparison" loading="lazy">
+            <div class="rp-placeholder"><span class="rp-placeholder-symbol">∿</span><strong>Insert model plot</strong><span>Example: deterministic curve and stochastic trajectories</span></div>
+            <figcaption>Figure 06 · Add the model output with axes, units, and simulation conditions.</figcaption>
+          </figure> -->
+          <div class="rp-card-body">
+            <p class="rp-kicker">Stochastic modeling · Adsorption kinetics</p>
+            <h3>Deterministic and Stochastic Modeling of Adsorption</h3>
+            <p class="rp-summary">Comparison of a mean-field site-occupancy model with a Gillespie-type kinetic Monte Carlo approach for Pb²⁺ uptake.</p>
+            <ul class="rp-tags"><li>Mean-field</li><li>Gillespie KMC</li><li>Python</li><li>Kinetics</li></ul>
+            <div class="rp-links">
+              <a class="rp-project-link" href="projects/adsorption-modeling.html">Full project details ↗</a>
+              <a class="rp-project-link" href="experience.html#niamt">Related experience: NIAMT Ranchi ↗</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="rp-card" data-project="" data-search="NiAg Cu foam HMF oxidation electrocatalysis electrochemistry CV Cdl XRD XPS FESEM" data-status="previous" id="electrocatalysis">
+          <div class="rp-card-top"><span class="rp-number">07 / ELECTROCHEMISTRY</span><span class="rp-status">Previous</span></div>
+
+               <figure class="rp-media">
+  <img
+    src="./assets/images/IITGn.png"
+    alt="Comparison of deterministic and stochastic adsorption models for Pb²⁺ uptake"
+    loading="lazy"
+  >
+</figure> 
+          
+          
+         
+         
+         
+          <!-- <figure class="rp-media" data-image="">
+            <img alt="NiAg electrode or cyclic voltammetry plot" loading="lazy">
+            <div class="rp-placeholder"><span class="rp-placeholder-symbol">⌁</span><strong>Insert electrochemistry figure</strong><span>Example: electrode photograph, CV curve, or characterization</span></div>
+            <figcaption>Figure 07 · Add an approved electrode image or electrochemical plot.</figcaption>
+          </figure> -->
+          <div class="rp-card-body">
+            <p class="rp-kicker">Electrocatalysis · Previous research</p>
+            <h3>NiAg-Based Electrocatalysis for HMF Oxidation</h3>
+            <p class="rp-summary">Preparation and comparison of NiAg@Cu foam electrodes for alkaline electro-oxidation of 5-hydroxymethylfurfural (HMF).</p>
+            <ul class="rp-tags"><li>Electrochemistry</li><li>CV</li><li>FESEM / EDS</li><li>XRD / XPS</li></ul>
+            <div class="rp-links">
+              <a class="rp-project-link" href="projects/niag-electrocatalysis.html">Full project details ↗</a>
+              <a class="rp-project-link" href="experience.html#iitgn">Related experience: IIT Gandhinagar ↗</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="rp-card" data-project="" data-search="MOF metal organic framework ZIF-8 ZIF-67 Cu-BTC Cu-BDC UiO-66 coatings cellulose bamboo aluminium PXRD" data-status="previous" id="mof-coatings">
+          <div class="rp-card-top"><span class="rp-number">08 / MATERIALS</span><span class="rp-status">Previous</span></div>
+          <figure class="rp-media">
+  <img
+    src="./assets/images/IITBH.png"
+    alt="MOF-coated substrate or PXRD pattern"
+    loading="lazy"
+  >
+</figure> 
+          
+          
+          
+          <!-- <figure class="rp-media" data-image="">
+            <img alt="MOF-coated substrate or PXRD pattern" loading="lazy">
+            <div class="rp-placeholder"><span class="rp-placeholder-symbol">▦</span><strong>Insert MOF image</strong><span>Example: coated substrate, crystals, or PXRD pattern</span></div>
+            <figcaption>Figure 08 · Add an image of the material or verified characterization data.</figcaption>
+          </figure> -->
+          <div class="rp-card-body">
+            <p class="rp-kicker">Porous materials · Synthesis and coatings</p>
+            <h3>Metal–Organic Framework Synthesis and Coatings</h3>
+            <p class="rp-summary">Synthesis of selected MOFs and coating development on cellulose, bamboo fabrics, and aluminium substrates.</p>
+            <ul class="rp-tags"><li>MOFs</li><li>Coatings</li><li>PXRD</li><li>Materials synthesis</li></ul>
+            <div class="rp-links">
+              <a class="rp-project-link" href="projects/mof-coatings.html">Full project details ↗</a>
+              <a class="rp-project-link" href="experience.html#iitbhilai">Related experience: IIT Bhilai ↗</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="rp-card" data-project="" data-search="TPMS Schwarz Primitive lattice ANSYS finite element analysis FEA compression Ti-6Al-4V magnesium structural steel" data-status="previous" id="tpms">
+          <div class="rp-card-top"><span class="rp-number">09 / UNDERGRADUATE PROJECT</span><span class="rp-status">Previous</span></div>
+          
+           <figure class="rp-media">
+  <img
+    src="./assets/images/major project.png"
+    alt="Schwarz Primitive TPMS lattice geometry or ANSYS result"
+    loading="lazy"
+  >
+</figure> 
+          
+          
+          <!-- <figure class="rp-media" data-image="">
+            <img alt="Schwarz Primitive TPMS lattice geometry or ANSYS result" loading="lazy">
+            <div class="rp-placeholder"><span class="rp-placeholder-symbol">⌘</span><strong>Insert TPMS / FEA figure</strong><span>Example: lattice geometry, mesh, stress, or deformation map</span></div>
+            <figcaption>Figure 09 · Add the geometry and identify the plotted simulation quantity.</figcaption>
+          </figure> -->
+          <div class="rp-card-body">
+            <p class="rp-kicker">B.Tech final-year project · Grade A+</p>
+            <h3>Static Compression Analysis of a TPMS Lattice</h3>
+            <p class="rp-summary">Geometry development and finite element analysis of a Schwarz Primitive triply periodic minimal surface lattice under static compression.</p>
+            <ul class="rp-tags"><li>ANSYS</li><li>FEA</li><li>TPMS</li><li>Mesh convergence</li></ul>
+            <div class="rp-links">
+              <a class="rp-project-link" href="projects/tpms-compression-analysis.html">Full project details ↗</a>
+              <a class="rp-project-link" href="experience.html#niamt">Related experience: NIAMT Ranchi ↗</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="rp-card" data-project="" data-search="auxetic structures negative Poisson ratio ANSYS FEA compression mechanics" data-status="previous" id="auxetic">
+          <div class="rp-card-top"><span class="rp-number">10 / COMPUTATIONAL MECHANICS</span><span class="rp-status">Previous</span></div>
+          
+           <figure class="rp-media">
+  <img
+    src="./assets/images/Abu_Dhabi.png"
+    alt="Auxetic structure or finite element deformation result"
+    loading="lazy"
+  >
+</figure>
+          
+          <!-- <figure class="rp-media" data-image="">
+            <img alt="Auxetic geometry or finite element deformation result" loading="lazy">
+            <div class="rp-placeholder"><span class="rp-placeholder-symbol">◇</span><strong>Insert auxetic figure</strong><span>Example: unit-cell geometry or deformation visualization</span></div>
+            <figcaption>Figure 10 · Add the structure and a brief description of the loading case.</figcaption>
+          </figure> -->
+          
+          
+          <div class="rp-card-body">
+            <p class="rp-kicker">Structured materials · Simulation</p>
+            <h3>Auxetic Materials and Finite Element Analysis</h3>
+            <p class="rp-summary">Literature study and finite element investigation of auxetic structures, focusing on negative Poisson’s ratio and compressive deformation.</p>
+            <ul class="rp-tags"><li>ANSYS</li><li>FEA</li><li>Auxetics</li><li>Mechanical response</li></ul>
+            <div class="rp-links">
+              <a class="rp-project-link" href="projects/auxetic-materials-fea.html">Full project details ↗</a>
+              <a class="rp-project-link" href="experience.html#adu">Related experience: Abu Dhabi University ↗</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="rp-card" data-project="" data-search="computational contact mechanics finite element mortar segment-to-segment contact locking" data-status="previous" id="contact-mechanics">
+          <div class="rp-card-top"><span class="rp-number">11 / COMPUTATIONAL</span><span class="rp-status">Previous</span></div>
+          
+          <figure class="rp-media">
+  <img
+    src="./assets/images/Myongi.png"
+    alt="Finite element model of contact mechanics with segment-to-segment and mortar formulations"
+    loading="lazy"
+  >
+</figure>
+         
+         
+          <!-- <figure class="rp-media" data-image="">
+            <img alt="Contact mechanics finite element model or output" loading="lazy">
+            <div class="rp-placeholder"><span class="rp-placeholder-symbol">⟷</span><strong>Insert computational figure</strong><span>Example: contact model, mesh, or force residual plot</span></div>
+            <figcaption>Figure 11 · Add a permitted figure or schematic from the work.</figcaption>
+          </figure>
+           -->
+          <div class="rp-card-body">
+            <p class="rp-kicker">Finite elements · Contact mechanics</p>
+            <h3>Computational Contact Mechanics Using Finite Elements</h3>
+            <p class="rp-summary">Literature review and examination of a one-dimensional finite element implementation for contact mechanics, including segment-to-segment and mortar-based formulations.</p>
+            <ul class="rp-tags"><li>Finite elements</li><li>Contact mechanics</li><li>Numerical methods</li></ul>
+            <div class="rp-links">
+              <a class="rp-project-link" href="projects/computational-contact-mechanics.html">Full project details ↗</a>
+              <a class="rp-project-link" href="experience.html#myongji">Related experience: Myongji University ↗</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="rp-card" data-project="" data-search="Amur tiger re-identification deep learning computer vision Vision Transformer ATRW Google Colab" data-status="previous" id="tiger-vision">
+          <div class="rp-card-top"><span class="rp-number">12 / COMPUTER VISION</span><span class="rp-status">Previous</span></div>
+
+
+           <figure class="rp-media">
+  <img
+    src="./assets/images/IIIT_Dharwad.png"
+    alt="Amur tiger re-identification research image or model diagram"
+    loading="lazy"
+  >
+</figure>
+<!--         
+          
+          <figure class="rp-media" data-image="">
+            <img alt="Tiger re-identification research image or model diagram" loading="lazy">
+            <div class="rp-placeholder"><span class="rp-placeholder-symbol">▧</span><strong>Insert vision figure</strong><span>Example: approved dataset sample, model diagram, or training plot</span></div>
+            <figcaption>Figure 12 · Ensure any dataset image is permitted for public reuse.</figcaption>
+          </figure>
+           -->
+          <div class="rp-card-body">
+            <p class="rp-kicker">Deep learning · Literature and initial experiment</p>
+            <h3>Amur Tiger Re-identification Using Deep Learning</h3>
+            <p class="rp-summary">Literature review and an initial Vision Transformer experiment related to identifying individual tigers from images.</p>
+            <ul class="rp-tags"><li>Computer vision</li><li>Vision Transformer</li><li>Deep learning</li></ul>
+            <div class="rp-links">
+              <a class="rp-project-link" href="projects/amur-tiger-reidentification.html">Full project details ↗</a>
+              <a class="rp-project-link" href="experience.html#iiitdwd">Related experience: IIIT Dharwad ↗</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="rp-card" data-project="" data-search="autonomous line following robot Arduino infrared sensors robotics embedded systems" data-status="previous" id="line-robot">
+          <div class="rp-card-top"><span class="rp-number">13 / Bachelor Major Project</span><span class="rp-status">Previous</span></div>
+        
+           <figure class="rp-media">
+  <img
+    src="./assets/images/major project.png"
+    alt="DFT and AIMD simulation of MoO₃ structural disorder"
+    loading="lazy"
+  >
+</figure>
+          
+<!--           
+          
+          <figure class="rp-media" data-image="">
+            <img alt="Four-wheel Arduino line-following robot" loading="lazy">
+            <div class="rp-placeholder"><span class="rp-placeholder-symbol">↗</span><strong>Insert project photograph</strong><span>Example: robot photograph, sensor layout, or navigation setup</span></div>
+            <figcaption>Figure 13 · Add your own project photograph and concise caption.</figcaption>
+          </figure>
+           -->
+          <div class="rp-card-body">
+            <p class="rp-kicker">Undergraduate academic project · Grade A+</p>
+            <h3>Autonomous Line-Following Robot</h3>
+            <p class="rp-summary">Design and programming of a four-wheel autonomous robot using Arduino and infrared sensors for path detection and navigation.</p>
+            <ul class="rp-tags"><li>Arduino</li><li>IR sensors</li><li>Robotics</li><li>Embedded systems</li></ul>
+            <div class="rp-links">
+              <a class="rp-project-link" href="projects/autonomous-line-following-robot.html">Full project details ↗</a>
+              <a class="rp-project-link" href="experience.html#niamt">Related experience: NIAMT Ranchi ↗</a>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <div class="rp-empty" hidden id="rp-empty">No projects match this search and filter. Try a different term or select “All”.</div>
+    </section>
+
+    <section aria-labelledby="resources-title" class="rp-section">
+      <div class="rp-section-head">
+        <div></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer-inner">
+      <a class="brand" href="index.html">aryan.phd</a>
+      <span>IIT Hyderabad, India</span>
+      <span>Research portfolio · October 2026</span>
+    </div>
+  </footer>
+</body>
+</html>

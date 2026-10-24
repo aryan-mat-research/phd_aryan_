@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>About | Aryan</title>
+  <meta name="description" content="A personal introduction to Aryan's academic journey, research perspective, and technical capabilities.">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/about.css">
+  <script src="assets/js/site.js" defer></script>
+  <style>
+    /* ABOUT — light editorial design aligned with the Contact and Notebook pages */
+    .about-page{--a-ink:#171717;--a-muted:#686868;--a-line:#dedede;--a-soft:#f7f7f7;color:var(--a-ink);font-family:Arial,Helvetica,sans-serif;padding-bottom:42px}
+    .about-page *{box-sizing:border-box}
+    .about-page .eyebrow{margin:0 0 12px;color:#777;font:500 10.5px/1.6 Arial,Helvetica,sans-serif;letter-spacing:1.25px;text-transform:uppercase}
+    .about-page h1,.about-page h2,.about-page h3{font-family:Georgia,"Times New Roman",serif;font-weight:400;color:var(--a-ink)}
+    .about-page h1{max-width:780px;margin:0 0 17px;font-size:clamp(36px,5vw,49px);line-height:1.13;letter-spacing:-1.4px}
+    .about-page h2{margin:0 0 12px;font-size:clamp(25px,3vw,31px);line-height:1.25;letter-spacing:-.6px}
+    .about-page h3{margin:0 0 8px;font-size:20px;line-height:1.35;letter-spacing:-.25px}
+    .about-page p{overflow-wrap:anywhere}
+    .about-hero{padding:43px 0 29px;border-bottom:1px solid var(--a-line)}
+    .about-hero .lede{max-width:670px;margin:0;color:var(--a-muted);font-size:14px;line-height:1.9}
+    .about-section{padding:36px 0;border-bottom:1px solid var(--a-line)}
+    .section-head{display:flex;align-items:end;justify-content:space-between;gap:25px;margin-bottom:22px}
+    .section-head .eyebrow{margin-bottom:8px}
+    .section-head>p{max-width:350px;margin:0;color:var(--a-muted);font-size:11.5px;line-height:1.8}
+
+    /* Research-related image */
+    .journey-image{margin:0;min-width:0}
+    .journey-image img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;border:1px solid var(--a-line);border-radius:9px;background:var(--a-soft)}
+    .journey-image figcaption{margin-top:8px;color:#777;font-size:10.5px;line-height:1.7}
+    .journey-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(280px,.95fr);gap:clamp(25px,4vw,52px);align-items:center}
+    .journey-copy p{margin:0 0 13px;color:#555;font-size:13px;line-height:1.9}
+    .journey-copy p:last-child{margin-bottom:0}
+    .journey-image{margin:0;min-width:0}
+    .journey-image img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;border:1px solid var(--a-line);border-radius:9px;background:var(--a-soft)}
+    .journey-image figcaption{margin-top:8px;color:#777;font-size:10.5px;line-height:1.7}
+    .milestones{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:25px}
+    .milestone{padding:16px 17px;border:1px solid var(--a-line);border-radius:9px;background:#fff}
+    .milestone .year{display:block;margin-bottom:15px;color:#777;font-size:10px;letter-spacing:.8px}
+    .milestone h3{font-size:18px}
+    .milestone p{margin:0;color:var(--a-muted);font-size:11.5px;line-height:1.75}
+    .quote-panel{display:grid;grid-template-columns:42px minmax(0,1fr);gap:17px;margin:32px 0 0;padding:24px 26px;border:1px solid var(--a-line);border-radius:10px;background:#fafafa}
+    .quote-mark{font:48px/.9 Georgia,"Times New Roman",serif;color:#999}
+    .quote-panel blockquote{max-width:800px;margin:0;font:400 clamp(20px,2.4vw,27px)/1.5 Georgia,"Times New Roman",serif;letter-spacing:-.3px;color:#222}
+    .quote-panel .quote-note{margin:10px 0 0;color:var(--a-muted);font-size:11px;line-height:1.7}
+    .principles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}
+    .principle{padding:19px 20px;border:1px solid var(--a-line);border-radius:9px;background:#fff}
+    .principle .index{display:block;margin-bottom:20px;color:#888;font-size:10px;letter-spacing:.8px}
+    .principle p{margin:0;color:var(--a-muted);font-size:12px;line-height:1.85}
+    .skills-intro{max-width:680px;margin:0 0 22px;color:var(--a-muted);font-size:13px;line-height:1.85}
+     .skill-list{display:grid;grid-template-columns:1fr;gap:0;border-top:1px solid var(--a-line)}
+    .skill-card{display:grid;grid-template-columns:42px minmax(210px,.82fr) minmax(0,1.5fr);align-items:start;gap:18px;padding:23px 4px;border:0;border-bottom:1px solid var(--a-line);background:transparent;min-width:0}
+    .skill-number{color:#858585;font:400 17px/1.4 Georgia,"Times New Roman",serif;padding-top:1px}
+    .skill-card h3{font-size:18px;line-height:1.35;margin:0 0 7px}
+    .skill-card .skill-desc{margin:0;color:var(--a-muted);font-size:11.5px;line-height:1.75;max-width:290px}
+    .skill-tags{display:flex;flex-wrap:wrap;gap:7px;margin:1px 0 0;padding:0;list-style:none}
+    .skill-tags li{padding:6px 9px;border:1px solid #e3e3e3;border-radius:4px;background:#fff;color:#555;font-size:10.5px;line-height:1.45;overflow-wrap:anywhere}
+    .skill-card:hover .skill-number{color:#222}
+    .skill-card:hover .skill-tags li{border-color:#cfcfcf}
+    .about-values{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}
+    .about-value{padding:18px 19px;border:1px solid var(--a-line);border-radius:9px}
+    .about-value h3{font-size:19px}
+    .about-value p{margin:0;color:var(--a-muted);font-size:12px;line-height:1.85}
+    .about-links{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 24px;border-top:1px solid var(--a-line)}
+    .about-links a{display:flex;justify-content:space-between;align-items:center;gap:15px;padding:16px 2px;border-bottom:1px solid var(--a-line);color:var(--a-ink);text-decoration:none;font-size:12px;transition:padding .2s ease,color .2s ease}
+    .about-links a span:last-child{color:#777}.about-links a:hover{padding-left:7px;color:#666}
+    .about-page a:focus-visible{outline:2px solid #555;outline-offset:4px}
+    @media(max-width:760px){.journey-grid{grid-template-columns:1fr}.journey-image{max-width:650px}.section-head{align-items:start;flex-direction:column;gap:9px}.milestones,.principles{grid-template-columns:1fr}.skill-card{grid-template-columns:34px minmax(0,1fr);gap:12px;padding:19px 2px}.skill-card>div{min-width:0}.skill-tags{grid-column:2}.skill-card .skill-desc{max-width:none;margin-bottom:13px}}
+    @media(max-width:540px){.about-hero{padding:28px 0 27px}.about-page h1{font-size:35px;letter-spacing:-.8px}.about-hero .lede{font-size:13px}.about-section{padding:29px 0}.quote-panel{grid-template-columns:25px minmax(0,1fr);gap:12px;padding:19px}.quote-mark{font-size:35px}.about-links{grid-template-columns:1fr}.milestone{padding:15px}.skill-card{padding:16px}}
+    @media(prefers-reduced-motion:reduce){.about-links a{transition:none}}
+  
+    /* Technical toolkit: calm, compact cards matching the Contact page */
+    .about-page .about-section[aria-labelledby="skills-title"]{padding-top:30px}
+    .about-page .about-section[aria-labelledby="skills-title"] .section-head{
+      display:grid;grid-template-columns:minmax(0,1fr) minmax(220px,300px);
+      align-items:end;gap:28px;margin-bottom:24px
+    }
+    .about-page .about-section[aria-labelledby="skills-title"] .section-head .eyebrow{margin-bottom:9px}
+    .about-page .about-section[aria-labelledby="skills-title"] .section-head h2{
+      margin:0;font:400 clamp(28px,3.5vw,36px)/1.15 Georgia,"Times New Roman",serif;letter-spacing:-.7px
+    }
+    .about-page .about-section[aria-labelledby="skills-title"] .section-head>p{
+      margin:0;color:var(--a-muted);font-size:12px;line-height:1.8
+    }
+    .about-page .skill-list{
+      display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;border:0
+    }
+    .about-page .skill-card{
+      display:grid;grid-template-columns:30px minmax(0,1fr);align-items:start;gap:12px;
+      min-width:0;padding:20px 18px;border:1px solid var(--a-line);border-radius:9px;
+      background:#fff;transition:border-color .18s ease
+    }
+    .about-page .skill-card:hover{border-color:#c8c8c8}
+    .about-page .skill-number{font:400 14px/1.5 Georgia,"Times New Roman",serif;color:#777;padding-top:2px}
+    .about-page .skill-card h3{font:400 19px/1.3 Georgia,"Times New Roman",serif;margin:0 0 7px;letter-spacing:-.2px}
+    .about-page .skill-card .skill-desc{max-width:440px;margin:0 0 14px;color:var(--a-muted);font-size:12px;line-height:1.7}
+    .about-page .skill-tags{display:flex;flex-wrap:wrap;gap:6px;margin:0;padding:0;list-style:none}
+    .about-page .skill-tags li{
+      padding:5px 8px;border:1px solid #e2e2e2;border-radius:4px;background:#fff;
+      color:#555;font-size:10.5px;line-height:1.45;overflow-wrap:anywhere
+    }
+    .about-page .skill-card:hover .skill-tags li{border-color:#dedede}
+    @media(max-width:760px){
+      .about-page .about-section[aria-labelledby="skills-title"] .section-head{grid-template-columns:1fr;gap:10px}
+      .about-page .skill-list{grid-template-columns:1fr}
+    }
+    @media(prefers-reduced-motion:reduce){.about-page .skill-card{transition:none}}
+</style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="header"><div class="wrap nav">
+    <a class="brand" href="index.html">aryan.phd</a>
+    <button class="menu" aria-expanded="false" aria-label="Toggle navigation">Menu</button>
+    <nav class="links" aria-label="Main navigation">
+      <a href="index.html">Home</a><a href="about.html" aria-current="page">About</a><a href="research.html">Research</a><a href="experience.html">Experience</a><a href="notebook.html">Notebook</a><a href="contact.html">Contact</a>
+    </nav>
+  </div></header>
+
+  <main id="main" class="wrap page about-page">
+    <!-- <section class="about-hero" aria-labelledby="about-title"> -->
+      <p class="eyebrow">About /Academic journey</p>
+      <!-- <h2 id="about-title">From engineering to computational materials research </h2> -->
+     
+     <!-- <p class="lede">
+    My research connects computational materials science and experiments
+    to understand how materials form, evolve, and develop their properties.
+  </p> -->
+      <!-- 
+
+       <p class="lede">My academic journey began in mechanical engineering and gradually evolved toward understanding how materials form, how their structures evolve, and how these processes determine their properties. Today, my research interests centre on computational materials science for electronic and semiconductor materials, connecting atomistic modelling with experimental growth and characterization.</p> -->
+    </section>
+
+    
+<!-- <section class="about-section" aria-labelledby="journey-title"> -->
+
+  <div class="section-head">
+    <div>
+      <!-- <p class="eyebrow">The Journey</p> -->
+      <h3 id="journey-title">How I found my way into materials research</h3>
+    </div>
+  </div>
+
+  <div class="journey-grid">
+
+    <div class="journey-copy">
+      <p>
+        I completed my B.Tech in Mechanical Engineering at NIAMT, Ranchi, in 2026, with research experience in nano materials, porous materials, electrocatalysis, and computational mechanics.
+      </p>
+
+      <p>
+      Since June 2026, I have been working at the Advanced Electron Devices Lab, Department of Electrical Engineering, IIT Hyderabad, investigating the growth and characterization of 2D transition-metal dichalcogenides (MoS₂, MoSe₂, WS₂, and WSe₂) using CVD experiments and kinetic Monte Carlo (KMC) modelling to understand crystal morphology and growth kinetics  
+      </p>
+
+      <p>
+       I am working on density functional theory (DFT), ab initio molecular dynamics (AIMD), and nudged elastic band (NEB) calculations to study structural disorder in MoO₃ and sulfur/selenium incorporation at oxide surfaces. My broader goal is to connect atomic-scale interactions, defects, and growth mechanisms with experimental observations through first-principles calculations, multiscale modelling, and experimental characterization.
+      </p>
+    </div>
+
+    <figure class="ab-research-figure">
+      <img
+        src="assets/images/about.png"
+        alt="Overview of 2D semiconductor growth, experimental characterization, kinetic Monte Carlo modelling, and first-principles simulations"
+         style="display:block; width:100%; max-width:100%; height:auto;"
+        loading="lazy"
+      />
+      <figcaption>
+        Integrating experimental growth, materials characterization,
+        and atomistic modelling to understand semiconductor materials.
+      </figcaption>
+    </figure>
+
+  </div>
+</section>
+
+<section class="about-section perspective-section">
+  <!-- <p class="eyebrow">Perspective</p> -->
+  <!-- <h2>The questions matter as much as the answers.</h2> -->
+
+  <aside class="quote-panel">
+    <!-- <span class="quote-mark" aria-hidden="true">“</span>
+    <blockquote>
+      A useful explanation should not only describe what happens;
+      it should help us understand why it happens.
+    </blockquote> -->
+  </aside>
+
+      <!-- <aside class="quote-panel"><span class="quote-mark" aria-hidden="true">“</span><div><blockquote>A useful explanation should not only describe what happens; it should help us understand why it happens.</blockquote><p class="quote-note"></p></div></aside> -->
+      <div class="about-values" style="margin-top:13px">
+        <!-- <article class="about-value"><h3>Stay curious</h3><p>Look beyond the first result and ask what remains unexplained.</p></article>
+        <article class="about-value"><h3>Respect evidence</h3><p>Distinguish observations from interpretations, and conclusions from open questions.</p></article>
+        <article class="about-value"><h3>Keep refining</h3><p>Let new data, better models, and thoughtful criticism improve an explanation.</p></article> -->
+      </div>
+    </section>
+
+  
+<section class="about-section" aria-labelledby="skills-title">
+  <div class="section-head">
+    <div>
+      <p class="eyebrow">Technical toolkit</p>
+      <h2 id="skills-title">Methods, tools, and skills</h2>
+    </div>
+  </div>
+
+  <div class="skill-list">
+
+    <article class="skill-card">
+      <span class="skill-number" aria-hidden="true"></span>
+      <div>
+        <h3>Computational materials &amp; simulation</h3>
+        <p class="skill-desc">Atomistic modelling, energy calculations, and engineering simulation.</p>
+        <ul class="skill-tags">
+          <li>Density Functional Theory (DFT)</li>
+          <li>Ab Initio Molecular Dynamics (AIMD)</li>
+          <li>Nudged Elastic Band (NEB)</li>
+          <li>Kinetic Monte Carlo (KMC)</li>
+          <li>Finite Element Analysis (ANSYS)</li>
+        </ul>
+      </div>
+    </article>
+
+    <article class="skill-card">
+      <span class="skill-number" aria-hidden="true"></span>
+      <div>
+        <h3>Programming &amp; computational tools</h3>
+        <p class="skill-desc">Scientific computing, data processing, and computational analysis.</p>
+        <ul class="skill-tags">
+          <li>Quantum ESPRESSO</li>
+          <li>Python</li>
+          <li>NumPy</li>
+          <li>Pandas</li>
+          <li>Matplotlib</li>
+          <li>OpenCV</li>
+          <li>C++</li>
+        </ul>
+      </div>
+    </article>
+
+    <article class="skill-card">
+      <span class="skill-number" aria-hidden="true"></span>
+      <div>
+        <h3>Materials synthesis &amp; growth</h3>
+        <p class="skill-desc">Experimental approaches to material preparation, deposition, and crystal growth.</p>
+        <ul class="skill-tags">
+          <li>Chemical Vapor Deposition (CVD)</li>
+          <li>Nanoparticle synthesis</li>
+          <li>MOF synthesis</li>
+          <li>Electrodeposition</li>
+          <li>Hydrothermal synthesis</li>
+          <li>Precipitation and co-precipitation</li>
+        </ul>
+      </div>
+    </article>
+
+    <article class="skill-card">
+      <span class="skill-number" aria-hidden="true"></span>
+      <div>
+        <h3>Materials characterization</h3>
+        <p class="skill-desc">Structural, morphological, chemical, and optical characterization.</p>
+        <ul class="skill-tags">
+          <li>Raman spectroscopy</li>
+          <li>Atomic Force Microscopy (AFM)</li>
+          <li>FESEM</li>
+          <li>X-ray Photoelectron Spectroscopy (XPS)</li>
+          <li>Powder X-ray Diffraction (PXRD)</li>
+          <li>FTIR</li>
+          <li>UV–Visible spectroscopy</li>
+          <li>BET surface-area analysis</li>
+        </ul>
+      </div>
+    </article>
+
+    <article class="skill-card">
+      <span class="skill-number" aria-hidden="true"></span>
+      <div>
+        <h3>Electrochemical techniques</h3>
+        <p class="skill-desc">Electrochemical measurements, capacitance analysis, and experimental data acquisition.</p>
+        <ul class="skill-tags">
+          <li>Cyclic Voltammetry (CV)</li>
+          <li>Double-layer capacitance (Cdl)</li>
+          <li>Electrochemical cell operation</li>
+          <li>CHI software</li>
+          <li>NOVA software</li>
+        </ul>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<section class="about-section about-explore" aria-labelledby="explore-title">
+  <div class="section-head">
+    <div>
+      <p class="eyebrow">Explore</p>
+      <h3 id="explore-title">Follow the work from here.</h3>
+    </div>
+  </div>
+
+  <nav class="about-links" aria-label="Explore the portfolio">
+    <a href="research.html">
+      <span>Research projects</span><span aria-hidden="true">↗</span>
+    </a>
+    <a href="experience.html">
+      <span>Research experience</span><span aria-hidden="true">↗</span>
+    </a>
+    <a href="notebook.html">
+      <span>Notebook and references</span><span aria-hidden="true">↗</span>
+    </a>
+    <a href="contact.html">
+      <span>Contact</span><span aria-hidden="true">↗</span>
+    </a>
+  </nav>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap footer-inner">
+    <a class="brand" href="index.html">aryan.phd</a>
+    <span>IIT Hyderabad, India</span>
+    <span>Academic profile · 2026</span>
+  </div>
+</footer>
+</body>
+</html>
+  

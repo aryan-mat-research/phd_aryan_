@@ -1,0 +1,450 @@
+/* =========================================================
+   EXPERIENCE PAGE — CLEAN, SINGLE-SOURCE STYLESHEET
+   Uses global variables and shared navigation from style.css
+   Poster images keep their original aspect ratio (no cropping).
+   ========================================================= */
+
+/* Page frame */
+.experience-page {
+  padding-top: 38px;
+  padding-bottom: 64px;
+  color: var(--black, #111);
+  font-family: var(--sans, Arial, sans-serif);
+  font-size: 14px;
+}
+
+main.wrap.page.experience-page {
+  /* Give landscape research posters enough horizontal space. */
+  width: min(1440px, calc(100% - 48px));
+  max-width: 1440px;
+  margin-inline: auto;
+  box-sizing: border-box;
+}
+
+.experience-page p { margin-top: 0; }
+.experience-page h1,
+.experience-page h2,
+.experience-page h3 { color: var(--black, #111); }
+
+/* Introduction */
+.experience-intro {
+  max-width: 780px;
+  margin: 0 0 34px;
+}
+
+.experience-page .eyebrow {
+  margin: 0 0 8px;
+  color: var(--grey, #666);
+  font-family: var(--sans, Arial, sans-serif);
+  font-size: 10px;
+  letter-spacing: 1.4px;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+.experience-page h1 {
+  margin: 12px 0 14px;
+  font-family: var(--serif, Georgia, serif);
+  font-size: clamp(36px, 4.2vw, 54px);
+  font-weight: 400;
+  letter-spacing: -0.7px;
+  line-height: 1.12;
+}
+
+.experience-page .lede {
+  max-width: 680px;
+  margin: 0;
+  font-family: var(--serif, Georgia, serif);
+  font-size: clamp(18px, 2vw, 23px);
+  line-height: 1.55;
+}
+
+/* Research journey */
+.rj {
+  margin: 28px 0 42px;
+  padding: 22px 0 20px;
+  border-top: 1px solid var(--black, #111);
+  border-bottom: 1px solid var(--line, #d8d8d8);
+  background: #fff;
+}
+
+.rj h2,
+.experience-page h2 {
+  margin: 0 0 12px;
+  font-family: var(--serif, Georgia, serif);
+  font-size: clamp(27px, 3vw, 32px);
+  font-weight: 400;
+  letter-spacing: -0.6px;
+  line-height: 1.2;
+}
+
+.rj-sub {
+  max-width: 760px;
+  margin: 0 0 18px;
+  color: var(--grey, #666);
+  font-size: 13px;
+  line-height: 1.65;
+}
+
+.rj-scroll {
+  width: 100%;
+  overflow-x: auto;
+  padding: 8px 0 12px;
+  overscroll-behavior-x: contain;
+  scrollbar-width: thin;
+}
+
+.rj-list {
+  display: flex;
+  min-width: 1250px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.rj-item {
+  position: relative;
+  flex: 1 0 145px;
+  min-width: 0;
+  padding: 28px 16px 0 0;
+  box-sizing: border-box;
+}
+
+.rj-item::before {
+  position: absolute;
+  top: 8px;
+  right: 0;
+  left: 0;
+  height: 1px;
+  background: var(--line, #d8d8d8);
+  content: "";
+}
+
+.rj-dot {
+  position: absolute;
+  top: 4px;
+  left: 0;
+  z-index: 1;
+  width: 9px;
+  height: 9px;
+  border: 1px solid var(--black, #111);
+  border-radius: 50%;
+  background: #fff;
+  box-sizing: border-box;
+}
+
+.rj-d2 { width: 10px; height: 10px; }
+.rj-d3 { width: 11px; height: 11px; }
+.rj-d4, .rj-d5, .rj-d6 { background: var(--black, #111); }
+.rj-d7 { width: 11px; height: 11px; border-style: dashed; }
+.rj-item.recent .rj-dot { background: var(--black, #111); }
+.rj-item.future .rj-dot { background: #fff; border-style: dashed; }
+
+.rj-date {
+  margin: 0 0 6px;
+  color: var(--grey, #666);
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.rj-text {
+  display: inline-block;
+  margin: 0;
+  color: var(--black, #111);
+  font-size: 12px;
+  line-height: 1.55;
+  text-decoration: none;
+  text-underline-offset: 3px;
+}
+
+.rj-text:hover,
+.rj-text:focus-visible { text-decoration: underline; }
+
+/* Experience section heading */
+.experience-section { margin: 0; }
+
+.experience-heading {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  margin-bottom: 20px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--line, #d8d8d8);
+}
+
+.experience-heading .eyebrow { margin-bottom: 5px; }
+.experience-heading h2 { margin: 0; }
+
+/* Experience rows */
+.experience-list {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-width: 0;
+  border-top: 1px solid var(--black, #111);
+}
+
+.experience-card {
+  display: grid;
+  /* Poster gets about 65% of the row; text remains comfortably readable. */
+  grid-template-columns: minmax(0, 1.7fr) minmax(300px, 0.9fr);
+  align-items: start;
+  gap: clamp(22px, 3vw, 36px);
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+  padding: 24px 0;
+  border: 0;
+  border-bottom: 1px solid var(--line, #d8d8d8);
+  border-radius: 0;
+  background: #fff;
+  box-shadow: none;
+  box-sizing: border-box;
+  scroll-margin-top: 90px;
+}
+
+/* Poster/media frame: no fixed ratio, no clipping */
+.experience-image {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  height: auto;
+  max-width: none;
+  aspect-ratio: auto;
+  margin: 0;
+  padding: 0;
+  overflow: visible;
+  border: 1px solid var(--line, #d8d8d8);
+  border-radius: 0;
+  background: #fff;
+  line-height: 0;
+  box-sizing: border-box;
+}
+
+.experience-image > a {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.experience-image img {
+  display: block;
+  width: 100% !important;
+  max-width: none !important;
+  height: auto !important;
+  max-height: none !important;
+  aspect-ratio: auto !important;
+  object-fit: contain;
+  object-position: center top;
+  filter: none;
+  opacity: 1;
+}
+
+/* Experience text */
+.experience-content { min-width: 0; }
+
+.experience-content .experience-date {
+  margin: 0 0 8px;
+  color: var(--grey, #666);
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.experience-content h3 {
+  margin: 0 0 10px;
+  font-family: var(--serif, Georgia, serif);
+  font-size: clamp(21px, 2vw, 25px);
+  font-weight: 400;
+  letter-spacing: -0.45px;
+  line-height: 1.25;
+}
+
+.experience-content p {
+  margin: 0 0 11px;
+  color: #333;
+  font-family: var(--sans, Arial, sans-serif);
+  font-size: 14px;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+
+.experience-content .experience-institution {
+  margin-bottom: 5px;
+  color: var(--black, #111);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.experience-content .experience-advisor {
+  margin-bottom: 12px;
+  color: var(--grey, #666);
+  font-size: 12px;
+}
+
+/* Method tags */
+.experience-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+  margin: 12px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.experience-tags li {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: var(--grey, #666);
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+.experience-tags li + li::before {
+  margin-right: 14px;
+  color: var(--grey, #666);
+  content: "·";
+}
+
+/* Associated project links */
+.experience-projects {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px;
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px solid var(--line, #d8d8d8);
+}
+
+.experience-content .experience-projects-label {
+  margin: 0 0 3px;
+  color: var(--grey, #666);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+.experience-projects a {
+  color: var(--black, #111);
+  font-size: 12px;
+  line-height: 1.55;
+  text-decoration: none;
+  text-underline-offset: 3px;
+  overflow-wrap: anywhere;
+}
+
+.experience-projects a:hover,
+.experience-projects a:focus-visible { text-decoration: underline; }
+
+.experience-image a:focus-visible,
+.experience-projects a:focus-visible,
+.rj-text:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+}
+
+/* Tablet: preserve poster ratio and give image a little more room */
+@media (max-width: 1000px) {
+  .experience-card {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 18px;
+  }
+
+  .experience-image {
+    width: 100%;
+  }
+}
+
+/* Mobile: image first, text second; never crop poster */
+@media (max-width: 700px) {
+  main.wrap.page.experience-page {
+    width: calc(100% - 32px);
+  }
+
+  .experience-page { padding-top: 30px; padding-bottom: 46px; }
+  .experience-intro { margin-bottom: 28px; }
+  .experience-page h1 { margin-top: 24px; font-size: clamp(34px, 8vw, 46px); }
+  .rj { margin: 24px 0 32px; padding: 18px 0; }
+  .rj h2, .experience-page h2 { font-size: 27px; }
+
+  .experience-card {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
+    padding: 20px 0;
+  }
+
+  .experience-image {
+    width: 100%;
+    max-width: none;
+    height: auto;
+    aspect-ratio: auto;
+    overflow: visible;
+  }
+
+  .experience-image img {
+    width: 100%;
+    height: auto;
+    max-height: none;
+    object-fit: contain;
+  }
+
+  .experience-content h3 { font-size: 22px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+
+/* FINAL OVERRIDES — poster sizing fix; keep this at the very end. */
+html body main.wrap.page.experience-page .experience-list .experience-card {
+  grid-template-columns: minmax(0, 2.25fr) minmax(280px, 0.85fr) !important;
+  align-items: start !important;
+}
+html body main.wrap.page.experience-page .experience-card .experience-image {
+  display: block !important;
+  width: 100% !important;
+  max-width: none !important;
+  min-width: 0 !important;
+  height: auto !important;
+  max-height: none !important;
+  aspect-ratio: auto !important;
+  overflow: visible !important;
+  padding: 0 !important;
+  border: 1px solid #d8d8d8 !important;
+  background: #fff !important;
+  line-height: 0 !important;
+}
+html body main.wrap.page.experience-page .experience-card .experience-image > a {
+  display: block !important;
+  width: 100% !important;
+  height: auto !important;
+  overflow: visible !important;
+}
+html body main.wrap.page.experience-page .experience-card .experience-image img {
+  display: block !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  max-width: none !important;
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  aspect-ratio: auto !important;
+  object-fit: contain !important;
+  object-position: center top !important;
+  transform: none !important;
+}
+@media (max-width: 1000px) {
+  html body main.wrap.page.experience-page .experience-list .experience-card {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+  html body main.wrap.page.experience-page .experience-card .experience-image {
+    width: 100% !important;
+  }
+}

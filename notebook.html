@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Notebook | Aryan</title>
+<meta content="A project-wise library of research papers, books, notes, code, and learning resources." name="description"/>
+<link href="assets/css/style.css" rel="stylesheet"/>
+<link href="assets/css/notebook.css" rel="stylesheet"/>
+<script defer="" src="assets/js/site.js"></script>
+<style>
+/* ARYAN.PHD — Notebook / restrained academic library */
+body.notebook-page{background:#fff!important;color:#191919!important}
+.notebook-page .notebook-library{width:min(1120px,calc(100% - 56px))!important;max-width:1120px!important;margin:0 auto!important;padding:56px 0 70px!important}
+.notebook-page .library-hero{max-width:790px!important;margin:0 0 46px!important}
+.notebook-page .eyebrow{margin:0 0 13px!important;color:#777!important;font-size:10px!important;letter-spacing:.16em!important;text-transform:uppercase!important}
+.notebook-page .library-hero-grid{display:block!important}
+.notebook-page .library-hero h1{font-family:var(--serif, Georgia, "Times New Roman", serif)!important;margin:0 0 16px!important;color:#171717!important;font-size:clamp(39px,5vw,60px)!important;font-weight:400!important;line-height:1.02!important;letter-spacing:-.055em!important}
+.notebook-page .library-hero h1 span{color:#888!important}
+.notebook-page .library-intro{max-width:680px!important;margin:0!important;color:#666!important;font-size:13px!important;line-height:1.8!important}
+.notebook-page .library-tags{display:flex!important;flex-wrap:wrap!important;gap:8px!important;margin-top:22px!important}
+.notebook-page .library-tags span{padding:7px 10px!important;border:1px solid #dedede!important;border-radius:4px!important;background:#fff!important;color:#555!important;font-size:10px!important}
+.notebook-page .nb-index-heading{margin:0 0 18px!important}
+.notebook-page .nb-index-heading .eyebrow{margin-bottom:8px!important}
+.notebook-page .nb-index-heading h2{margin:0 0 8px!important;color:#171717!important;font-size:clamp(26px,3vw,35px)!important;font-weight:400!important;line-height:1.15!important;letter-spacing:-.04em!important}
+.notebook-page .nb-index-heading h2 span{color:#888!important}
+.notebook-page .nb-index-heading>p:last-child{margin:0!important;color:#777!important;font-size:12px!important;line-height:1.75!important}
+
+/* The preferred large-number grid */
+.notebook-page .collection-grid{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:0!important;align-items:start!important;border:1px solid #dcdcdc!important;border-radius:7px!important;overflow:hidden!important}
+.notebook-page details.collection-card{display:block!important;min-width:0!important;margin:0!important;border:0!important;border-right:1px solid #dcdcdc!important;border-radius:0!important;background:#fff!important;overflow:hidden!important;scroll-margin-top:24px!important}
+.notebook-page details.collection-card:nth-child(4n){border-right:0!important}
+.notebook-page details.collection-card:nth-child(n+5){border-top:1px solid #dcdcdc!important}
+.notebook-page .collection-card>summary{position:relative!important;display:flex!important;flex-direction:column!important;justify-content:space-between!important;align-items:stretch!important;min-height:252px!important;padding:17px 16px 20px!important;cursor:pointer!important;list-style:none!important;background:#fff!important}
+.notebook-page .collection-card>summary::-webkit-details-marker{display:none!important}
+.notebook-page .collection-card>summary:after{content:"↗"!important;position:absolute!important;right:15px!important;bottom:18px!important;color:#333!important;font-size:16px!important;line-height:1!important}
+.notebook-page .collection-card[open]>summary:after{content:"−"!important;font-size:20px!important}
+.notebook-page .collection-card>summary:hover{background:#fafaf9!important}
+.notebook-page .collection-number{display:block!important;margin:0!important;color:#202020!important;font-size:clamp(56px,6.8vw,84px)!important;font-weight:300!important;letter-spacing:-.09em!important;line-height:.95!important}
+.notebook-page .collection-heading{display:flex!important;flex-direction:column!important;gap:7px!important;margin-top:30px!important;padding-right:17px!important;min-width:0!important}
+.notebook-page .collection-heading strong{color:#171717!important;font-size:14px!important;font-weight:500!important;line-height:1.4!important;letter-spacing:-.02em!important}
+.notebook-page .collection-heading small{max-width:240px!important;color:#777!important;font-size:10px!important;line-height:1.6!important}
+.notebook-page .collection-meta{position:absolute!important;top:14px!important;right:11px!important;padding:5px 7px!important;border:1px solid #e0e0e0!important;border-radius:3px!important;color:#666!important;font-size:9px!important;white-space:nowrap!important}
+.notebook-page .collection-card>summary:focus-visible{outline:2px solid #555!important;outline-offset:-4px!important}
+
+/* Expanded content spans all columns; the topic blocks use a readable two-column structure */
+.notebook-page details.collection-card[open]{grid-column:1/-1!important;border-right:0!important;border-top:1px solid #dcdcdc!important}
+.notebook-page details.collection-card[open]>summary{display:grid!important;grid-template-columns:46px minmax(0,1fr) auto 20px!important;align-items:center!important;justify-content:initial!important;gap:15px!important;min-height:88px!important;padding:15px 20px!important;border-bottom:1px solid #e7e7e7!important}
+.notebook-page details.collection-card[open] .collection-number{font-size:36px!important}
+.notebook-page details.collection-card[open] .collection-heading{margin:0!important;gap:5px!important;padding:0!important}
+.notebook-page details.collection-card[open] .collection-heading strong{font-size:17px!important}
+.notebook-page details.collection-card[open] .collection-heading small{max-width:none!important;font-size:11px!important}
+.notebook-page details.collection-card[open] .collection-meta{position:static!important;justify-self:end!important}
+.notebook-page details.collection-card[open]>summary:after{position:static!important;grid-column:4!important;grid-row:1!important;text-align:center!important}
+.notebook-page .collection-content{padding:22px!important;background:#fff!important}
+.notebook-page .collection-content .shelf-lead{max-width:850px!important;margin:0 0 20px!important;color:#666!important;font-size:13px!important;line-height:1.8!important}
+.notebook-page .collection-content .sub-shelf{display:grid!important;grid-template-columns:minmax(210px,.30fr) minmax(0,1fr)!important;gap:26px!important;margin:12px 0 0!important;padding:20px!important;border:1px solid #e4e4e4!important;border-radius:6px!important;background:#fafaf9!important}
+.notebook-page .collection-content .sub-head{min-width:0!important;margin:0!important;padding:0!important;border:0!important}
+.notebook-page .collection-content .sub-head h3{margin:0 0 8px!important;color:#191919!important;font-size:15px!important;font-weight:500!important;line-height:1.45!important;letter-spacing:-.015em!important}
+.notebook-page .collection-content .sub-note{margin:0!important;color:#777!important;font-size:11px!important;line-height:1.75!important}
+.notebook-page .collection-content .sub-body{min-width:0!important}
+.notebook-page .collection-content .list-label{margin:17px 0 8px!important;color:#777!important;font-size:9px!important;letter-spacing:.12em!important;text-transform:uppercase!important}
+.notebook-page .collection-content .paper-list{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;column-gap:26px!important;row-gap:0!important;margin:0!important;padding:0!important;list-style:none!important}
+.notebook-page .collection-content .paper-list li{min-width:0!important;padding:12px 0!important;border-bottom:1px solid #e7e7e7!important}
+.notebook-page .collection-content .paper-list li:first-child{padding-top:0!important}
+.notebook-page .collection-content .paper-list li:last-child{border-bottom:0!important}
+.notebook-page .collection-content .paper-list a,.notebook-page .collection-content .resource-title{color:#222!important;font-size:12px!important;font-weight:500!important;line-height:1.65!important;text-decoration:none!important;overflow-wrap:anywhere!important}
+.notebook-page .collection-content .paper-list a:hover{text-decoration:underline!important;text-underline-offset:3px!important}
+.notebook-page .collection-content .paper-list small{display:block!important;margin-top:4px!important;color:#777!important;font-size:11px!important;line-height:1.7!important;overflow-wrap:anywhere!important}
+.notebook-page .collection-content .paper-list small a{font-size:inherit!important;font-weight:400!important;text-decoration:underline!important}
+.notebook-page .collection-content .local-note{margin-top:14px!important;padding:14px 16px!important;border:1px solid #dedede!important;border-radius:5px!important;background:#fff!important}
+.notebook-page .collection-content .local-note strong{font-size:11px!important;font-weight:500!important}
+.notebook-page .collection-content .local-note p{margin:7px 0 0!important;color:#666!important;font-size:11px!important}
+.notebook-page .collection-content .topic-chips{display:flex!important;flex-wrap:wrap!important;gap:8px!important;margin:0!important;padding:0!important;list-style:none!important}
+.notebook-page .collection-content .topic-chips li{padding:7px 10px!important;border:1px solid #dedede!important;border-radius:4px!important;background:#fff!important;color:#555!important;font-size:11px!important}
+.notebook-page .library-bottom{display:flex!important;align-items:center!important;gap:17px!important;margin-top:30px!important;padding:21px 23px!important;border:1px solid #dedede!important;border-radius:7px!important;background:#f7f7f6!important}
+.notebook-page .bottom-mark{display:grid!important;place-items:center!important;flex:0 0 36px!important;width:36px!important;height:36px!important;border:1px solid #ddd!important;border-radius:50%!important;color:#555!important}
+.notebook-page .library-bottom>div{flex:1!important}
+.notebook-page .library-bottom h2{margin:0 0 6px!important;font-size:18px!important;font-weight:400!important;letter-spacing:-.02em!important}
+.notebook-page .library-bottom p{margin:0!important;color:#666!important;font-size:11px!important;line-height:1.75!important}
+.notebook-page .library-back-link{color:#222!important;font-size:10px!important;text-decoration:none!important;white-space:nowrap!important}
+.notebook-page .library-back-link:hover{text-decoration:underline!important;text-underline-offset:3px!important}
+
+@media(max-width:900px){
+ .notebook-page .notebook-library{width:calc(100% - 40px)!important}
+ .notebook-page .collection-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+ .notebook-page details.collection-card:nth-child(2n){border-right:0!important}
+ .notebook-page details.collection-card:nth-child(n+3){border-top:1px solid #dcdcdc!important}
+ .notebook-page details.collection-card[open]{grid-column:1/-1!important;border-right:0!important;border-top:1px solid #dcdcdc!important}
+ .notebook-page .collection-card>summary{min-height:220px!important}
+ .notebook-page .collection-content .sub-shelf{grid-template-columns:1fr!important;gap:13px!important}
+ .notebook-page .collection-content .sub-head{padding-bottom:11px!important;border-bottom:1px solid #e5e5e5!important}
+}
+@media(max-width:560px){
+ .notebook-page .notebook-library{width:calc(100% - 30px)!important;padding:36px 0 46px!important}
+ .notebook-page .library-hero{margin-bottom:34px!important}
+ .notebook-page .library-hero h1{font-size:42px!important}
+ .notebook-page .collection-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+ .notebook-page .collection-card>summary{min-height:184px!important;padding:13px 12px 16px!important}
+ .notebook-page .collection-number{font-size:54px!important}
+ .notebook-page .collection-heading{margin-top:22px!important;gap:6px!important}
+ .notebook-page .collection-heading strong{font-size:13px!important}
+ .notebook-page .collection-heading small{font-size:9px!important}
+ .notebook-page .collection-meta{top:9px!important;right:7px!important;font-size:8px!important}
+ .notebook-page details.collection-card[open]>summary{grid-template-columns:34px minmax(0,1fr) 16px!important;gap:9px!important;padding:13px 11px!important}
+ .notebook-page details.collection-card[open] .collection-number{font-size:29px!important}
+ .notebook-page details.collection-card[open] .collection-heading strong{font-size:14px!important}
+ .notebook-page details.collection-card[open] .collection-heading small{font-size:10px!important}
+ .notebook-page details.collection-card[open] .collection-meta{grid-column:2!important;justify-self:start!important}
+ .notebook-page details.collection-card[open]>summary:after{grid-column:3!important;grid-row:1!important}
+ .notebook-page .collection-content{padding:12px!important}
+ .notebook-page .collection-content .sub-shelf{padding:13px!important}
+ .notebook-page .collection-content .paper-list{grid-template-columns:1fr!important}
+ .notebook-page .library-bottom{align-items:flex-start!important;flex-wrap:wrap!important;padding:16px!important}
+ .notebook-page .library-bottom>div{flex-basis:calc(100% - 52px)!important}
+ .notebook-page .library-back-link{margin-left:51px!important}
+}
+@media(prefers-reduced-motion:reduce){.notebook-page *{transition:none!important}}
+
+/* Citation links: consistent with the restrained link treatment used elsewhere on the site. */
+.notebook-page .paper-list a,
+.notebook-page .paper-list small a {
+  color: var(--ink, #191919) !important;
+  text-decoration: none !important;
+  border-bottom: 1px solid var(--line, #d9d9d9) !important;
+  text-underline-offset: 3px;
+  transition: border-color .18s ease, color .18s ease;
+}
+.notebook-page .paper-list a:hover,
+.notebook-page .paper-list small a:hover {
+  color: var(--accent, #666) !important;
+  border-color: currentColor !important;
+}
+.notebook-page .paper-list small a { display: inline; font-size: inherit !important; }
+.notebook-page .collection-heading strong { font-family: var(--sans, Arial, sans-serif) !important; font-size: 15px !important; font-weight: 600 !important; letter-spacing: -.015em !important; }
+.notebook-page .collection-heading small { font-family: var(--sans, Arial, sans-serif) !important; font-size: 11px !important; line-height: 1.6 !important; }
+.notebook-page .collection-meta { font-family: var(--mono, monospace) !important; font-size: 10px !important; letter-spacing: .04em !important; }
+
+
+
+/* =========================================
+   NOTEBOOK TYPOGRAPHY — MATCH CONTACT PAGE
+   Georgia headings + clean sans-serif text
+   ========================================= */
+.notebook-page .library-hero h1,
+.notebook-page .nb-index-heading h2,
+.notebook-page .collection-content h2,
+.notebook-page .collection-content h3,
+.notebook-page .library-bottom h2 {
+  font-family: Georgia, "Times New Roman", serif !important;
+  font-weight: 400 !important;
+}
+.notebook-page .library-hero h1 {
+  font-size: clamp(36px, 5vw, 49px) !important;
+  letter-spacing: -1.4px !important;
+  line-height: 1.13 !important;
+  margin: 0 0 17px !important;
+}
+.notebook-page .nb-index-heading h2 {
+  font-size: 28px !important;
+  letter-spacing: -.6px !important;
+  line-height: 1.3 !important;
+}
+.notebook-page .library-intro {
+  font-family: Arial, Helvetica, sans-serif !important;
+  font-size: 14px !important;
+  line-height: 1.9 !important;
+}
+.notebook-page .collection-heading strong {
+  font-family: Georgia, "Times New Roman", serif !important;
+  font-size: 21px !important;
+  font-weight: 400 !important;
+  letter-spacing: -.3px !important;
+  line-height: 1.35 !important;
+}
+.notebook-page details.collection-card[open] .collection-heading strong {
+  font-size: 21px !important;
+}
+.notebook-page .collection-heading small,
+.notebook-page .collection-meta,
+.notebook-page .collection-number,
+.notebook-page .collection-content .sub-note,
+.notebook-page .collection-content .list-label,
+.notebook-page .collection-content .paper-list small,
+.notebook-page .library-bottom p,
+.notebook-page .library-back-link {
+  font-family: Arial, Helvetica, sans-serif !important;
+}
+.notebook-page .collection-content .sub-head h3 {
+  font-family: Georgia, "Times New Roman", serif !important;
+  font-size: 22px !important;
+  font-weight: 400 !important;
+  letter-spacing: -.4px !important;
+  line-height: 1.4 !important;
+}
+.notebook-page .collection-content .paper-list a,
+.notebook-page .collection-content .resource-title {
+  font-family: Arial, Helvetica, sans-serif !important;
+  font-size: 12.5px !important;
+  font-weight: 500 !important;
+  line-height: 1.7 !important;
+}
+.notebook-page .collection-content .paper-list small {
+  font-size: 11.5px !important;
+  line-height: 1.75 !important;
+}
+.notebook-page .collection-content .shelf-lead,
+.notebook-page .collection-content .sub-note {
+  font-family: Arial, Helvetica, sans-serif !important;
+  font-size: 12.5px !important;
+  line-height: 1.8 !important;
+}
+.notebook-page .library-hero .eyebrow,
+.notebook-page .nb-index-heading .eyebrow {
+  font-size: 10.5px !important;
+  font-weight: 500 !important;
+  letter-spacing: 1.25px !important;
+}
+@media (max-width: 540px) {
+  .notebook-page .library-hero h1 { font-size: 35px !important; letter-spacing: -.8px !important; }
+  .notebook-page .library-intro { font-size: 13px !important; }
+  .notebook-page .collection-heading strong { font-size: 20px !important; }
+  .notebook-page .collection-content .paper-list a,
+  .notebook-page .collection-content .resource-title { font-size: 12px !important; }
+}
+
+
+/* Requested reference-link visibility and Contact-page typography alignment */
+.notebook-library .paper-list a,
+.notebook-library a.resource-title {
+  color: #242424;
+  text-decoration: underline;
+  text-decoration-color: #c8c8c8;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+}
+.notebook-library .paper-list a:hover,
+.notebook-library a.resource-title:hover {
+  color: #666;
+  text-decoration-color: #555;
+}
+.notebook-library a.resource-title {
+  display: inline-block;
+  margin-bottom: 4px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12.5px;
+  font-weight: 500;
+  line-height: 1.75;
+}
+.notebook-library .paper-list small {
+  display: block;
+  margin-top: 5px;
+  color: #686868;
+  font-size: 11.5px;
+  line-height: 1.75;
+}
+@media (max-width: 540px) {
+  .notebook-library a.resource-title { font-size: 12px; }
+  .notebook-library .paper-list small { font-size: 11px; }
+}
+
+
+/* Final visual refinement: light cards, regular serif numerals, softly rounded tags */
+.notebook-page .collection-grid {
+  gap: 10px !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  overflow: visible !important;
+  background: transparent !important;
+}
+.notebook-page details.collection-card,
+.notebook-page details.collection-card:nth-child(4n),
+.notebook-page details.collection-card:nth-child(n+5) {
+  border: 1px solid #dedede !important;
+  border-radius: 8px !important;
+  background: #fff !important;
+  overflow: hidden !important;
+}
+.notebook-page .collection-card > summary {
+  border-radius: 8px !important;
+  min-height: 230px !important;
+  padding: 17px 16px 19px !important;
+}
+.notebook-page .collection-number {
+  color: #555 !important;
+  font-family: Georgia, "Times New Roman", serif !important;
+  font-size: clamp(38px, 4vw, 48px) !important;
+  font-weight: 400 !important;
+  letter-spacing: -1.5px !important;
+  line-height: 1 !important;
+}
+.notebook-page details.collection-card[open] > summary {
+  border-radius: 8px 8px 0 0 !important;
+}
+.notebook-page details.collection-card[open] .collection-number {
+  font-size: 31px !important;
+  font-weight: 400 !important;
+}
+.notebook-page .collection-meta {
+  border-radius: 5px !important;
+}
+.notebook-page .library-tags span {
+  border-radius: 6px !important;
+  padding: 8px 11px !important;
+}
+.notebook-page .collection-content .sub-shelf {
+  border-radius: 8px !important;
+}
+@media (max-width: 760px) {
+  .notebook-page .collection-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 9px !important;
+  }
+  .notebook-page details.collection-card:nth-child(4n) {
+    border-right: 1px solid #dedede !important;
+  }
+  .notebook-page details.collection-card[open] {
+    grid-column: 1 / -1 !important;
+  }
+}
+@media (max-width: 480px) {
+  .notebook-page .notebook-library {
+    width: calc(100% - 32px) !important;
+  }
+  .notebook-page .collection-card > summary {
+    min-height: 205px !important;
+    padding: 14px 12px 16px !important;
+  }
+  .notebook-page .collection-number {
+    font-size: 36px !important;
+  }
+  .notebook-page .library-tags span {
+    padding: 7px 9px !important;
+  }
+}
+
+</style>
+</head>
+<body class="notebook-page">
+<a class="skip" href="#main">Skip to content</a>
+<header class="header">
+<div class="wrap nav">
+<a class="brand" href="index.html">aryan.phd</a>
+<button aria-expanded="false" aria-label="Toggle navigation" class="menu">Menu</button>
+<nav aria-label="Main navigation" class="links">
+<a href="index.html">Home</a><a href="about.html">About</a><a href="research.html">Research</a><a href="experience.html">Experience</a><a aria-current="page" href="notebook.html">Notebook</a><a href="contact.html">Contact</a>
+</nav>
+</div>
+</header>
+<main class="wrap page notebook-library" id="main">
+<section aria-labelledby="notebook-title" class="library-hero">
+<p class="eyebrow">Notebook / Research library</p>
+<div class="library-hero-grid">
+<div>
+<h1 id="notebook-title">A shelf for ideas </span></h1>
+<p class="library-intro">A growing collection of research papers, books, notes, code, and useful tools. </p>
+</div>
+</div>
+<div aria-label="Notebook topics" class="library-tags"><span>Research papers</span><span>Books &amp; notes</span><span>Methods &amp; tools</span><span>Code &amp; platforms</span></div>
+</section>
+<div class="nb-index-heading"><p class="eyebrow">Browse the library</p><h2>Research shelves<span>.</span></h2><p>Choose a collection to explore its papers, methods, and learning resources.</p></div><section aria-label="Research collections" class="collection-grid"><details class="collection-card" id="iith"><summary><span class="collection-number">01</span><span class="collection-heading"><strong>IIT Hyderabad</strong><small>2D materials · CVD growth · KMC · DFT · amorphous materials</small></span><span class="collection-meta">8 sections</span></summary><div class="collection-content">
+<p class="shelf-lead">A project-organized reading shelf for the IIT Hyderabad work. Books, foundational papers, material-specific CVD references, KMC papers, DFT resources, and analysis tools are separated so each list can grow independently.</p>
+<div class="sub-shelf"><div class="sub-head"><h3>Books and foundational reading</h3><p class="sub-note">Textbooks and introductory papers collected for the IIT Hyderabad work.</p></div><div class="sub-body"><ul class="paper-list">
+<li><span class="resource-title">Solid State Electronic Devices, 7th Edition</span><small>Ben G. Streetman and Sanjay Kumar Banerjee · electronic materials and semiconductor-device fundamentals.</small></li>
+<li><span class="resource-title">Polymer Physics</span><small>Michael Rubinstein and Ralph H. Colby · Oxford University Press.</small></li>
+<li><span class="resource-title">Solid State Physics</span><small>S. O. Pillai · foundational solid-state physics.</small></li>
+</ul><h4 class="list-label">Basic papers</h4><ul class="paper-list">
+<li><a href="https://doi.org/10.1007/s12633-025-03274-y" rel="noopener noreferrer" target="_blank">DOI: 10.1007/s12633-025-03274-y <span>↗</span></a><small>Basic reading</small></li>
+<li><a href="https://doi.org/10.1126/science.aac9439" rel="noopener noreferrer" target="_blank">DOI: 10.1126/science.aac9439 <span>↗</span></a><small>Science paper · foundational 2D-materials reference.</small></li>
+<li><a href="https://doi.org/10.1038/natrevmats.2017.33" rel="noopener noreferrer" target="_blank">DOI: 10.1038/natrevmats.2017.33 <span>↗</span></a><small>Nature Reviews Materials · review/reference on 2D materials.</small></li>
+<li><a href="https://doi.org/10.1038/nnano.2014.207" rel="noopener noreferrer" target="_blank">DOI: 10.1038/nnano.2014.207 <span>↗</span></a><small>Nature Nanotechnology · 2D materials reference.</small></li>
+</ul></div></div>
+<div class="sub-shelf"><div class="sub-head"><h3>MoS₂ — CVD growth and characterization</h3></div><div class="sub-body"><ul class="paper-list">
+<li><a href="https://doi.org/10.1021/acsami.5c25258" rel="noopener noreferrer" target="_blank">DOI: 10.1021/acsami.5c25258 <span>↗</span></a><small>ACS Applied Materials &amp; Interfaces · MoS₂</small></li>
+<li><a href="https://doi.org/10.1002/admi.201800140" rel="noopener noreferrer" target="_blank">DOI: 10.1002/admi.201800140 <span>↗</span></a><small>Advanced Materials Interfaces · MoS₂-related reference.</small></li>
+<li><a href="https://doi.org/10.1557/adv.2020.104" rel="noopener noreferrer" target="_blank">DOI: 10.1557/adv.2020.104 <span>↗</span></a><small>MRS Advances · MoS₂-related reference.</small></li>
+<li><a href="https://doi.org/10.1002/adma.201502375" rel="noopener noreferrer" target="_blank">DOI: 10.1002/adma.201502375 <span>↗</span></a><small>Advanced Materials · MoS₂-related reference.</small></li>
+<li><a href="https://doi.org/10.1007/s10853-019-03993-9" rel="noopener noreferrer" target="_blank">DOI: 10.1007/s10853-019-03993-9 <span>↗</span></a><small>Journal of Materials Science · MoS₂-related reference.</small></li>
+<li><a href="https://doi.org/10.1016/j.mssp.2024.108551" rel="noopener noreferrer" target="_blank">DOI: 10.1016/j.mssp.2024.108551 <span>↗</span></a><small>Materials Science in Semiconductor Processing · MoS₂-related reference.</small></li>
+</ul></div></div>
+<div class="sub-shelf"><div class="sub-head"><h3>MoSe₂ — CVD growth and characterization</h3><p class="sub-note">Covers both Mo-precursor and MoO₃-precursor growth routes.</p></div><div class="sub-body"><ul class="paper-list">
+<li><a href="https://doi.org/10.1039/d2ra00387b" rel="noopener noreferrer" target="_blank">DOI: 10.1039/d2ra00387b <span>↗</span></a><small>RSC Advances · MoSe₂-related reference.</small></li>
+<li><a href="https://doi.org/10.1088/1361-6528/aac397" rel="noopener noreferrer" target="_blank">DOI: 10.1088/1361-6528/aac397 <span>↗</span></a><small>Nanotechnology · MoSe₂-related reference.</small></li>
+<li><a href="https://doi.org/10.1021/nn501175k" rel="noopener noreferrer" target="_blank">DOI: 10.1021/nn501175k <span>↗</span></a><small>ACS Nano · MoSe₂-related reference.</small></li>
+<li><a href="https://doi.org/10.1021/acsnano.7b02914" rel="noopener noreferrer" target="_blank">DOI: 10.1021/acsnano.7b02914 <span>↗</span></a><small>ACS Nano · MoSe₂</small></li>
+<li><a href="https://doi.org/10.3390/nano10010075" rel="noopener noreferrer" target="_blank">DOI: 10.3390/nano10010075 <span>↗</span></a><small>Nanomaterials · MoSe₂-related reference.</small></li>
+<li><a href="https://doi.org/10.1021/acs.nanolett.5b02423" rel="noopener noreferrer" target="_blank">DOI: 10.1021/acs.nanolett.5b02423 <span>↗</span></a><small>Nano Letters · MoSe₂-related reference.</small></li>
+</ul></div></div>
+<div class="sub-shelf"><div class="sub-head"><h3>WS₂ — CVD growth and characterization</h3></div><div class="sub-body"><ul class="paper-list">
+<li><a href="https://doi.org/10.3390/nano13071276" rel="noopener noreferrer" target="_blank">DOI: 10.3390/nano13071276 <span>↗</span></a><small>Nanomaterials · WS₂-related reference.</small></li>
+<li><a href="https://doi.org/10.1039/c9ra06219j" rel="noopener noreferrer" target="_blank">DOI: 10.1039/c9ra06219j <span>↗</span></a><small>RSC Advances · WS₂-related reference.</small></li>
+<li><a href="https://arxiv.org/abs/2511.22063" rel="noopener noreferrer" target="_blank">arXiv:2511.22063 <span>↗</span></a><small>Preprint · WS₂</small></li>
+</ul></div></div>
+<div class="sub-shelf"><div class="sub-head"><h3>WSe₂ — CVD growth and characterization</h3><p class="sub-note">W-precursor growth references.</p></div><div class="sub-body"><ul class="paper-list">
+<li><a href="https://doi.org/10.1038/srep36451" rel="noopener noreferrer" target="_blank">DOI: 10.1038/srep36451 <span>↗</span></a><small>Scientific Reports · WSe₂-related reference.</small></li>
+<li><a href="https://doi.org/10.1016/j.apsusc.2016.10.050" rel="noopener noreferrer" target="_blank">DOI: 10.1016/j.apsusc.2016.10.050 <span>↗</span></a><small>Applied Surface Science · WSe₂-related reference.</small></li>
+<li><a href="https://doi.org/10.1016/j.jcrysgro.2022.126764" rel="noopener noreferrer" target="_blank">DOI: 10.1016/j.jcrysgro.2022.126764 <span>↗</span></a><small>Journal of Crystal Growth · WSe₂-related reference.</small></li>
+<li><a href="https://doi.org/10.1016/j.apmt.2015.09.001" rel="noopener noreferrer" target="_blank">DOI: 10.1016/j.apmt.2015.09.001 <span>↗</span></a><small>Applied Materials Today · WSe₂-related reference.</small></li>
+<li><a href="https://doi.org/10.1021/nn504775f" rel="noopener noreferrer" target="_blank">DOI: 10.1021/nn504775f <span>↗</span></a><small>ACS Nano · WSe₂-related reference.</small></li>
+<li><a href="https://doi.org/10.1039/c9nh00260j" rel="noopener noreferrer" target="_blank">DOI: 10.1039/c9nh00260j <span>↗</span></a><small>Nanoscale Horizons · WSe₂-related reference.</small></li>
+<li><a href="https://doi.org/10.1021/acs.jpcc.9b09166" rel="noopener noreferrer" target="_blank">DOI: 10.1021/acs.jpcc.9b09166 <span>↗</span></a><small>The Journal of Physical Chemistry C · WSe₂-related reference.</small></li>
+</ul></div></div>
+<div class="sub-shelf"><div class="sub-head"><h3>Kinetic Monte Carlo (KMC)</h3><p class="sub-note">Growth kinetics and modeling.</p></div><div class="sub-body"><ul class="paper-list">
+<li><a href="https://doi.org/10.1021/acsami.9b15654" rel="noopener noreferrer" target="_blank">DOI: 10.1021/acsami.9b15654 <span>↗</span></a><small>KMC and growth modeling</small></li>
+<li><a href="https://doi.org/10.1002/admi.202400209" rel="noopener noreferrer" target="_blank">DOI: 10.1002/admi.202400209 <span>↗</span></a><small>KMC / materials-growth modeling reference.</small></li>
+<li><a href="https://doi.org/10.1116/6.0004104" rel="noopener noreferrer" target="_blank">DOI: 10.1116/6.0004104 <span>↗</span></a><small>Journal of Vacuum Science &amp; Technology paper; modeling/growth reference.</small></li>
+<li><a href="https://doi.org/10.1038/s41598-017-02919-2" rel="noopener noreferrer" target="_blank">DOI: 10.1038/s41598-017-02919-2 <span>↗</span></a><small>Scientific Reports · atomistic nucleation and growth of transition-metal dichalcogenides.</small></li>
+<li><a href="https://doi.org/10.1016/j.cpc.2014.04.017" rel="noopener noreferrer" target="_blank">KMCLib: A general framework for lattice kinetic Monte Carlo (KMC) simulations <span>↗</span></a><small>M. Leetmaa and N. V. Skorodumova · Computer Physics Communications 185 (2014), 2340–2349. General KMC method/software reference, not a TMD-specific growth paper. <a href="https://www.sciencedirect.com/science/article/pii/S0010465514001519" rel="noopener noreferrer" target="_blank">Publisher page ↗</a></small></li>
+<li><a href="https://doi.org/10.1002/smll.202504611" rel="noopener noreferrer" target="_blank">DOI: 10.1002/smll.202504611 <span>↗</span></a><small>Small · KMC</small></li>
+</ul></div></div>
+<div class="sub-shelf"><div class="sub-head"><h3>DFT and surface calculations</h3><p class="sub-note">Papers, software, and computational platforms relevant to the DFT/surface-calculation shelf.</p></div><div class="sub-body"><ul class="paper-list">
+<li><a href="https://www.quantum-espresso.org/Doc/" rel="noopener noreferrer" target="_blank">Quantum ESPRESSO documentation <span>↗</span></a><small>Official documentation for input files, calculations, and code usage.</small></li>
+<li><a href="https://nanohub.org/" rel="noopener noreferrer" target="_blank">nanoHUB <span>↗</span></a><small>Online research and simulation resources.</small></li>
+</ul><ul class="paper-list">
+<li><a href="https://doi.org/10.1021/acs.jpclett.7b03011" rel="noopener noreferrer" target="_blank">DOI: 10.1021/acs.jpclett.7b03011 <span>↗</span></a><small>The Journal of Physical Chemistry Letters · computational/materials reference.</small></li>
+<li><a href="https://doi.org/10.1038/s41598-022-20531-x" rel="noopener noreferrer" target="_blank">DOI: 10.1038/s41598-022-20531-x <span>↗</span></a><small>Scientific Reports · computational materials</small></li>
+<li><a href="https://doi.org/10.1002/admi.202202339" rel="noopener noreferrer" target="_blank">DOI: 10.1002/admi.202202339 <span>↗</span></a><small>Advanced Materials Interfaces · computational/materials reference.</small></li>
+<li><a href="https://doi.org/10.1002/pssa.201700218" rel="noopener noreferrer" target="_blank">DOI: 10.1002/pssa.201700218 <span>↗</span></a><small>physica status solidi (a) · computational/materials reference.</small></li>
+<li><a href="https://doi.org/10.1007/s10904-023-02828-0" rel="noopener noreferrer" target="_blank">DOI: 10.1007/s10904-023-02828-0 <span>↗</span></a><small>Journal of Inorganic and Organometallic Polymers and Materials · computational/materials reference.</small></li>
+<li><a href="https://doi.org/10.1016/j.jssc.2013.12.012" rel="noopener noreferrer" target="_blank">DOI: 10.1016/j.jssc.2013.12.012 <span>↗</span></a><small>Journal of Solid State Chemistry · computational/materials reference.</small></li>
+<li><a href="https://doi.org/10.1039/d0nr06287a" rel="noopener noreferrer" target="_blank">DOI: 10.1039/d0nr06287a <span>↗</span></a><small>Nanoscale · computational/materials reference.</small></li>
+<li><a href="https://doi.org/10.1021/acs.jpcc.8b07127" rel="noopener noreferrer" target="_blank">DOI: 10.1021/acs.jpcc.8b07127 <span>↗</span></a><small>The Journal of Physical Chemistry C · computational/materials reference.</small></li>
+</ul><ul class="paper-list"><li><a href="https://doi.org/10.3390/ma15041404" rel="noopener noreferrer" target="_blank">Dissolution of Portlandite in Pure Water: Part 1 — Molecular Dynamics (MD) Approach <span>↗</span></a><small>K. M. S. Uddin, M. Izadifar and colleagues · Materials 15(4), 1404 (2022). Cross-disciplinary example linking reactive-force-field MD/free-energy calculations to a KMC rate catalog; not a MoO₃/TMDC study. <a href="https://pubmed.ncbi.nlm.nih.gov/35207945/" rel="noopener noreferrer" target="_blank">PubMed record ↗</a></small></li></ul></div></div>
+<div class="sub-shelf"><div class="sub-head"><h3>Amorphous materials and analysis</h3><p class="sub-note">AIMD and melt-quench references, density and coordination analysis, radial distribution functions, local structure, and analysis scripts. Coming soon.</p></div><div class="sub-body"></div></div>
+</div></details><details class="collection-card" id="iitgn"><summary><span class="collection-number">02</span><span class="collection-heading"><strong>IIT Gandhinagar</strong><small>Electrochemistry · hydrogen · porous metals and electrodes</small></span><span class="collection-meta">4 papers</span></summary><div class="collection-content"><div class="sub-shelf"><div class="sub-head"></div><div class="sub-body"><ul class="paper-list">
+<li><a href="https://doi.org/10.1149/1945-7111/ab6978" rel="noopener noreferrer" target="_blank">Journal of The Electrochemical Society paper <span>↗</span></a><small>Electrochemistry and electrodes</small></li>
+<li><a href="https://doi.org/10.1016/S1452-3981(23)17352-4" rel="noopener noreferrer" target="_blank">International Journal of Electrochemical Science paper <span>↗</span></a><small>Porous metals and electrochemistry</small></li>
+<li><a href="https://doi.org/10.1016/j.ijhydene.2020.09.268" rel="noopener noreferrer" target="_blank">International Journal of Hydrogen Energy paper <span>↗</span></a><small>Hydrogen and electrocatalysis</small></li>
+<li><a href="https://doi.org/10.3390/met9080826" rel="noopener noreferrer" target="_blank">Metals paper <span>↗</span></a><small>Electrodeposition and composite electrodes</small></li>
+</ul></div></div></div></details><details class="collection-card" id="iitbh"><summary><span class="collection-number">03</span><span class="collection-heading"><strong>IIT Bhilai</strong><small>Metal–organic frameworks · moisture sorption · coatings and cooling</small></span><span class="collection-meta">5 papers · 2 tools</span></summary><div class="collection-content">
+<div class="sub-shelf"><div class="sub-head"><p class="sub-note" style="margin-top:0">Research and background reading connected with MOF synthesis, moisture sorption, coated substrates, and cooling applications. Select a paper title or its publisher link to open the source.</p></div><div class="sub-body"><ul class="paper-list">
+<li><a href="https://doi.org/10.1016/j.energy.2019.04.090" rel="noopener noreferrer" target="_blank">Analysis on solar energy powered cooling system based on desiccant coated heat exchanger using metal-organic framework <span>↗</span></a><small>F. Xu, Z. F. Bian, T. S. Ge, Y. J. Dai, C. H. Wang and S. Kawi · Energy 177 (2019), 211–221. DOI: 10.1016/j.energy.2019.04.090. <a href="https://www.sciencedirect.com/science/article/abs/pii/S0360544219307224" rel="noopener noreferrer" target="_blank">Publisher page ↗</a></small></li>
+<li><a href="https://doi.org/10.1038/s41598-018-33704-4" rel="noopener noreferrer" target="_blank">Metal-Organic Frameworks as advanced moisture sorbents for energy-efficient high temperature cooling <span>↗</span></a><small>S. Cui, M. Qin, A. Marandi and colleagues · Scientific Reports 8, 15284 (2018). DOI: 10.1038/s41598-018-33704-4. <a href="https://www.nature.com/articles/s41598-018-33704-4" rel="noopener noreferrer" target="_blank">Open-access article ↗</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/30327543/" rel="noopener noreferrer" target="_blank">PubMed record ↗</a></small></li>
+<li><a href="https://doi.org/10.1038/s41598-018-19277-2" rel="noopener noreferrer" target="_blank">Fumarate-based metal-organic frameworks as a new platform for highly selective removal of fluoride from brick tea <span>↗</span></a><small>F. Ke, C. Peng, T. Zhang and colleagues · Scientific Reports 8, 939 (2018). Related MOF adsorption background reading; not labelled as work conducted at IIT Bhilai. <a href="https://www.nature.com/articles/s41598-018-19277-2" rel="noopener noreferrer" target="_blank">Open-access article ↗</a></small></li>
+<li><a href="https://doi.org/10.1002/chem.201603984" rel="noopener noreferrer" target="_blank">Encapsulation of Bimetallic Metal Nanoparticles into Robust Zirconium-Based Metal–Organic Frameworks: Evaluation of the Catalytic Potential for Size-Selective Hydrogenation <span>↗</span></a><small>Rösler et al. (2017) · Chemistry – A European Journal. MOF encapsulation and catalytic applications.</small></li>
+<li><a href="https://doi.org/10.1039/C7DT04116K" rel="noopener noreferrer" target="_blank">Synthesis, functionalization, and applications of metal–organic frameworks in biomedicine ↗</a><small>Wei Chen and Chunsheng Wu · Dalton Transactions 47, 2114–2133 (2018). DOI: 10.1039/C7DT04116K. <a href="https://pubs.rsc.org/en/content/articlelanding/2018/dt/c7dt04116k" rel="noopener noreferrer" target="_blank">Royal Society of Chemistry article ↗</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/29369314/" rel="noopener noreferrer" target="_blank">PubMed record ↗</a></small></li>
+</ul></div></div><div class="sub-shelf software-shelf"><div class="sub-head"><h3>MOF simulation tools</h3><p class="sub-note">Molecular simulation resources for adsorption and diffusion in metal–organic frameworks.</p></div><div class="sub-body"><ul class="paper-list"><li><a href="https://github.com/iRASPA/RASPA2" rel="noopener noreferrer" target="_blank">RASPA2 molecular simulation software ↗</a><small>Monte Carlo and molecular-dynamics simulation for adsorption and diffusion in nanoporous materials, including MOFs.</small></li><li><a href="https://iraspa.org/raspa/" rel="noopener noreferrer" target="_blank">RASPA documentation ↗</a><small>Project documentation, installation guidance, input files, and examples.</small></li></ul></div></div></div></details><details class="collection-card" id="niamt"><summary><span class="collection-number">04</span><span class="collection-heading"><strong>RA · NIAMT</strong><small>Oxide nanomaterials · heavy-metal adsorption · environmental remediation</small></span><span class="collection-meta">9 references</span></summary><div class="collection-content">
+<p class="shelf-lead">References on oxide nanomaterials, adsorption mechanisms, biosorbents, and the removal of heavy-metal ions from aqueous systems.</p>
+<div class="sub-shelf"><div class="sub-head"><h3>Project-related and nanomaterials references</h3></div><div class="sub-body"><ul class="paper-list">
+<li><a href="https://doi.org/10.1016/j.enmm.2018.03.003" rel="noopener noreferrer" target="_blank">Multifunctional Fe₃O₄–ZnO nanocomposites for environmental remediation applications <span>↗</span></a><small>P. Goyal, S. Chakraborty and S. K. Misra · Environmental Nanotechnology, Monitoring &amp; Management 10 (2018), 28–35. <a href="https://research.birmingham.ac.uk/en/publications/multifunctional-fe3o4-zno-nanocomposites-for-environmental-remedi/" rel="noopener noreferrer" target="_blank">Bibliographic record ↗</a></small></li>
+<li><a href="https://doi.org/10.1021/acs.langmuir.4c00690" rel="noopener noreferrer" target="_blank">Excellent Adsorption of Lead (II) and Chromium (VI) from Water Using Zwitterions (−NH₃⁺ and −COO⁻) Functionalized Nano Lanthanum Oxide: Kinetic, Isotherm, Thermodynamic, and Surface Mechanism <span>↗</span></a><small>Y. Bagbi and colleagues · Langmuir (2024). Related adsorption literature. <a href="https://pubs.acs.org/doi/10.1021/acs.langmuir.4c00690" rel="noopener noreferrer" target="_blank">ACS publisher page ↗</a></small></li>
+<li><a href="https://doi.org/10.1007/s00604-017-2166-7" rel="noopener noreferrer" target="_blank">Microchimica Acta paper <span>↗</span></a><small>doi:10.1007/s00604-017-2166-7</small></li>
+<li><a href="https://doi.org/10.5004/dwt.2017.0196" rel="noopener noreferrer" target="_blank">Desalination and Water Treatment paper <span>↗</span></a><small>doi:10.5004/dwt.2017.0196</small></li>
+</ul></div></div>
+<div class="sub-shelf"><div class="sub-head"><h3>Background reading on biosorption and lead removal</h3></div><div class="sub-body"><ul class="paper-list">
+<li><a href="https://doi.org/10.1007/s11356-013-2230-8" rel="noopener noreferrer" target="_blank">Potential of biological materials for removing heavy metals from wastewater <span>↗</span></a><small>B. Dhir · Environmental Science and Pollution Research 21, 1614–1627 (2014). Review of biological and agricultural sorbents. <a href="https://pubmed.ncbi.nlm.nih.gov/24185905/" rel="noopener noreferrer" target="_blank">PubMed record ↗</a></small></li>
+<li><a href="https://doi.org/10.1016/S0043-1354(02)00554-7" rel="noopener noreferrer" target="_blank">Removal of lead ions from industrial waste water by different types of natural materials <span>↗</span></a><small>S. H. Abdel-Halim, A. M. A. Shehata and M. F. El-Shahat · Water Research 37(7), 1678–1683 (2003). <a href="https://pubmed.ncbi.nlm.nih.gov/12600397/" rel="noopener noreferrer" target="_blank">PubMed record ↗</a></small></li>
+<li><span class="resource-title">Toxicology of metals and metalloids: promising issues for future studies in environmental health and toxicology</span><small>F. Barbosa Jr. · Journal of Toxicology and Environmental Health, Part A 80(3), 137–144 (2017). General toxicology context.</small></li>
+<li><span class="resource-title">Thermodynamic characterization of adsorption of lead(II) ions on activated carbon developed from tamarind wood from aqueous solution</span><small>J. Acharya, U. Kumar and B. C. Meikap · South African Journal of Chemical Engineering 18, 70–76 (2013).</small></li>
+<li><span class="resource-title">Removal of Pb(II) ions from aqueous solution and industrial effluent using natural biosorbents</span><small>B. Singha and S. K. Das · Environmental Science and Pollution Research 19, 2212–2226 (2012).</small></li>
+</ul></div></div>
+<div class="local-note"><strong>Additional reference</strong><p><a href="https://doi.org/10.7302/25696" rel="noopener noreferrer" target="_blank">doi:10.7302/25696 <span>↗</span></a></p></div>
+</div></details><details class="collection-card" id="btech"><summary><span class="collection-number">05</span><span class="collection-heading"><strong>Bachelor’s curriculum</strong><small>Core coursework · fundamentals · learning resources</small></span><span class="collection-meta">4 references · 3 tools</span></summary><div class="collection-content"><p class="shelf-lead">A focused shelf for the Schwarz Primitive TPMS lattice thesis, covering mechanical properties, finite-element modelling, lattice generation, and simulation tools.</p><div class="sub-shelf"><div class="sub-head"><h3>TPMS lattice mechanics</h3><p class="sub-note">Reading on triply periodic minimal surfaces, manufacturability, and structure–property relationships.</p></div><div class="sub-body"><ul class="paper-list"><li><a class="resource-title" href="https://scholar.google.com/scholar?q="Insights+into+the+mechanical+properties+of+several+triply+periodic+minimal+surface+lattice+structures+made+by+laser+powder+bed+fusion"" target="_blank" rel="noopener noreferrer">Insights into the mechanical properties of several triply periodic minimal surface lattice structures made by laser powder bed fusion ↗</a><small>I. Maskery et al. · International Journal of Mechanical Sciences, vol. 142, pp. 311–321 (2018). <a href="https://scholar.google.com/scholar?q=Insights+into+the+mechanical+properties+of+several+triply+periodic+minimal+surface+lattice+structures+made+by+laser+powder+bed+fusion" target="_blank" rel="noopener noreferrer">Search this exact title ↗</a>. A similarly titled Maskery paper indexed by the publisher is a different record: <a href="https://doi.org/10.1016/j.polymer.2017.11.049" target="_blank" rel="noopener noreferrer">open verified related paper ↗</a>; confirm the citation details before citing.</small></li><li><a class="resource-title" href="https://scholar.google.com/scholar?q="Manufacturability+and+mechanical+properties+of+Ti6Al4V+periodic+cellular+structures+with+triply+periodic+minimal+surfaces+fabricated+by+selective+laser+melting"" target="_blank" rel="noopener noreferrer">Manufacturability and mechanical properties of Ti6Al4V periodic cellular structures with triply periodic minimal surfaces fabricated by selective laser melting ↗</a><small>S. Ma et al. · Acta Biomaterialia, vol. 92, pp. 345–355 (2019). <a href="https://scholar.google.com/scholar?q=Manufacturability+and+mechanical+properties+of+Ti6Al4V+periodic+cellular+structures+with+triply+periodic+minimal+surfaces+fabricated+by+selective+laser+melting" target="_blank" rel="noopener noreferrer">Search publication ↗</a>. No DOI was supplied, and this exact title/citation could not be confirmed, so the bibliographic details are preserved as provided.</small></li><li><a href="https://scholar.google.com/scholar?q="MSLattice: A software suite for generating uniform and functionally graded lattices based on triply periodic minimal surfaces"" rel="noopener noreferrer" target="_blank">MSLattice: A software suite for generating uniform and functionally graded lattices based on triply periodic minimal surfaces ↗</a><small>O. Al-Ketan and R. K. Abu Al-Rub. <a href="https://doi.org/10.1002/mdp2.205" rel="noopener noreferrer" target="_blank">Open the verified MSLattice publication record ↗</a>. The journal/year in the supplied citation differs from the linked published record; confirm details before citing.</small></li><li><a href="https://books.google.com/books?q=Finite+Element+Simulations+with+ANSYS+Workbench+2020+H.+H.+Lee" target="_blank" rel="noopener noreferrer">Finite Element Simulations with ANSYS Workbench 2020 ↗</a><small>H. H. Lee · Schroff Development Corporation (2020). Book lookup link; verify edition details before citing.</small></li></ul></div></div><div class="sub-shelf"><div class="sub-head"><h3>Geometry, FEA and molecular simulation tools</h3><p class="sub-note">Software and documentation for lattice generation, finite-element analysis, and molecular simulation of porous frameworks.</p></div><div class="sub-body"><ul class="paper-list"><li><a href="https://github.com/iRASPA/RASPA2" rel="noopener noreferrer" target="_blank">RASPA2 molecular simulation software ↗</a><small>Classical Monte Carlo and molecular-dynamics simulation for adsorption and diffusion in nanoporous materials, including MOFs. <a href="https://iraspa.org/raspa/" rel="noopener noreferrer" target="_blank">Official RASPA site and documentation ↗</a></small></li><li><a href="https://iraspa.org/raspa/" rel="noopener noreferrer" target="_blank">RASPA documentation ↗</a><small>Project documentation, installation guidance, input files, and examples.</small></li><li><a href="https://iraspa.github.io/RASPA3/manual_main.html" rel="noopener noreferrer" target="_blank">RASPA3 user manual ↗</a><small>Manual for simulation setup, commands, and examples.</small></li></ul></div></div></div></details><details class="collection-card" id="abudhabi"><summary><span class="collection-number">06</span><span class="collection-heading"><strong>Abu Dhabi</strong><small>Auxetic materials · structural mechanics · finite element analysis</small></span><span class="collection-meta">2 papers</span></summary><div class="collection-content"><div class="sub-shelf"><div class="sub-head"></div><div class="sub-body"><ul class="paper-list">
+<li><a href="https://doi.org/10.1016/j.tws.2023.111447" rel="noopener noreferrer" target="_blank">Thin-Walled Structures paper <span>↗</span></a><small>Auxetic materials and cementitious-composite review.</small></li>
+<li><a href="https://doi.org/10.1016/j.rinma.2024.100528" rel="noopener noreferrer" target="_blank">Results in Materials paper <span>↗</span></a><small>Auxetic structures, experimental investigation, and numerical modelling.</small></li>
+</ul></div></div></div></details><details class="collection-card" id="myongji"><summary><span class="collection-number">07</span><span class="collection-heading"><strong>Myongji University</strong><small>Finite elements · continuum mechanics · contact mechanics</small></span><span class="collection-meta">4 resources</span></summary><div class="collection-content">
+<div class="sub-shelf"><div class="sub-head"></div><div class="sub-body"><ul class="paper-list">
+<li><a href="https://doi.org/10.1016/j.cma.2003.10.010" rel="noopener noreferrer" target="_blank">Computer Methods in Applied Mechanics and Engineering paper <span>↗</span></a><small>Computational and contact mechanics</small></li>
+<li><a href="https://doi.org/10.1016/j.cma.2004.06.001" rel="noopener noreferrer" target="_blank">Computer Methods in Applied Mechanics and Engineering paper <span>↗</span></a><small>Computational and contact mechanics</small></li>
+<li><span class="resource-title">A First Course in Finite Elements</span><small>Jacob Fish and Ted Belytschko · textbook reference.</small></li>
+<li><span class="resource-title">Continuum Mechanics for Engineers, 3rd Edition</span><small>G. Thomas Mase, Ronald E. Smelser, and George E. Mase · textbook reference.</small></li>
+</ul><div class="local-note"><strong>FEM lecture notes</strong><p>PDF coming soon.</p></div></div></div></div></details><details class="collection-card" id="dharwad"><summary><span class="collection-number">08</span><span class="collection-heading"><strong>IIIT Dharwad</strong><small>Computer vision · wildlife identification · machine learning</small></span><span class="collection-meta">5 resources</span></summary><div class="collection-content"><div class="sub-shelf"><div class="sub-head"></div><div class="sub-body"><ul class="paper-list">
+<li><a href="https://cvwc2019.github.io/" rel="noopener noreferrer" target="_blank">Computer Vision for Wildlife Conservation (CVWC 2019) <span>↗</span></a><small>Workshop/challenge website and background resources.</small></li>
+<li><a href="https://arxiv.org/abs/1906.05586" rel="noopener noreferrer" target="_blank">ATRW: A Benchmark for Amur Tiger Re-identification in the Wild <span>↗</span></a><small>arXiv:1906.05586 · wildlife re-identification benchmark.</small></li>
+<li><a href="https://doi.org/10.1109/SAMI60510.2024.10432893" rel="noopener noreferrer" target="_blank">IEEE paper <span>↗</span></a><small>IEEE SAMI 2024</small></li>
+<li><a href="https://doi.org/10.1186/s40537-019-0197-0" rel="noopener noreferrer" target="_blank">Journal of Big Data paper <span>↗</span></a><small>Image data augmentation review/reference.</small></li>
+<li><a href="https://arxiv.org/abs/1706.03762" rel="noopener noreferrer" target="_blank">Attention Is All You Need <span>↗</span></a><small>arXiv:1706.03762 · foundational Transformer paper.</small></li>
+</ul></div></div></div></details></section>
+<section aria-label="Notebook note" class="library-bottom"><div><h2>Collected with curiosity.</h2><p>A growing collection of ideas, methods, and resources that continue to inform my learning and research.</p></div><a class="library-back-link" href="research.html">Explore my research <span aria-hidden="true">↗</span></a></section>
+</main>
+<footer class="footer"><div class="wrap footer-inner"><a class="brand" href="index.html">aryan.phd</a><span>IIT Hyderabad, India</span><span>Notebook · Resources and reading</span></div></footer>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  var cards = Array.from(document.querySelectorAll('details.collection-card'));
+  cards.forEach(function (card) {
+    card.addEventListener('toggle', function () {
+      if (card.open) cards.forEach(function (other) {
+        if (other !== card) other.open = false;
+      });
+    });
+  });
+  function openHashTarget() {
+    if (!location.hash) return;
+    var target = document.querySelector(location.hash);
+    if (target && target.matches('details.collection-card')) {
+      cards.forEach(function (card) { if (card !== target) card.open = false; });
+      target.open = true;
+    }
+  }
+  openHashTarget();
+  window.addEventListener('hashchange', openHashTarget);
+});
+</script></body>
+</html>

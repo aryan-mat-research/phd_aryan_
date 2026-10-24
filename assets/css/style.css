@@ -1,0 +1,559 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap');
+:root{--white:#fff;--black:#111;--grey:#666;--line:#d8d8d8;--serif:'Newsreader',Georgia,serif;--sans:'DM Sans',Arial,sans-serif;--width:1120px}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--white);color:var(--black);font-family:var(--sans);font-size:14px;line-height:1.7;-webkit-font-smoothing:antialiased}a{color:inherit;text-decoration:none}a:hover{text-decoration:underline;text-underline-offset:4px}button,input{font:inherit;color:inherit}.wrap{width:min(var(--width),calc(100% - 64px));margin-inline:auto}.skip{position:absolute;left:-9999px;top:10px;background:#fff;padding:10px;border:1px solid #111}.skip:focus{left:10px;z-index:20}.header{height:76px;border-bottom:1px solid var(--line);background:#fff}.nav{height:100%;display:flex;align-items:center;justify-content:space-between}.brand{font:500 22px var(--serif);letter-spacing:-.5px}.links{display:flex;gap:30px;align-items:center}.links a{font:13px var(--serif);text-decoration:none}.links a[aria-current=page]{text-decoration:underline;text-underline-offset:5px}.menu{display:none;border:1px solid var(--line);background:#fff;padding:6px 10px}.page{padding:44px 0 80px}.eyebrow{font:10px var(--sans);letter-spacing:1.4px;text-transform:uppercase;color:var(--grey)}h1,h2,h3{font-family:var(--serif);font-weight:400;letter-spacing:-.7px;line-height:1.15}h1{font-size:clamp(36px,4.2vw,54px);margin:48px 0 16px}h2{font-size:32px;margin:0 0 22px}h3{font-size:24px;margin:0 0 9px}p{margin:0 0 16px}.lede{font:400 clamp(19px,2vw,24px)/1.55 var(--serif);max-width:670px}.small{font-size:12px;color:var(--grey)}.intro-grid{display:grid;grid-template-columns:minmax(0,1fr) 225px;gap:70px;align-items:start}.portrait-placeholder{width:100%;aspect-ratio:3/4;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;text-align:center;padding:18px;color:var(--grey);font:12px var(--serif)}.rule{border:0;border-top:1px solid var(--line);margin:38px 0 20px}.meta-row{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--black);border-bottom:1px solid var(--line);margin-top:74px}.meta{padding:15px 18px 16px 0;min-height:94px}.meta+.meta{border-left:1px solid var(--line);padding-left:18px}.meta-label{display:block;font-size:10px;color:var(--grey);text-transform:uppercase;letter-spacing:1px;margin-bottom:7px}.meta-value{font:16px/1.45 var(--serif)}.section-top{display:flex;justify-content:space-between;align-items:end;gap:40px;margin-bottom:32px}.section-top .small{max-width:360px}.list{border-top:1px solid var(--black)}.item{display:grid;grid-template-columns:100px minmax(0,1fr) 24px;gap:24px;padding:24px 0;border-bottom:1px solid var(--line)}.item-num{font:11px var(--sans);color:var(--grey);padding-top:4px}.item p{max-width:720px;color:#333}.tags{display:flex;gap:8px 18px;flex-wrap:wrap;font-size:11px;color:var(--grey);margin:12px 0}.tags span+span:before{content:'·';margin-right:18px}.arrow{font-size:18px}.text-link{display:inline-block;border-bottom:1px solid var(--black);padding-bottom:3px;font-size:12px}.two-col{display:grid;grid-template-columns:1fr 1fr;gap:60px}.prose{max-width:720px}.prose p{max-width:700px}.plain-tags{display:flex;gap:8px;flex-wrap:wrap;margin:24px 0}.plain-tags span{border:1px solid var(--line);padding:5px 9px;font-size:11px}.timeline{border-top:1px solid var(--black);margin-top:28px}.timeline-row{display:grid;grid-template-columns:170px 1fr;gap:28px;padding:20px 0;border-bottom:1px solid var(--line)}.timeline-date{font-size:11px;color:var(--grey)}.timeline-row p{margin:6px 0 0;color:#444}.status{display:inline-block;font-size:10px;text-transform:uppercase;letter-spacing:.8px;border:1px solid var(--line);padding:3px 7px;margin-bottom:10px}.filters{display:flex;gap:8px;flex-wrap:wrap;margin:20px 0 28px}.filter{border:1px solid var(--line);background:#fff;padding:7px 11px;font-size:11px;cursor:pointer}.filter[aria-pressed=true]{background:#111;color:#fff;border-color:#111}.search{border:1px solid var(--line);padding:9px 11px;width:min(100%,300px);margin:10px 0 0}.project-detail{padding:16px 0;border-top:1px solid var(--line)}summary{cursor:pointer;font-size:12px}details p{margin:12px 0 0;color:#444;max-width:760px}.note{border:1px solid var(--line);padding:16px;margin-top:25px;max-width:750px;font-size:12px}.contact-email{font:clamp(23px,3vw,34px) var(--serif);overflow-wrap:anywhere}.footer{border-top:1px solid var(--line);padding:20px 0 26px}.footer-inner{display:flex;justify-content:space-between;gap:20px;font-size:11px;color:var(--grey)}:focus-visible{outline:2px solid #111;outline-offset:4px}::selection{background:#111;color:#fff}@media(max-width:700px){.wrap{width:calc(100% - 36px)}.header{height:66px}.menu{display:block}.links{display:none;position:absolute;z-index:10;top:66px;left:0;right:0;background:#fff;padding:12px 18px 18px;border-bottom:1px solid var(--line);flex-direction:column;align-items:stretch;gap:0}.links.open{display:flex}.links a{padding:12px 0;border-bottom:1px solid var(--line)}.page{padding-top:32px}.intro-grid{grid-template-columns:1fr;gap:24px}.portrait-placeholder{max-width:170px;aspect-ratio:4/3}.meta-row{grid-template-columns:1fr 1fr;margin-top:42px}.meta{padding:13px 10px 13px 0;min-height:90px}.meta+.meta{padding-left:12px}.meta:nth-child(3){border-left:0;padding-left:0;border-top:1px solid var(--line)}.meta:nth-child(4){border-top:1px solid var(--line)}.section-top,.two-col{display:block}.section-top .small{margin-top:15px}.item{grid-template-columns:42px minmax(0,1fr) 16px;gap:10px;padding:20px 0}.timeline-row{grid-template-columns:1fr;gap:5px}.footer-inner{flex-direction:column;gap:5px}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+/* Home page profile photo */
+.portrait-frame {
+  width: 240px;
+  max-width: 100%;
+  margin: 0 auto;
+  justify-self: center;
+}
+
+.portrait-photo {
+  display: block;
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  object-position: center 35%;
+}
+
+/* Keep the introduction and photo aligned */
+.intro-grid {
+  align-items: center;
+}
+
+/* Smaller photo on mobile */
+@media (max-width: 700px) {
+  .portrait-frame {
+    width: 180px;
+  }
+
+  .portrait-photo {
+    height: 220px;
+  }
+}
+/* About page research overview image */
+.about-visual {
+  min-width: 0;
+}
+
+.research-figure {
+  margin: 28px 0 0;
+  padding: 0;
+}
+
+.research-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid #e4e7eb;
+  border-radius: 12px;
+  background: #ffffff;
+}
+
+.research-figure figcaption {
+  margin-top: 10px;
+  color: #687386;
+  font-size: 0.82rem;
+  line-height: 1.6;
+}
+
+@media (max-width: 700px) {
+  .research-figure {
+    margin-top: 22px;
+  }
+}
+
+/* Contact page refinements */
+/* Contact page typography and spacing */
+
+.page h1 {
+  font-size: clamp(2.2rem, 5vw, 3.25rem);
+  line-height: 1.12;
+  letter-spacing: -0.04em;
+  margin-bottom: 28px;
+}
+
+.page .lede {
+  font-size: clamp(1.05rem, 2vw, 1.2rem);
+  line-height: 1.75;
+  max-width: 760px;
+}
+
+.page .prose {
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+.page .eyebrow {
+  font-size: 0.78rem;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.page .small {
+  font-size: 0.875rem;
+  line-height: 1.65;
+}
+
+.page .contact-email {
+  display: inline-block;
+  font-size: clamp(1.15rem, 2vw, 1.35rem);
+  font-weight: 500;
+  overflow-wrap: anywhere;
+  text-underline-offset: 5px;
+}
+
+.page .text-link {
+  font-size: 1.05rem;
+  font-weight: 500;
+  text-underline-offset: 5px;
+  overflow-wrap: anywhere;
+}
+
+.page .text-link:hover,
+.page .text-link:focus-visible,
+.page .contact-email:hover,
+.page .contact-email:focus-visible {
+  text-decoration-thickness: 2px;
+}
+
+.page .rule {
+  margin-top: 36px;
+  margin-bottom: 30px;
+}
+
+@media (max-width: 640px) {
+  .page h1 {
+    font-size: clamp(2rem, 8vw, 2.5rem);
+    margin-bottom: 22px;
+  }
+
+  .page .lede {
+    font-size: 1.05rem;
+    line-height: 1.75;
+  }
+
+  .page .text-link {
+    font-size: 1rem;
+  }
+}
+
+
+
+
+/* =========================================
+   EXPERIENCE PAGE
+   Matches the existing site-wide style.css
+   ========================================= */
+
+.experience-page {
+  color: var(--black);
+  font-family: var(--sans);
+  font-size: 14px;
+}
+
+/* Page introduction */
+
+.experience-intro {
+  margin-bottom: 32px;
+}
+
+.experience-page h1 {
+  font-family: var(--serif);
+  font-size: clamp(36px, 4.2vw, 54px);
+  font-weight: 400;
+  letter-spacing: -0.7px;
+  line-height: 1.15;
+  color: var(--black);
+  margin: 48px 0 16px;
+}
+
+.experience-page h2 {
+  font-family: var(--serif);
+  font-size: 32px;
+  font-weight: 400;
+  letter-spacing: -0.7px;
+  line-height: 1.15;
+  color: var(--black);
+  margin: 0 0 18px;
+}
+
+.experience-page h3 {
+  font-family: var(--serif);
+  font-size: 24px;
+  font-weight: 400;
+  letter-spacing: -0.7px;
+  line-height: 1.2;
+  color: var(--black);
+  margin: 0 0 9px;
+}
+
+.experience-page p {
+  font-family: var(--sans);
+  font-size: 14px;
+  line-height: 1.7;
+  color: #333;
+  margin: 0 0 16px;
+}
+
+.experience-page .lede {
+  font-family: var(--serif);
+  font-size: clamp(19px, 2vw, 24px);
+  line-height: 1.55;
+  max-width: 670px;
+}
+
+.experience-page .eyebrow {
+  font-family: var(--sans);
+  font-size: 10px;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: var(--grey);
+}
+
+.experience-page .small {
+  font-size: 12px;
+  color: var(--grey);
+}
+
+/* =========================================
+   RESEARCH JOURNEY
+   ========================================= */
+
+.rj {
+  background: #fff;
+  border: 0;
+  border-top: 1px solid var(--black);
+  border-bottom: 1px solid var(--line);
+  border-radius: 0;
+  padding: 24px 0 26px;
+  margin: 30px 0 48px;
+  color: var(--black);
+}
+
+.rj h2 {
+  font-family: var(--serif);
+  font-size: 32px;
+  font-weight: 400;
+  letter-spacing: -0.7px;
+  margin: 0 0 12px;
+  color: var(--black);
+}
+
+.rj-sub {
+  font-size: 13px;
+  color: var(--grey);
+  margin: 0 0 26px;
+}
+
+.rj-scroll {
+  overflow-x: auto;
+  padding: 8px 0 14px;
+  scrollbar-width: thin;
+}
+
+.rj-list {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  min-width: 1450px;
+}
+
+.rj-item {
+  position: relative;
+  flex: 1 0 145px;
+  min-width: 0;
+  box-sizing: border-box;
+  padding: 32px 16px 0 0;
+}
+
+.rj-item::before {
+  content: "";
+  position: absolute;
+  top: 8px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: #999;
+}
+
+.rj-dot {
+  position: absolute;
+  top: 8px;
+  left: 0;
+  transform: translateY(-50%);
+  border-radius: 50%;
+  background: #666;
+  z-index: 1;
+}
+
+.rj-d1 {
+  width: 8px;
+  height: 8px;
+}
+
+.rj-d2 {
+  width: 10px;
+  height: 10px;
+}
+
+.rj-d3 {
+  width: 12px;
+  height: 12px;
+}
+
+.rj-d4 {
+  width: 15px;
+  height: 15px;
+  background: var(--black);
+}
+
+.rj-d5 {
+  width: 18px;
+  height: 18px;
+  background: var(--black);
+}
+
+.rj-d6 {
+  width: 21px;
+  height: 21px;
+  background: var(--black);
+}
+
+.rj-d7 {
+  width: 20px;
+  height: 20px;
+  background: #fff;
+  border: 1px solid var(--black);
+  box-sizing: border-box;
+}
+
+.rj-date {
+  font-family: var(--sans);
+  font-size: 11px;
+  line-height: 1.6;
+  letter-spacing: 0;
+  color: var(--grey);
+  margin: 0 0 7px;
+}
+
+.rj-text {
+  font-family: var(--sans);
+  font-size: 12px;
+  line-height: 1.65;
+  color: #333;
+  margin: 0;
+}
+
+.rj-item.recent .rj-date,
+.rj-item.recent .rj-text,
+.rj-item.future .rj-date,
+.rj-item.future .rj-text {
+  color: var(--black);
+}
+
+/* =========================================
+   EXPERIENCE SECTION
+   ========================================= */
+
+.experience-section {
+  margin: 0 0 48px;
+}
+
+.experience-heading {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  margin-bottom: 26px;
+}
+
+.experience-heading .eyebrow {
+  margin-bottom: 8px;
+}
+
+.experience-heading h2 {
+  margin: 0;
+}
+
+/* Simple rows, matching research.html */
+
+.experience-list {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--black);
+}
+
+.experience-card {
+  display: grid;
+  grid-template-columns: 190px minmax(0, 1fr);
+  align-items: start;
+  gap: 28px;
+
+  padding: 24px 0;
+  margin: 0;
+
+  background: #fff;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  border-radius: 0;
+  box-shadow: none;
+}
+
+/* Experience images */
+
+.experience-image {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: #f5f5f5;
+  border: 1px solid var(--line);
+  border-radius: 0;
+}
+
+.experience-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Experience text */
+
+.experience-content {
+  min-width: 0;
+}
+
+.experience-content p {
+  font-family: var(--sans);
+  font-size: 14px;
+  line-height: 1.7;
+  color: #333;
+  margin: 0 0 10px;
+}
+
+.experience-content .experience-date {
+  font-family: var(--sans);
+  font-size: 11px;
+  color: var(--grey);
+  margin: 0 0 7px;
+}
+
+.experience-content h3 {
+  font-family: var(--serif);
+  font-size: 24px;
+  font-weight: 400;
+  letter-spacing: -0.5px;
+  line-height: 1.25;
+  margin: 0 0 9px;
+  color: var(--black);
+}
+
+.experience-content .experience-institution {
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--black);
+  margin-bottom: 5px;
+}
+
+.experience-content .experience-advisor {
+  font-size: 12px;
+  color: var(--grey);
+  margin-bottom: 12px;
+}
+
+/* Research method tags */
+
+.experience-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  list-style: none;
+  padding: 0;
+  margin: 12px 0 0;
+}
+
+.experience-tags li {
+  font-family: var(--sans);
+  font-size: 11px;
+  line-height: 1.6;
+  color: var(--grey);
+  padding: 0;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+/* Dot separators like the Research page */
+
+.experience-tags li + li::before {
+  content: "·";
+  margin-right: 18px;
+  color: var(--grey);
+}
+
+/* =========================================
+   RESPONSIVE DESIGN
+   ========================================= */
+
+@media (max-width: 700px) {
+  .experience-page h1 {
+    font-size: clamp(36px, 8vw, 46px);
+    margin-top: 32px;
+  }
+
+  .experience-page h2,
+  .rj h2 {
+    font-size: 28px;
+  }
+
+  .experience-page h3,
+  .experience-content h3 {
+    font-size: 22px;
+  }
+
+  .rj {
+    margin: 26px 0 38px;
+    padding: 22px 0;
+  }
+
+  .rj-list {
+    min-width: 1250px;
+  }
+
+  .experience-card {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding: 22px 0;
+  }
+
+  .experience-image {
+    width: 100%;
+    max-width: 420px;
+    aspect-ratio: 16 / 9;
+  }
+
+  .experience-content p {
+    font-size: 14px;
+  }
+
+  .experience-tags {
+    gap: 7px 14px;
+  }
+
+  .experience-tags li + li::before {
+    margin-right: 14px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .experience-card {
+    transition: none;
+  }
+}
+
+
