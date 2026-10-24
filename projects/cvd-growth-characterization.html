@@ -1,35 +1,632 @@
-<!doctype html>
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>CVD Growth and Characterization of 2D Semiconductors | Aryan</title>
-  <meta name="description" content="Detailed research project page: CVD Growth and Characterization of 2D Semiconductors.">
-  <link rel="stylesheet" href="../assets/css/style.css">
-  <link rel="stylesheet" href="../assets/css/project-detail.css">
-  <script src="../assets/js/site.js" defer></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="CVD growth and characterization of MoSe2, WS2 and WSe2 on patterned Si/SiO2 substrates.">
+<title>CVD Growth of 2D Semiconductors | aryan.phd</title>
+
+<style>
+:root{
+  --ink:#171717;
+  --muted:#6d6d6d;
+  --line:#dededb;
+  --paper:#fff;
+  --soft:#f7f7f5;
+  --serif:Georgia,"Times New Roman",serif;
+  --sans:Arial,Helvetica,sans-serif;
+  --page:1080px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:75px}
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:var(--sans);font-size:15px;line-height:1.75;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit;text-underline-offset:4px}
+a:hover{opacity:.65}
+img{display:block;max-width:100%}
+.wrap{width:min(var(--page),100% - 64px);margin-inline:auto}
+
+/* Navigation */
+.site-header{border-bottom:1px solid var(--line)}
+.nav{
+  min-height:76px;display:flex;align-items:center;
+  justify-content:space-between;gap:25px;
+}
+.brand{font-size:21px;font-weight:700;text-decoration:none;letter-spacing:-.8px}
+.nav-links{display:flex;gap:23px;flex-wrap:wrap}
+.nav-links a{font-size:12px;text-decoration:none;color:#454545}
+
+/* Shared typography */
+.eyebrow{
+  margin:0 0 13px;font-size:10px;font-weight:700;
+  letter-spacing:1.8px;text-transform:uppercase;color:var(--muted);
+}
+h1,h2,h3,p{margin-top:0}
+h1,h2,h3{font-family:var(--serif);font-weight:400;letter-spacing:-.7px}
+h1{font-size:clamp(35px,4.8vw,53px);line-height:1.12;margin-bottom:21px}
+h2{font-size:34px;line-height:1.2;margin-bottom:12px}
+h3{font-size:22px;line-height:1.3;margin-bottom:10px}
+p{margin-bottom:15px}
+.muted{color:var(--muted)}
+.small{font-size:12px;color:var(--muted)}
+.breadcrumb{padding:25px 0;font-size:12px;color:var(--muted)}
+.breadcrumb a{text-decoration:none}
+
+/* Hero */
+.hero{
+  display:grid;grid-template-columns:1.02fr .98fr;
+  align-items:center;gap:55px;padding:18px 0 48px;
+  border-bottom:1px solid var(--line);
+}
+.hero-copy{max-width:520px}
+.hero .lead{font-size:17px;line-height:1.85;color:#505050}
+.status{
+  display:inline-flex;align-items:center;gap:9px;
+  font-size:11px;color:#555;margin-bottom:20px;
+}
+.status:before{
+  content:"";width:7px;height:7px;border-radius:50%;
+  background:#555;display:inline-block;
+}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:23px}
+.tag{
+  font-size:11px;line-height:1.5;padding:6px 11px;
+  border:1px solid var(--line);border-radius:2px;
+}
+.hero-figure{margin:0;min-width:0}
+.hero-image{
+  width:100%;height:350px;object-fit:contain;
+  background:var(--soft);border:1px solid var(--line);
+  padding:10px;
+}
+figcaption{font-size:11px;line-height:1.6;color:var(--muted);margin-top:10px}
+
+/* Sticky section navigation */
+.section-nav{
+  position:sticky;top:0;z-index:10;background:rgba(255,255,255,.97);
+  border-bottom:1px solid var(--line);
+}
+.section-nav-inner{display:flex;gap:30px;overflow-x:auto;padding:15px 0}
+.section-nav a{
+  font-size:11px;color:#555;text-decoration:none;white-space:nowrap;
+}
+.section-nav a:hover{color:var(--ink)}
+
+/* Main sections */
+.section{padding:53px 0;border-bottom:1px solid var(--line)}
+.section-top{
+  display:grid;grid-template-columns:.75fr 1.25fr;
+  gap:40px;margin-bottom:28px;align-items:start;
+}
+.section-top .intro{max-width:610px;color:#5e5e5e;font-size:14px}
+.section-number{
+  display:block;font-size:10px;letter-spacing:1.5px;
+  color:var(--muted);margin-bottom:9px;
+}
+.subheading{
+  display:flex;align-items:baseline;justify-content:space-between;
+  gap:20px;margin:30px 0 17px;
+}
+.subheading h3{margin:0}
+.subheading p{margin:0;font-size:11px;color:var(--muted)}
+
+/* Experimental design table */
+.table-shell{border:1px solid var(--line);overflow-x:auto}
+table{width:100%;border-collapse:collapse;min-width:600px;font-size:13px}
+th,td{text-align:left;padding:15px 17px;vertical-align:top;border-bottom:1px solid var(--line)}
+th{
+  font-size:10px;letter-spacing:1.1px;text-transform:uppercase;
+  font-weight:700;background:var(--soft);color:#555;
+}
+tbody tr:last-child td{border-bottom:0}
+td:first-child{font-weight:600}
+.method-note{
+  margin-top:15px;padding:15px 18px;background:var(--soft);
+  border-left:2px solid #888;font-size:12px;color:#555;
+}
+
+/* Figures */
+.figure-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:17px}
+.figure-card{margin:0;min-width:0}
+.figure-frame{
+  aspect-ratio:4/3;background:var(--soft);
+  border:1px solid var(--line);overflow:hidden;
+  display:flex;align-items:center;justify-content:center;
+}
+.figure-frame img{width:100%;height:100%;object-fit:contain}
+.figure-placeholder{
+  padding:20px;text-align:center;color:#777;font-size:12px;
+  line-height:1.65;max-width:260px;
+}
+.figure-placeholder strong{
+  display:block;font-size:13px;font-weight:600;color:#454545;margin-bottom:5px;
+}
+.figure-card figcaption strong{color:var(--ink);font-weight:600}
+.figure-card figcaption{min-height:38px}
+
+/* Findings */
+.finding-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.finding{
+  padding:21px;border:1px solid var(--line);min-width:0;
+}
+.finding .index{font-size:10px;letter-spacing:1.5px;color:var(--muted)}
+.finding h3{margin:12px 0 9px}
+.finding p{font-size:13px;color:#5c5c5c;margin:0}
+
+/* Contribution */
+.contribution-list{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.contribution-list li{
+  display:grid;grid-template-columns:35px 1fr;gap:14px;
+  padding:15px 0;border-bottom:1px solid var(--line);
+  font-size:14px;
+}
+.contribution-list .n{font-size:11px;color:var(--muted);padding-top:3px}
+
+/* References */
+.references{list-style:none;padding:0;margin:0;counter-reset:ref}
+.references li{
+  counter-increment:ref;display:grid;
+  grid-template-columns:30px 1fr;gap:13px;
+  padding:17px 0;border-bottom:1px solid var(--line);
+  font-size:13px;line-height:1.8;
+}
+.references li:before{
+  content:"[" counter(ref) "]";color:var(--muted);font-size:11px;padding-top:2px;
+}
+.references a{font-size:11px;font-weight:600;white-space:nowrap}
+.end-links{
+  display:flex;justify-content:space-between;gap:20px;
+  padding:27px 0;font-size:12px;
+}
+.end-links a{text-decoration:none}
+footer{border-top:1px solid var(--line);padding:23px 0 30px}
+.footer-inner{
+  display:flex;justify-content:space-between;gap:20px;
+  font-size:11px;color:var(--muted);
+}
+.footer-inner strong{font-size:13px;color:var(--ink)}
+
+/* Responsive layout */
+@media(max-width:760px){
+  .wrap{width:calc(100% - 36px)}
+  .nav{padding:18px 0;align-items:flex-start;flex-direction:column;gap:13px}
+  .nav-links{gap:15px}
+  .hero{grid-template-columns:1fr;gap:25px;padding-top:10px}
+  .hero-image{height:auto;aspect-ratio:4/3}
+  .section{padding:39px 0}
+  .section-top{grid-template-columns:1fr;gap:10px}
+  .section-nav-inner{gap:22px}
+  h2{font-size:30px}
+  .figure-grid,.finding-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:480px){
+  .figure-grid,.finding-grid{grid-template-columns:1fr}
+  .figure-card figcaption{min-height:0}
+  .subheading{align-items:flex-start;flex-direction:column;gap:5px}
+  .end-links,.footer-inner{flex-direction:column}
+  h1{font-size:37px}
+  .hero .lead{font-size:15px}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+}
+</style>
 </head>
+
 <body>
-  <a class="skip" href="#main">Skip to content</a>
-  <header class="header"><div class="wrap nav"><a class="brand" href="../index.html">aryan.phd</a><button class="menu" aria-expanded="false" aria-label="Toggle navigation">Menu</button><nav class="links" aria-label="Main navigation"><a href="../index.html">Home</a><a href="../about.html">About</a><a aria-current="page" href="../research.html">Research</a><a href="../experience.html">Experience</a><a href="../notebook.html">Notebook</a><a href="../contact.html">Contact</a></nav></div></header>
-  <main class="pd wrap" id="main">
-    <p class="pd-breadcrumb"><a href="../research.html">← Back to research archive</a><span>/</span><span>2D semiconductors · Experimental growth</span></p>
-    <header class="pd-hero">
-      <div><p class="pd-eyebrow">Research project · Ongoing</p><h2>CVD Growth and Characterization of 2D Semiconductors</h2><p class="pd-lede">Experimental growth and characterization of transition-metal dichalcogenides, with attention to how growth conditions relate to morphology and structural characteristics.</p><ul class="pd-tags"><li>TMDCs</li><li>CVD</li><li>Raman</li></ul></div>
-      <figure class="pd-figure">
-  <img
-    src="../assets/images/cvd-tmdc-composite.jpg"
-    alt="Optical microscopy image of CVD-grown MoS2"
-    loading="lazy"
-  >
-</figure>
-    </header>
-    <nav class="pd-toc" aria-label="On this page"><a href="#overview">Overview</a><a href="#methods">Methods</a><a href="#results">Results &amp; data</a><a href="#discussion">Interpretation</a><a href="#references">References</a></nav>
-    <section class="pd-section" id="overview"><p class="pd-eyebrow">Overview</p><h3>Research question</h3><p>How do growth temperature, dwell time, and precursor deposition conditions influence the nucleation, lateral growth, and triangular island morphology of two-dimensional transition-metal dichalcogenides synthesized by chemical vapor deposition?</p></p></section>
-    <section class="pd-section" id="methods"><p class="pd-eyebrow">Methods</p><h2>Materials, methods &amp; workflow</h2><p>CVD growth and characterization using Raman spectroscopy, AFM, FESEM, and XPS. Materials studied include MoS₂, MoSe₂, WSe₂, WS₂, and MoSe₂–WSe₂ heterostructures.</p><h3>Method details to document</h3><ul><li>System/sample and its identifier.</li><li>Experimental or computational settings, units, and software/instrument versions.</li><li>Processing, fitting, or convergence criteria.</li><li>Analysis steps and the scripts used to generate figures/tables.</li><li>Which steps you performed independently and which were performed with guidance or by collaborators.</li></ul></section>
-    <section class="pd-section" id="references"><p class="pd-eyebrow">References</p><h2>References &amp; resources</h2><ol class="pd-references"><li>[Author(s)], “[Paper / method title],” <em>[Journal / source]</em>, [year]. <a href="#references">DOI or stable URL</a></li></ol></section>
-    <footer class="pd-footer"><a href="../research.html">← Research archive</a><a href="../experience.html">Related research experience →</a></footer>
-  </main>
-  <footer class="footer"><div class="wrap footer-inner"><a class="brand" href="../index.html">aryan.phd</a><span>Research portfolio</span><span>Project details · October 2026</span></div></footer>
+
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="brand" href="../index.html">aryan.phd</a>
+    <nav class="nav-links" aria-label="Main navigation">
+      <a href="../index.html">Home</a>
+      <a href="../about.html">About</a>
+      <a href="../research.html">Research</a>
+      <a href="../experience.html">Experience</a>
+      <a href="../notebook.html">Notebook</a>
+      <a href="../contact.html">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <div class="breadcrumb">
+    <a href="../research.html">Research archive</a>
+    &nbsp; / &nbsp; Experimental growth
+  </div>
+
+  <article>
+    <section class="hero" aria-labelledby="project-title">
+      <div class="hero-copy">
+        <p class="eyebrow">Research project · 01</p>
+        <div class="status">Ongoing research</div>
+
+        <h2 id="project-title">
+          CVD Growth and Characterization of 2D Semiconductors
+        </h2>
+
+        <p class="lead">
+          Investigating the growth of MoSe₂, WS₂ and WSe₂ on
+          lithographically patterned Si/SiO₂ substrates, focusing on
+          precursor selection, temperature, hydrogen flow and dwell time.
+        </p>
+
+        <div class="tags">
+          <span class="tag">MoSe₂</span>
+          <span class="tag">WS₂</span>
+          <span class="tag">WSe₂</span>
+          <span class="tag">CVD</span>
+          <span class="tag">Raman spectroscopy</span>
+          <span class="tag">Growth kinetics</span>
+        </div>
+      </div>
+
+      <figure class="hero-figure">
+        <img class="hero-image"
+             src="../assets/images/cvd-tmdc-composite.jpg"
+             alt="Optical microscopy and characterization of CVD-grown two-dimensional semiconductors">
+        <figcaption>
+          Representative growth morphology and characterization.
+          Replace with the final labelled experimental composite.
+        </figcaption>
+      </figure>
+    </section>
+
+    <nav class="section-nav" aria-label="Project sections">
+      <div class="section-nav-inner">
+        <a href="#design">Experimental design</a>
+        <a href="#results">Results & data</a>
+        <a href="#findings">Key findings</a>
+        <a href="#contribution">My contribution</a>
+        <a href="#references">References</a>
+      </div>
+    </nav>
+
+    <section class="section" id="design">
+      <div class="section-top">
+        <div>
+          <span class="section-number">01 / EXPERIMENTS</span>
+          <h2>Experimental design</h2>
+        </div>
+        <p class="intro">
+          Metal or metal-oxide precursor layers were deposited by RF
+          sputtering onto Si/SiO₂ substrates with triangular lithographic
+          patterns. Sulfur or selenium was supplied from a separate boat
+          during the CVD growth process.
+        </p>
+      </div>
+
+      <div class="table-shell">
+        <table>
+          <thead>
+            <tr>
+              <th>Study</th>
+              <th>Precursor layer</th>
+              <th>Variables investigated</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>MoSe₂ growth</td>
+              <td>Mo and MoO₃</td>
+              <td>400, 450 and 500 °C</td>
+            </tr>
+            <tr>
+              <td>Hydrogen-flow study</td>
+              <td>MoO₃</td>
+              <td>14, 20 and 24 sccm H₂</td>
+            </tr>
+            <tr>
+              <td>Growth-time study</td>
+              <td>MoO₃</td>
+              <td>1, 2, 3, 4 and 5 min at 24 sccm H₂</td>
+            </tr>
+            <tr>
+              <td>WS₂ growth</td>
+              <td>W</td>
+              <td>400–500 °C</td>
+            </tr>
+            <tr>
+              <td>WSe₂ growth</td>
+              <td>W</td>
+              <td>400–500 °C</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="method-note">
+        <strong>Substrate and process.</strong>
+        Si/SiO₂ with nominal 50 µm triangular patterns; Mo, MoO₃ or W
+        deposited by RF sputtering before growth. Sulfur or selenium is
+        supplied separately. Include the exact dwell time, N₂ flow,
+        pressure and other settings in each sample caption when available.
+      </div>
+    </section>
+
+    <section class="section" id="results">
+      <div class="section-top">
+        <div>
+          <span class="section-number">02 / DATA</span>
+          <h2>Results & data</h2>
+        </div>
+        <p class="intro">
+          Present the experimental evidence in a consistent order:
+          precursor and temperature, hydrogen-flow dependence, growth
+          evolution, and extension to WS₂ and WSe₂.
+        </p>
+      </div>
+
+      <div class="subheading">
+        <h3>MoSe₂ · Precursor and temperature</h3>
+        <p>400 / 450 / 500 °C</p>
+      </div>
+
+      <div class="figure-grid">
+        <figure class="figure-card">
+          <div class="figure-frame">
+            <div class="figure-placeholder">
+              <strong>Mo precursor</strong>
+              Insert optical micrograph
+            </div>
+          </div>
+          <figcaption><strong>Figure 1.</strong> Mo-based precursor growth. Add sample ID and actual temperature.</figcaption>
+        </figure>
+
+        <figure class="figure-card">
+          <div class="figure-frame">
+            <div class="figure-placeholder">
+              <strong>MoO₃ · Lower temperature</strong>
+              Insert optical micrograph
+            </div>
+          </div>
+          <figcaption><strong>Figure 2.</strong> MoO₃-based growth. Specify the measured condition.</figcaption>
+        </figure>
+
+        <figure class="figure-card">
+          <div class="figure-frame">
+            <div class="figure-placeholder">
+              <strong>MoO₃ · Higher temperature</strong>
+              Insert optical micrograph
+            </div>
+          </div>
+          <figcaption><strong>Figure 3.</strong> Temperature-dependent morphology. Add sample ID and scale bar.</figcaption>
+        </figure>
+      </div>
+
+      <div class="subheading">
+        <h3>MoSe₂ · Hydrogen flow and growth time</h3>
+        <p>14 / 20 / 24 sccm · 1–5 min</p>
+      </div>
+
+      <div class="figure-grid">
+        <figure class="figure-card">
+          <div class="figure-frame">
+            <div class="figure-placeholder">
+              <strong>Hydrogen-flow comparison</strong>
+              Insert matched images for 14, 20 and 24 sccm
+            </div>
+          </div>
+          <figcaption><strong>Figure 4.</strong> Morphology as a function of H₂ flow at matched conditions.</figcaption>
+        </figure>
+
+        <figure class="figure-card">
+          <div class="figure-frame">
+            <div class="figure-placeholder">
+              <strong>Dwell-time series</strong>
+              Insert the 1–5 min image sequence
+            </div>
+          </div>
+          <figcaption><strong>Figure 5.</strong> Time-dependent domain growth under the selected conditions.</figcaption>
+        </figure>
+
+        <figure class="figure-card">
+          <div class="figure-frame">
+            <div class="figure-placeholder">
+              <strong>Quantitative growth plot</strong>
+              Insert measured area, size or coverage data
+            </div>
+          </div>
+          <figcaption><strong>Figure 6.</strong> Quantitative growth metric versus dwell time, with uncertainty if available.</figcaption>
+        </figure>
+      </div>
+
+      <div class="subheading">
+        <h3>WS₂ and WSe₂ · Temperature-dependent growth</h3>
+        <p>W precursor · 400–500 °C</p>
+      </div>
+
+      <div class="figure-grid">
+        <figure class="figure-card">
+          <div class="figure-frame">
+            <div class="figure-placeholder">
+              <strong>WS₂ growth</strong>
+              Insert temperature-series images
+            </div>
+          </div>
+          <figcaption><strong>Figure 7.</strong> WS₂ morphology across the investigated temperature range.</figcaption>
+        </figure>
+
+        <figure class="figure-card">
+          <div class="figure-frame">
+            <div class="figure-placeholder">
+              <strong>WSe₂ growth</strong>
+              Insert temperature-series images
+            </div>
+          </div>
+          <figcaption><strong>Figure 8.</strong> WSe₂ morphology across the investigated temperature range.</figcaption>
+        </figure>
+
+        <figure class="figure-card">
+          <div class="figure-frame">
+            <div class="figure-placeholder">
+              <strong>Characterization</strong>
+              Insert actual Raman spectra or other measured data
+            </div>
+          </div>
+          <figcaption><strong>Figure 9.</strong> Experimental characterization with verified peak assignments.</figcaption>
+        </figure>
+      </div>
+
+      <p class="small" style="margin-top:20px">
+        Figure numbering and captions can be adjusted to match the final
+        selection of experimental results. Use consistent scale bars,
+        sample labels, axes and units throughout.
+      </p>
+    </section>
+
+    <section class="section" id="findings">
+      <div class="section-top">
+        <div>
+          <span class="section-number">03 / INTERPRETATION</span>
+          <h2>Key findings</h2>
+        </div>
+        <p class="intro">
+          Use three concise statements to communicate what the data
+          demonstrate, rather than repeating the experimental procedure.
+        </p>
+      </div>
+
+      <div class="finding-grid">
+        <article class="finding">
+          <span class="index">FINDING 01</span>
+          <h3>Morphology</h3>
+          <p>Summarize observed triangular domains, lateral dimensions,
+          nucleation density or coverage using measured values.</p>
+        </article>
+
+        <article class="finding">
+          <span class="index">FINDING 02</span>
+          <h3>Growth conditions</h3>
+          <p>Report the trends supported by the temperature, H₂-flow
+          and dwell-time comparisons.</p>
+        </article>
+
+        <article class="finding">
+          <span class="index">FINDING 03</span>
+          <h3>Material characterization</h3>
+          <p>Report verified Raman features or other characterization
+          results and explain what they support.</p>
+        </article>
+      </div>
+
+      <p class="small" style="margin-top:17px">
+        Replace these prompts with your actual observations before publishing.
+        Do not infer a trend from an image or plot that has not been analysed.
+      </p>
+    </section>
+
+    <section class="section" id="contribution">
+      <div class="section-top">
+        <div>
+          <span class="section-number">04 / RESEARCH ROLE</span>
+          <h2>My contribution</h2>
+        </div>
+        <p class="intro">
+          A concise account of the experimental and analytical work
+          undertaken within the project.
+        </p>
+      </div>
+
+      <ol class="contribution-list">
+        <li><span class="n">01</span><span>Conducted CVD growth studies using RF-sputtered metal or metal-oxide layers on patterned Si/SiO₂ substrates.</span></li>
+        <li><span class="n">02</span><span>Investigated precursor selection and process conditions for MoSe₂, including temperature, hydrogen flow and dwell time.</span></li>
+        <li><span class="n">03</span><span>Extended growth experiments to WS₂ and WSe₂ using W-containing precursor layers.</span></li>
+        <li><span class="n">04</span><span>Documented experimental morphology and performed image analysis or material characterization where applicable.</span></li>
+      </ol>
+    </section>
+
+    <section class="section" id="references">
+      <div class="section-top">
+        <div>
+          <span class="section-number">05 / LITERATURE</span>
+          <h2>References</h2>
+        </div>
+        <p class="intro">
+          Background literature for understanding precursor conversion,
+          hydrogen-assisted growth and characterization of transition-metal
+          dichalcogenides.
+        </p>
+      </div>
+
+      <ol class="references">
+        <li>
+          <div>
+            Singh et al., “Raman spectroscopic investigations of the
+            selenization of MoO₃ in the chemical vapor deposition process
+            to form two-dimensional MoSe₂,” <em>Applied Surface Science</em>,
+            538, 147946 (2021).
+            <br><a href="https://doi.org/10.1016/j.apsusc.2020.147946"
+            target="_blank" rel="noopener">Read paper ↗</a>
+          </div>
+        </li>
+
+        <li>
+          <div>
+            “Revealing the microscopic CVD growth mechanism of MoSe₂ and
+            the role of hydrogen gas during the growth procedure,”
+            <em>Nanotechnology</em>, 29, 314001 (2018).
+            <br><a href="https://doi.org/10.1088/1361-6528/aac397"
+            target="_blank" rel="noopener">Read paper ↗</a>
+          </div>
+        </li>
+
+        <li>
+          <div>
+            “WS₂ nanotube formation by sulphurization: Effect of precursor
+            tungsten film thickness and stress,”
+            <em>Materials Chemistry and Physics</em> (2016).
+            <br><a href="https://doi.org/10.1016/j.matchemphys.2016.06.069"
+            target="_blank" rel="noopener">Read paper ↗</a>
+          </div>
+        </li>
+
+        <li>
+          <div>
+            “Optimisation of processing conditions during CVD growth of
+            2D WS₂ films from a chloride precursor,”
+            <em>Journal of Materials Science</em> (2022).
+            <br><a href="https://doi.org/10.1007/s10853-021-06708-1"
+            target="_blank" rel="noopener">Read paper ↗</a>
+          </div>
+        </li>
+
+        <li>
+          <div>
+            “Thickness-dependent Raman spectra of CVD-grown WSe₂ thin films,”
+            <em>New Physics: Sae Mulli</em>, 65, 633–637 (2015).
+            <br><a href="https://doi.org/10.3938/NPSM.65.633"
+            target="_blank" rel="noopener">Read paper ↗</a>
+          </div>
+        </li>
+      </ol>
+
+      <p class="small" style="margin-top:17px">
+        Verify author lists, titles, publication details and DOI metadata
+        against the original papers before final publication. These works
+        provide context for your research; they are not evidence of your
+        experimental findings.
+      </p>
+    </section>
+
+    <div class="end-links">
+      <a href="../research.html">← Back to research archive</a>
+      <a href="../experience.html#iith">Related research experience ↗</a>
+    </div>
+  </article>
+</main>
+
+<footer>
+  <div class="wrap footer-inner">
+    <strong>aryan.phd</strong>
+    <span>IIT Hyderabad, India · Research portfolio · 2026</span>
+  </div>
+</footer>
+
 </body>
 </html>
