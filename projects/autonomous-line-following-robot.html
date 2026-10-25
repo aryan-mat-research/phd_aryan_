@@ -1,31 +1,276 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Autonomous Line-Following Robot | Aryan</title>
-  <meta name="description" content="Detailed research project page: Autonomous Line-Following Robot.">
-  <link rel="stylesheet" href="../assets/css/style.css">
-  <link rel="stylesheet" href="../assets/css/project-detail.css">
-  <script src="../assets/js/site.js" defer></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Project documentation for an Arduino-based autonomous line-following robot, including motor-control sketches, sensor experiments, development workflow, and implementation notes.">
+<title>Autonomous Line-Following Robot — Aryan</title>
+<style>
+:root{--ink:#171717;--muted:#666;--line:#dedede;--paper:#fff;--soft:#f6f6f4;--max:1080px;--serif:Georgia,"Times New Roman",serif;--sans:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:14px;line-height:1.68;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+a{color:inherit;text-underline-offset:3px}a:hover{opacity:.72}
+.skip{position:absolute;left:-9999px}.skip:focus{left:1rem;top:1rem;background:#fff;padding:.6rem;z-index:99}
+.wrap{width:min(var(--max),calc(100% - 48px));margin-inline:auto}
+.site-head{position:sticky;top:0;z-index:20;border-bottom:1px solid var(--line);background:rgba(255,255,255,.94);backdrop-filter:blur(12px)}
+.nav{min-height:62px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.brand{text-decoration:none;font-size:13px;font-weight:750;letter-spacing:-.025em}
+.nav-links{display:flex;gap:21px;flex-wrap:wrap}.nav-links a{text-decoration:none;font-size:11.5px;color:#4b4b4b}
+.crumbs{font-size:11.5px;color:var(--muted);padding:22px 0 12px}.crumbs a{text-decoration:none}
+.kicker,.section-no,.eyebrow{font-size:10px;letter-spacing:.14em;text-transform:uppercase;font-weight:750;color:#666}
+.hero{padding:26px 0 34px;border-bottom:1px solid var(--line)}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(280px,.95fr);gap:clamp(28px,4vw,48px);align-items:center}
+h1{font-family:var(--serif);font-weight:500;font-size:clamp(38px,4.8vw,60px);line-height:1.04;letter-spacing:-.045em;margin:14px 0 18px;max-width:650px}
+.deck{font-size:14.5px;line-height:1.72;color:#454545;max-width:570px;margin:0 0 18px}
+.meta{display:flex;flex-wrap:wrap;gap:7px;margin:18px 0 0}.tag{font-size:10.5px;border:1px solid #d5d5d5;border-radius:999px;padding:4px 9px}
+.hero-visual{min-width:0;width:100%;margin:0;padding:0;background:var(--soft);border:1px solid var(--line)}
+.hero-image{display:block;width:100%;height:auto;object-fit:contain}
+.figure-caption{padding:8px 11px;margin:0;font-size:10.5px;line-height:1.5;color:var(--muted)}
+.toc{display:flex;gap:7px;flex-wrap:wrap;padding:13px 0;border-bottom:1px solid var(--line)}.toc a{font-size:10.5px;text-decoration:none;border:1px solid var(--line);padding:5px 9px;border-radius:4px}
+main{padding-bottom:58px}.section{display:block;padding:30px 0 32px;border-bottom:1px solid var(--line)}
+.section-aside{margin:0 0 7px}.section-no{display:block;margin-bottom:4px}.section-aside p{display:none}
+.section-body{width:100%;max-width:850px}
+.section-body h2{font-family:var(--serif);font-weight:500;font-size:clamp(25px,2.7vw,32px);letter-spacing:-.03em;line-height:1.16;margin:0 0 13px}
+.section-body h3{font-size:13px;font-weight:700;letter-spacing:-.005em;line-height:1.4;margin:20px 0 7px}
+.section-body p{color:#3d3d3d;margin:0 0 11px;max-width:78ch}.lead{font-size:14.5px;line-height:1.75}
+.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:15px 0 18px}
+.card{border:1px solid var(--line);padding:13px 14px;background:#fff}.card .n{font-family:var(--serif);font-size:22px;color:#777;line-height:1.2}
+.card h3{margin:7px 0 5px;font-size:12.5px}.card p{font-size:12px;line-height:1.65;margin:0;color:#555}
+.steps{counter-reset:step;list-style:none;padding:0;margin:16px 0 0}
+.steps li{counter-increment:step;display:grid;grid-template-columns:28px minmax(0,1fr);gap:10px;padding:11px 0;border-top:1px solid var(--line)}
+.steps li:before{content:"0" counter(step);font-size:10.5px;font-weight:750;color:#777;padding-top:3px}
+.steps strong{display:block;font-size:12.5px;margin-bottom:3px}.steps span{display:block;font-size:12.5px;line-height:1.68;color:#555}
+.table-wrap{overflow-x:auto;border:1px solid var(--line);margin:12px 0 17px}
+table{width:100%;border-collapse:collapse;font-size:11.5px;min-width:550px}
+th,td{text-align:left;vertical-align:top;padding:9px 11px;border-bottom:1px solid var(--line);line-height:1.6}
+th{font-size:9.5px;font-weight:750;text-transform:uppercase;letter-spacing:.09em;background:var(--soft);color:#555}tr:last-child td{border-bottom:0}
+code,pre{font-family:ui-monospace,SFMono-Regular,Consolas,monospace}code{font-size:.9em;background:#f2f2f2;padding:2px 4px;border-radius:3px;overflow-wrap:anywhere}
+pre{white-space:pre;overflow:auto;background:#171717;color:#f3f3f3;padding:17px;font-size:11px;line-height:1.6;border-radius:5px}
+.callout{padding:15px 17px;background:var(--soft);border:1px solid var(--line);font-size:12.5px;color:#444;margin:20px 0}
+.status{display:inline-block;font-size:9.5px;text-transform:uppercase;letter-spacing:.1em;font-weight:750;border:1px solid #cfcfcf;border-radius:3px;padding:3px 7px;margin-bottom:8px}
+.file-list{list-style:none;margin:0;padding:0}
+.file-list li{padding:12px 0;border-top:1px solid var(--line);display:grid;grid-template-columns:minmax(145px,.7fr) minmax(0,1.5fr);gap:22px}
+.file-list strong{font-size:11.5px}.file-list span{font-size:11.8px;line-height:1.65;color:#555}
+.ref-list{padding-left:18px}.ref-list li{margin:0 0 10px;color:#444;font-size:12px;line-height:1.7}
+.footer{padding:25px 0 38px;color:#777;font-size:10.5px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}.back-top{font-size:10.5px}
+@media(max-width:760px){.wrap{width:min(100% - 32px,var(--max))}.nav{align-items:flex-start;padding:13px 0;flex-direction:column;gap:8px}.nav-links{gap:13px}.hero{padding:22px 0 28px}.hero-grid{grid-template-columns:1fr;gap:23px}h1{font-size:clamp(36px,10vw,48px)}.section{padding:25px 0 27px}.cards{grid-template-columns:1fr}.file-list li{grid-template-columns:1fr;gap:4px}table{min-width:520px}}
+@media print{.site-head,.toc,.back-top{display:none}.hero{padding-top:0}.section{break-inside:avoid}body{font-size:11pt}.wrap{width:100%}}
+</style>
 </head>
-<body>
-  <a class="skip" href="#main">Skip to content</a>
-  <header class="header"><div class="wrap nav"><a class="brand" href="../index.html">aryan.phd</a><button class="menu" aria-expanded="false" aria-label="Toggle navigation">Menu</button><nav class="links" aria-label="Main navigation"><a href="../index.html">Home</a><a href="../about.html">About</a><a aria-current="page" href="../research.html">Research</a><a href="../experience.html">Experience</a><a href="../notebook.html">Notebook</a><a href="../contact.html">Contact</a></nav></div></header>
-  <main class="pd wrap" id="main">
-    <p class="pd-breadcrumb"><a href="../research.html">← Back to research archive</a><span>/</span><span>Undergraduate academic project · Grade A+</span></p>
-    <header class="pd-hero">
-      <div><p class="pd-eyebrow">Research project · Previous</p><h1>Autonomous Line-Following Robot</h1><p class="pd-lede">Design and programming of a four-wheel autonomous robot using Arduino and infrared sensors for path detection and navigation.</p><ul class="pd-tags"><li>Arduino</li><li>IR sensors</li><li>Robotics</li><li>Embedded systems</li></ul></div>
-      <figure class="pd-figure"><div class="pd-figure-placeholder"><strong>Figure placeholder</strong><span>Add a real image to <code>../assets/images/projects/</code> and update the <code>src</code> path.</span></div><figcaption>Figure 13 · Add your own project photograph and concise caption.</figcaption></figure>
-    </header>
-    <nav class="pd-toc" aria-label="On this page"><a href="#overview">Overview</a><a href="#methods">Methods</a><a href="#results">Results &amp; data</a><a href="#discussion">Interpretation</a><a href="#references">References</a></nav>
-    <section class="pd-section" id="overview"><p class="pd-eyebrow">01 / Overview</p><h2>Research question</h2><p>State the specific research question this project addresses, and define the material/system and the variable being investigated.</p><h3>Project scope</h3><p>Design and programming of a four-wheel autonomous robot using Arduino and infrared sensors for path detection and navigation.</p><p class="pd-note"><strong>Reporting rule:</strong> label work as completed, ongoing, exploratory, or planned. State your own contribution accurately and do not imply that preliminary calculations are validated results.</p></section>
-    <section class="pd-section" id="methods"><p class="pd-eyebrow">02 / Methods</p><h2>Materials, methods &amp; workflow</h2><p>Describe the materials/system, experimental or computational method, equipment/software, workflow, and key settings. Distinguish your contribution from collaborators’ work.</p><h3>Method details to document</h3><ul><li>System/sample and its identifier.</li><li>Experimental or computational settings, units, and software/instrument versions.</li><li>Processing, fitting, or convergence criteria.</li><li>Analysis steps and the scripts used to generate figures/tables.</li><li>Which steps you performed independently and which were performed with guidance or by collaborators.</li></ul></section>
-    <section class="pd-section" id="results"><p class="pd-eyebrow">03 / Results</p><h2>Results &amp; supporting data</h2><p>Add the verified results here. For each result, provide the underlying figure/table, sample or run identifier, units, conditions, and a concise interpretation. If results are not available for public release, say so rather than substituting an unsupported claim.</p><div class="pd-table-wrap"><table><thead><tr><th>Result / figure</th><th>Dataset or run</th><th>Conditions / units</th><th>Status</th></tr></thead><tbody><tr><td>[Add result]</td><td>[File / sample ID]</td><td>[Conditions and units]</td><td>[Verified / preliminary]</td></tr><tr><td>[Add result]</td><td>[File / sample ID]</td><td>[Conditions and units]</td><td>[Verified / preliminary]</td></tr></tbody></table></div><p class="pd-small">Replace the example rows with real results or remove the table if it is not useful. Do not publish placeholder rows.</p><h3>Data files</h3><ul><li><strong>Raw data:</strong> <code>[relative path or approved repository link]</code></li><li><strong>Processed data:</strong> <code>[relative path]</code></li><li><strong>Analysis script:</strong> <code>[relative path or repository URL]</code></li></ul></section>
-    <section class="pd-section" id="discussion"><p class="pd-eyebrow">04 / Interpretation</p><h2>What the results mean</h2><p>Explain the main trend and what evidence supports it. Separate direct observation from interpretation, discuss uncertainty and limitations, and compare with published work only when the comparison is appropriate.</p><h3>Limitations / next steps</h3><ul><li>[State a limitation of the current dataset or model.]</li><li>[State the next calculation, experiment, or validation step.]</li></ul></section>
-    <section class="pd-section" id="references"><p class="pd-eyebrow">05 / References</p><h2>References &amp; resources</h2><p>Add verifiable references used in this project: authors, title, journal/conference or software documentation, year, DOI/URL, and the specific method or claim supported.</p><ol class="pd-references"><li>[Author(s)], “[Paper / method title],” <em>[Journal / source]</em>, [year]. <a href="#references">DOI or stable URL</a> — replace with a real reference or delete this example.</li></ol><h3>Downloadable material</h3><ul><li><a href="#results">Project report / summary (add approved PDF link)</a></li><li><a href="#results">Presentation or poster (add approved PDF link)</a></li><li><a href="#results">Dataset / code repository (add verified link)</a></li></ul><p class="pd-note">Only link files that exist in your site folder or a verified public repository. Confirm that unpublished results, collaborator materials, and institution-owned data are approved for public sharing.</p></section>
-    <footer class="pd-footer"><a href="../research.html">← Research archive</a><a href="../experience.html">Related research experience →</a></footer>
-  </main>
-  <footer class="footer"><div class="wrap footer-inner"><a class="brand" href="../index.html">aryan.phd</a><span>Research portfolio</span><span>Project details · October 2026</span></div></footer>
+<body id="top">
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-head">
+  <div class="wrap nav">
+    <a class="brand" href="#top">aryan.phd <span style="font-weight:400;color:#777"></span></a>
+    <nav class="nav-links" aria-label="Main navigation">
+      <a href="#overview">Overview</a><a href="#methods">Methods</a><a href="#development">Development</a><a href="#results">Results</a><a href="#references">Resources</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="crumbs"><a href="../index.html">Research archive</a> / Undergraduate academic project / <span>Grade A+</span></div>
+</div>
+
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <div class="kicker">Embedded systems · Robotics · Undergraduate project</div>
+      <h1>Autonomous Line-Following Robot</h1>
+      <p class="deck">An Arduino-based four-wheel robot project exploring infrared sensing, motor control, and path-following logic.</p>
+      <div class="meta">
+        <span class="tag">Arduino</span>
+        <span class="tag">IR sensors</span>
+        <span class="tag">Motor control</span>
+        <span class="tag">Embedded C/C++</span>
+      </div>
+    </div>
+    <figure class="hero-visual">
+      <img src="../assets/images/following_robot.png"
+           alt="Conceptual illustration of a four-wheel Arduino line-following robot with motor driver, DC motors, chassis, wiring, and infrared sensor array"
+           class="hero-image" loading="eager">
+      <figcaption class="figure-caption">Conceptual system illustration; not a verified photograph of the original hardware.</figcaption>
+    </figure>
+  </div>
+</header>
+
+<div class="wrap">
+<nav class="toc" aria-label="On this page">
+  <a href="#overview">Overview</a><a href="#methods"> Methods</a><a href="#development">Code & development</a><a href="#results">Results & data</a><a href="#interpretation">Interpretation</a><a href="#references">References</a>
+</nav>
+
+<main id="main">
+<section class="section" id="overview">
+  <aside class="section-aside"><span class="section-no">Overview</span><p>Project question, scope, and system purpose.</p></aside>
+  <div class="section-body">
+    <h2>Engineering objective</h2>
+    <p class="lead">Objective: use IR sensor inputs and Arduino motor commands to guide a robot along a marked path.</p>
+    <p>The project combines digital I/O, sensor interfacing, motor actuation, and embedded control logic.</p>
+    <h3>System components and functional roles</h3>
+    <div class="cards">
+      <article class="card"><div class="n">01</div><h3>Arduino controller</h3><p>Runs the embedded sketch, reads digital inputs, and writes output states to control the motors.</p></article>
+      <article class="card"><div class="n">02</div><h3>Infrared sensing</h3><p>IR sensor inputs are referenced on digital pins 11 and 12 in the uploaded motor-control sketches. The final sensor module and calibration are not identified.</p></article>
+      <article class="card"><div class="n">03</div><h3>Drive motors</h3><p>Four digital output pins, 7–10, are used as motor-control signals. Comments associate pins 10/9 with the left motor and 8/7 with the right motor.</p></article>
+      <article class="card"><div class="n">04</div><h3>Control software</h3><p>Separate sketches test motor outputs, serial-command motion, sensor response, and LED blinking as part of the development process.</p></article>
+    </div>
+    <!-- <h3>Project scope</h3> -->
+    <!-- <p>The files cover motor outputs, serial-controlled movement, and sensor input. A complete final loop mapping both sensors to movement decisions is not clearly present in the supplied set.</p> -->
+    <h3>Contribution and status</h3>
+    <p>Completed undergraduate academic project · Grade A+.</p>
+  </div>
+</section>
+
+<section class="section" id="methods">
+  <aside class="section-aside"><span class="section-no">Methods</span><p>Hardware logic, pin assignments, and operating sequence.</p></aside>
+  <div class="section-body">
+    <h2>System implementation</h2>
+    <p>The Arduino C/C++ sketches configure pins in <code>setup()</code> and run control logic in <code>loop()</code>. Serial-control versions use 9600 baud and single-character commands.</p>
+    <h3>Pin mapping recorded in the sketches</h3>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Pin</th><th>Role in code</th><th>Evidence / notes</th></tr></thead>
+      <tbody>
+        <tr><td><code>D7</code></td><td>Right-side motor control signal</td><td>Paired with D8 in comments and output routines.</td></tr>
+        <tr><td><code>D8</code></td><td>Right-side motor control signal</td><td>Paired with D7 in comments and output routines.</td></tr>
+        <tr><td><code>D9</code></td><td>Left-side motor control signal</td><td>Paired with D10 in comments and output routines.</td></tr>
+        <tr><td><code>D10</code></td><td>Left-side motor control signal</td><td>Paired with D9; also used by the LED-blinking sketch.</td></tr>
+        <tr><td><code>D11</code></td><td>Sensor input</td><td>Configured as <code>INPUT</code> in <code>day_5_feb.ino</code> and <code>full_motor_1.ino</code>; not read by their shown command loop.</td></tr>
+        <tr><td><code>D12</code></td><td>Sensor input</td><td>Configured in serial-control sketches; read by the separate sensor test sketches.</td></tr>
+      </tbody>
+    </table></div>
+    <h3>Motor-control logic</h3>
+    <p><code>full_motor_1.ino</code> and <code>day_5_feb.ino</code> assign HIGH/LOW patterns to D7–D10. Actual wheel direction depends on the driver wiring and motor orientation.</p>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Function</th><th>D10</th><th>D9</th><th>D8</th><th>D7</th><th> Action</th></tr></thead>
+      <tbody>
+        <tr><td><code>forward()</code></td><td>LOW</td><td>HIGH</td><td>HIGH</td><td>LOW</td><td>Forward</td></tr>
+        <tr><td><code>backward()</code></td><td>HIGH</td><td>LOW</td><td>LOW</td><td>HIGH</td><td>Backward</td></tr>
+        <tr><td><code>right()</code></td><td>HIGH</td><td>HIGH</td><td>LOW</td><td>HIGH</td><td>Right turn (as named in code)</td></tr>
+        <tr><td><code>left()</code></td><td>HIGH</td><td>LOW</td><td>HIGH</td><td>HIGH</td><td>Left turn (as named in code)</td></tr>
+        <tr><td><code>halt()</code></td><td>LOW</td><td>LOW</td><td>LOW</td><td>LOW</td><td>Stop outputs</td></tr>
+      </tbody>
+    </table></div>
+    <!-- <p><em>HIGH/LOW table is transcribed from the two serial-control sketches. It is not a verified electrical truth table for an unidentified motor driver.</em></p> -->
+    <h3>Development workflow</h3>
+    <ol class="steps">
+      <li><div><strong>Output and LED checks</strong><span><code>led_blinking.ino</code> toggles D10 with short delays; <code>2.ino</code> initializes D7–D10 as outputs and repeatedly writes states to D9/D10.</span></div></li>
+      <li><div><strong>Individual motor experiments</strong><span><code>motar.ino</code> alternates a motor-output pattern and a stop state. <code>fulll_motor.ino</code> defines motion functions and cycles through them, though several functions use identical output patterns in this version.</span></div></li>
+      <li><div><strong>Combined motor outputs</strong><span><code>both_motor.ino</code> initializes D7–D10 and writes output patterns for labelled forward, backward, right, left, and stop phases. In the uploaded version, the four movement phases use the same pattern, so they do not independently demonstrate distinct directions.</span></div></li>
+      <li><div><strong>Serial-command control</strong><span><code>full_motor_1.ino</code> maps F/B/L/R/S (uppercase or lowercase) to forward, backward, left, right, and halt. <code>day_5_feb.ino</code> maps W/S/A/D/X to similar functions. Serial communication is configured at 9600 baud.</span></div></li>
+      <li><div><strong>Sensor input experiments</strong><span><code>sketch_feb04a.ino</code> changes output states based on D12. <code>senser.ino</code> also reads D12, but its logic has a stray semicolon after the first <code>if</code>, so the following block executes unconditionally. These files need correction before being treated as validated sensor-control behaviour.</span></div></li>
+      <li><div><strong>Integrated line-following controller</strong><span>A final integration step would continuously read the left and right sensors, interpret the line position, select a motor state, and repeat with suitable timing. A complete verified version of this logic was not present in the supplied sketches.</span></div></li>
+    </ol>
+  </div>
+</section>
+
+<section class="section" id="development">
+  <aside class="section-aside"><span class="section-no">Code & development</span><p>Source files and what each one demonstrates.</p></aside>
+  <div class="section-body">
+    <h2>Code archive</h2>
+    <p>The sketches document component tests and successive control experiments.</p>
+    <ul class="file-list">
+      <li><strong><code>full_motor_1.ino</code></strong><span>Serial control at 9600 baud; F/B/L/R/S commands (case-insensitive); motor outputs on D7–D10; D11 and D12 configured as inputs.</span></li>
+      <li><strong><code>day_5_feb.ino</code></strong><span>Serial control at 9600 baud; W/S/A/D/X commands; similar motor-output functions; sensor pins configured but not used by the command decision logic.</span></li>
+      <li><strong><code>both_motor.ino</code></strong><span>Combined motor-output test with labelled movement stages and a stop stage. Movement stages currently share the same output pattern.</span></li>
+      <li><strong><code>motar.ino</code></strong><span>Simple output test alternating a labelled forward pattern with all four motor-control outputs LOW.</span></li>
+      <li><strong><code>fulll_motor.ino</code></strong><span>Defines forward/backward/left/right/halt functions and runs a timed sequence; several movement functions use identical output states in the supplied version.</span></li>
+      <li><strong><code>fulll_motor2.ino</code></strong><span>Attempted serial-controlled D10 output. The statement <code>char ch=Serial,read();</code> is malformed and needs correction to <code>Serial.read()</code> before compilation.</span></li>
+      <li><strong><code>2.ino</code></strong><span>Configures D7–D10 as outputs and repeatedly writes HIGH to D10 and LOW to D9 with delays.</span></li>
+      <li><strong><code>led_blinking.ino</code></strong><span>Intended LED blinking sequence on D10. The uploaded sketch appears to be missing a closing brace in <code>setup()</code>, so it should be fixed before compilation.</span></li>
+      <li><strong><code>sketch_feb04a.ino</code></strong><span>Reads D12 and sets D7–D10 LOW when input is HIGH, or HIGH when input is LOW.</span></li>
+      <li><strong><code>senser.ino</code></strong><span>Reads D12 and clears outputs; a stray semicolon after <code>if (digitalRead(12)==0)</code> changes the intended conditional behaviour.</span></li>
+    </ul>
+    <!-- <h3>Example: serial command dispatcher</h3> -->
+    <!-- <p>This excerpt reflects the command mapping in <code>full_motor_1.ino</code>. It is included as documentation of the uploaded code, not as a replacement for the complete source file.</p> -->
+    <!-- <pre><code>if (Serial.available()) {
+  char ch = Serial.read();
+
+  if (ch == 'f' || ch == 'F')      forward();
+  else if (ch == 'b' || ch == 'B') backward();
+  else if (ch == 'l' || ch == 'L') left();
+  else if (ch == 'r' || ch == 'R') right();
+  else if (ch == 's' || ch == 'S') halt();
+}</code></pre> -->
+    <!-- <h3>Other uploaded files</h3> -->
+    <!-- <p><code>1.c</code> is a C program for classifying and calculating roots of a quadratic equation using its discriminant. <code>1.py</code> contains commented beginner Python exercises and a final input conversion that asks for a fruit-related value, converts it to an integer, and prints it. These files do not directly implement the robot's line-following system, so they are not presented as part of the robot controller.</p> -->
+  </div>
+</section>
+
+<section class="section" id="results">
+  <aside class="section-aside"><span class="section-no">Results & data</span><p>Evidence, demonstrated behaviour, and what remains unverified.</p></aside>
+  <div class="section-body">
+    <h2>Results and verification status</h2>
+    <!-- <p class="lead">The available evidence is source-code based. It supports documenting implemented output patterns and command mappings, but it does not provide measured navigation performance.</p> -->
+    <div class="table-wrap"><table>
+      <thead><tr><th>Item</th><th>Evidence in supplied files</th></tr></thead>
+      <tbody>
+        <tr><td>Output initialization</td><td>D7–D10 are configured as outputs in multiple sketches.</td></tr>
+        <tr><td>Serial interface</td><td>Two sketches call <code>Serial.begin(9600)</code> and read one character at a time.</td></tr>
+        <tr><td>Movement command mapping</td><td>F/B/L/R/S and W/S/A/D/X are mapped to named motion functions.</td></tr>
+        <tr><td>Sensor input setup</td><td>D11 and D12 are configured as inputs in serial-control sketches; D12 is read in sensor experiments.</td></tr>
+        <tr><td>Autonomous line tracking</td><td>No supplied sketch clearly implements a complete continuous two-sensor-to-motor decision loop.</td></tr>
+        <tr><td>Tracking accuracy, speed, and reliability</td><td>No measurements, test log, video, or performance dataset was included with the code files.</td></tr>
+      </tbody>
+    </table></div>
+    <!-- <h3>Recommended validation record</h3> -->
+    <!-- <p>Suggested validation plan only—not a record of completed tests.</p> -->
+    <!-- <div class="table-wrap"><table> -->
+      <!-- <thead><tr><th>Test</th><th>Measurement to record</th><th>Why it matters</th></tr></thead> -->
+      <!-- <tbody>
+        <tr><td>Sensor calibration</td><td>Output for line and background under stated lighting conditions</td><td>Confirms sensor polarity and threshold behaviour.</td></tr>
+        <tr><td>Motor direction</td><td>Observed wheel direction for each output pattern</td><td>Checks pin mapping and motor-driver wiring.</td></tr>
+        <tr><td>Straight path</td><td>Track length, completion, deviations, and trial count</td><td>Assesses basic tracking stability.</td></tr>
+        <tr><td>Curved path</td><td>Curve geometry, successful completion, corrections, and failures</td><td>Assesses response to changing line position.</td></tr>
+        <tr><td>Repeatability</td><td>Successful runs divided by total runs, with test conditions</td><td>Provides a defensible reliability estimate.</td></tr>
+      </tbody> -->
+  </div>
+</section>
+
+<section class="section" id="interpretation">
+  <aside class="section-aside"><span class="section-no">Interpretation</span><p>Engineering meaning, limitations, and next steps.</p></aside>
+  <div class="section-body">
+    <h2>Code interpretation</h2>
+    <p>The code progresses through pin setup, motor-output tests, serial commands, and sensor-input experiments.</p>
+    <p>Serial commands are manual control, not autonomous navigation. </p>
+    <h3>Limitations visible in the supplied code</h3>
+    <ul>
+      <li>Some sketches use the same output pattern for multiple named movement functions, so the names do not guarantee distinct physical movements.</li>
+      <li>The sensor test in <code>senser.ino</code> includes a stray semicolon after an <code>if</code> statement, changing the control flow.</li>
+      <li><code>fulll_motor2.ino</code> contains a malformed serial-read statement, and <code>led_blinking.ino</code> appears to have an unmatched brace.</li>
+      <li>The motor driver, exact sensor hardware, power supply, wiring diagram, and Arduino model are not specified in the uploaded files.</li>
+    </ul>
+    
+  </div>
+</section>
+
+<section class="section" id="references">
+  <aside class="section-aside"><span class="section-no">References</span><p>Source files and external documentation.</p></aside>
+  <div class="section-body">
+    <h2>References & project resources</h2>
+    <h3>Project source code</h3>
+    <!-- <p>The project repository is the primary source for the uploaded code and future updates:</p> -->
+    <p><a href="https://github.com/aryan-mat-research/Robotic_Project" target="_blank" rel="noopener noreferrer">github.com/aryan-mat-research/Robotic_Project</a></p>
+    <h3>Technical references</h3>
+    <!-- <p>Board and sensor models are not identified in the source files. These general Arduino references should be supplemented with model-specific documentation once the hardware is confirmed.</p> -->
+    <ol class="ref-list">
+      <li>Arduino. <em>Language Reference</em> — documentation for <code>pinMode()</code>, <code>digitalRead()</code>, <code>digitalWrite()</code>, <code>delay()</code>, and serial communication. <a href="https://docs.arduino.cc/language-reference/" target="_blank" rel="noopener noreferrer">Arduino Language Reference</a>.</li>
+      <li>Arduino. <em>Built-in Examples</em> — basic digital I/O and serial examples. <a href="https://docs.arduino.cc/built-in-examples/" target="_blank" rel="noopener noreferrer">Arduino Built-in Examples</a>.</li>
+    </ol>
+    <!-- <h3>Downloadable material</h3> -->
+    <!-- <ul>
+      <li>Source code: use the public GitHub repository link above.</li>
+      <li>Project report or presentation: add a link only after the approved file has been placed in the website repository.</li>
+      <li>Photographs and demonstration video: add project-owned media with informative captions and alternative text.</li>
+    </ul> -->
+    <!-- <div class="callout">Before publishing, confirm that all photographs, reports, and any collaborator-owned material can be shared publicly. Keep this page's claims aligned with the final code and actual tests.</div> -->
+  </div>
+</section>
+</main>
+<footer class="footer">
+  <span>aryan.phd · Research portfolio · Project documentation</span>
+  <span>Autonomous Line-Following Robot · October 2026</span>
+  <a class="back-top" href="#top">Back to top ↑</a>
+</footer>
+</div>
 </body>
 </html>
