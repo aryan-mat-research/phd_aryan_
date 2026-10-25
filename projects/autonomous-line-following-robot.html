@@ -13,10 +13,12 @@ body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);f
 a{color:inherit;text-underline-offset:3px}a:hover{opacity:.72}
 .skip{position:absolute;left:-9999px}.skip:focus{left:1rem;top:1rem;background:#fff;padding:.6rem;z-index:99}
 .wrap{width:min(var(--max),calc(100% - 48px));margin-inline:auto}
-.site-head{position:sticky;top:0;z-index:20;border-bottom:1px solid var(--line);background:rgba(255,255,255,.94);backdrop-filter:blur(12px)}
-.nav{min-height:62px;display:flex;align-items:center;justify-content:space-between;gap:24px}
-.brand{text-decoration:none;font-size:13px;font-weight:750;letter-spacing:-.025em}
-.nav-links{display:flex;gap:21px;flex-wrap:wrap}.nav-links a{text-decoration:none;font-size:11.5px;color:#4b4b4b}
+.site-header{position:sticky;top:0;z-index:100;width:100%;background:#fff;border-bottom:1px solid var(--line)}
+.site-header-inner{width:calc(100% - 128px);max-width:1440px;min-height:85px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:32px}
+.site-brand{font-family:var(--serif);font-size:25px;font-weight:400;letter-spacing:-.7px;color:#111;text-decoration:none;white-space:nowrap}
+.site-nav{display:flex;align-items:center;justify-content:flex-end;gap:34px}
+.site-nav a{font-family:var(--serif);font-size:15px;font-weight:400;color:#111;text-decoration:none;white-space:nowrap;padding:5px 0;border-bottom:1px solid transparent;transition:border-color .2s ease}
+.site-nav a:hover,.site-nav a.active{border-bottom-color:#111;opacity:1}
 .pd-breadcrumb{display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:11.5px;color:var(--muted);padding:22px 0 12px;margin:0}.pd-breadcrumb a{text-decoration:none;color:var(--ink)}.pd-breadcrumb span:first-of-type{color:#aaa}
 .kicker,.section-no,.eyebrow{font-size:10px;letter-spacing:.14em;text-transform:uppercase;font-weight:750;color:#666}
 .hero{padding:26px 0 34px;border-bottom:1px solid var(--line)}
@@ -54,17 +56,24 @@ pre{white-space:pre;overflow:auto;background:#171717;color:#f3f3f3;padding:17px;
 .file-list strong{font-size:11.5px}.file-list span{font-size:11.8px;line-height:1.65;color:#555}
 .ref-list{padding-left:18px}.ref-list li{margin:0 0 10px;color:#444;font-size:12px;line-height:1.7}
 .footer{padding:25px 0 38px;color:#777;font-size:10.5px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}.back-top{font-size:10.5px}
-@media(max-width:760px){.wrap{width:min(100% - 32px,var(--max))}.nav{align-items:flex-start;padding:13px 0;flex-direction:column;gap:8px}.nav-links{gap:13px}.hero{padding:22px 0 28px}.hero-grid{grid-template-columns:1fr;gap:23px}h1{font-size:clamp(36px,10vw,48px)}.section{padding:25px 0 27px}.cards{grid-template-columns:1fr}.file-list li{grid-template-columns:1fr;gap:4px}table{min-width:520px}}
-@media print{.site-head,.toc,.back-top{display:none}.hero{padding-top:0}.section{break-inside:avoid}body{font-size:11pt}.wrap{width:100%}}
+@media(max-width:900px){.site-header-inner{width:calc(100% - 48px);gap:20px}.site-nav{gap:18px}}
+@media(max-width:760px){.wrap{width:min(100% - 32px,var(--max))}.hero{padding:22px 0 28px}.hero-grid{grid-template-columns:1fr;gap:23px}h1{font-size:clamp(36px,10vw,48px)}.section{padding:25px 0 27px}.cards{grid-template-columns:1fr}.file-list li{grid-template-columns:1fr;gap:4px}table{min-width:520px}}
+@media(max-width:620px){.site-header-inner{width:calc(100% - 32px);min-height:auto;padding:18px 0;align-items:flex-start;flex-direction:column;gap:14px}.site-brand{font-size:23px}.site-nav{width:100%;justify-content:flex-start;flex-wrap:wrap;gap:10px 20px}.site-nav a{font-size:14px}}
+@media print{.site-header,.toc,.back-top{display:none}.hero{padding-top:0}.section{break-inside:avoid}body{font-size:11pt}.wrap{width:100%}}
 </style>
 </head>
 <body id="top">
 <a class="skip" href="#main">Skip to content</a>
-<header class="site-head">
-  <div class="wrap nav">
-    <a class="brand" href="#top">aryan.phd <span style="font-weight:400;color:#777"></span></a>
-    <nav class="nav-links" aria-label="Main navigation">
-      <a href="#overview">Overview</a><a href="#methods">Methods</a><a href="#development">Development</a><a href="#results">Results</a><a href="#references">Resources</a>
+<header class="site-header">
+  <div class="site-header-inner">
+    <a class="site-brand" href="../index.html">aryan.phd</a>
+    <nav class="site-nav" aria-label="Main navigation">
+      <a href="../index.html">Home</a>
+      <a href="../about.html">About</a>
+      <a href="../research.html" class="active" aria-current="page">Research</a>
+      <a href="../experience.html">Experience</a>
+      <a href="../notebook.html">Notebook</a>
+      <a href="../contact.html">Contact</a>
     </nav>
   </div>
 </header>
@@ -92,7 +101,7 @@ pre{white-space:pre;overflow:auto;background:#171717;color:#f3f3f3;padding:17px;
     </div>
     <figure class="hero-visual">
       <img src="../assets/images/following_robot.png"
-           alt="four-wheel Arduino line-following robot "
+           alt="Conceptual illustration of a four-wheel Arduino line-following robot with motor driver, DC motors, chassis, wiring, and infrared sensor array"
            class="hero-image" loading="eager">
     </figure>
   </div>
