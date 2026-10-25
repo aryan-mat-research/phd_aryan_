@@ -1,31 +1,229 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Amur Tiger Re-identification Using Deep Learning | Aryan</title>
-  <meta name="description" content="Detailed research project page: Amur Tiger Re-identification Using Deep Learning.">
-  <link rel="stylesheet" href="../assets/css/style.css">
-  <link rel="stylesheet" href="../assets/css/project-detail.css">
-  <script src="../assets/js/site.js" defer></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Technical project notes on Amur tiger re-identification: ATRW dataset, deep metric learning, Vision Transformers, MGN, NFormer, preprocessing, exploratory CNN and GAN notebooks, reported benchmarks, and limitations.">
+<title>Amur Tiger Re-identification Using Deep Learning | aryan.phd</title>
+<link rel="stylesheet" href="../assets/css/style.css">
+<script src="../assets/js/site.js" defer></script>
+<style>
+:root{--ink:#171717;--muted:#666;--line:#dedede;--paper:#fff;--soft:#f6f6f4;--max:1080px;--serif:"Times New Roman",Times,serif;--sans:"Times New Roman",Times,serif}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:90px}body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}a{color:inherit;text-underline-offset:3px}a:hover{opacity:.72}.skip{position:absolute;left:-9999px}.skip:focus{left:1rem;top:1rem;background:#fff;padding:.6rem;z-index:99}.wrap{width:min(var(--max),calc(100% - 48px));margin-inline:auto}
+.header .wrap.nav{width:calc(100% - 76px);max-width:none;margin-inline:auto}
+.pd-breadcrumb{display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:11.5px;color:var(--muted);padding:22px 0 12px;margin:0}.pd-breadcrumb a{text-decoration:none;color:var(--ink)}.pd-breadcrumb span:first-of-type{color:#aaa}
+.kicker,.section-no,.eyebrow{font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-weight:750;color:#666}.hero{padding:26px 0 30px;border-bottom:1px solid var(--line)}.hero-grid{display:grid;grid-template-columns:minmax(0,1.12fr) minmax(280px,.88fr);gap:clamp(28px,4vw,48px);align-items:center}h1{font-family:var(--serif);font-weight:500;font-size:clamp(37px,4.5vw,58px);line-height:1.04;letter-spacing:-.045em;margin:14px 0 17px;max-width:680px}.deck{font-size:14.5px;line-height:1.72;color:#454545;max-width:650px;margin:0 0 18px}.meta{display:flex;flex-wrap:wrap;gap:7px;margin:18px 0 0}.tag{font-size:12px;border:1px solid #d5d5d5;border-radius:999px;padding:4px 9px}.hero-visual{min-width:0;width:100%;margin:0;padding:18px;background:#fafaf9;border:1px solid var(--line)}.pipeline{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:8px}.pipeline .node{min-height:72px;border:1px solid #cfcfcf;background:#fff;padding:10px;display:flex;flex-direction:column;justify-content:center;text-align:center}.pipeline .node strong{font-size:11px;line-height:1.4}.pipeline .node span{font-size:10px;color:#666;line-height:1.45;margin-top:4px}.pipeline .arrow{font-size:18px;color:#777}.pipeline-note{font-size:10px;color:#666;margin:12px 0 0;line-height:1.5}
+.toc{display:flex;gap:7px;flex-wrap:wrap;padding:9px 0;margin:0;border-bottom:0}.toc a{font-size:12px;text-decoration:none;border:1px solid var(--line);padding:5px 9px;border-radius:4px}main{padding-bottom:58px}.section{display:block;padding:28px 0 30px;border-bottom:1px solid var(--line)}.section-aside{margin:0 0 7px}.section-no{display:block;margin-bottom:4px}.section-aside p{display:none}.section-body{width:100%;max-width:900px}.section-body h2{font-family:var(--serif);font-weight:500;font-size:clamp(25px,2.7vw,32px);letter-spacing:-.03em;line-height:1.16;margin:0 0 13px}.section-body h3{font-size:15px;font-weight:750;letter-spacing:-.005em;line-height:1.4;margin:20px 0 7px}.section-body p{color:#3d3d3d;margin:0 0 11px;max-width:88ch}.lead{font-size:14.5px;line-height:1.75}.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:15px 0 18px}.card{border:1px solid var(--line);padding:13px 14px;background:#fff}.card .n{font-family:var(--serif);font-size:22px;color:#777;line-height:1.2}.card h3{margin:7px 0 5px;font-size:14px}.card p{font-size:13.5px;line-height:1.65;margin:0;color:#555}.steps{counter-reset:step;list-style:none;padding:0;margin:16px 0 0}.steps li{counter-increment:step;display:grid;grid-template-columns:28px minmax(0,1fr);gap:10px;padding:11px 0;border-top:1px solid var(--line)}.steps li:before{content:"0" counter(step);font-size:10.5px;font-weight:750;color:#777;padding-top:3px}.steps strong{display:block;font-size:14px;margin-bottom:3px}.steps span{display:block;font-size:14px;line-height:1.68;color:#555}.table-wrap{overflow-x:auto;border:1px solid var(--line);margin:12px 0 17px}table{width:100%;border-collapse:collapse;font-size:13.5px;min-width:620px}th,td{text-align:left;vertical-align:top;padding:9px 11px;border-bottom:1px solid var(--line);line-height:1.6}th{font-size:11px;font-weight:750;text-transform:uppercase;letter-spacing:.09em;background:var(--soft);color:#555}tr:last-child td{border-bottom:0}code,pre{font-family:"Times New Roman",Times,serif}code{font-size:1em;background:#f2f2f2;padding:2px 4px;border-radius:3px;overflow-wrap:anywhere}pre{white-space:pre;overflow:auto;background:#171717;color:#f3f3f3;padding:17px;font-size:13px;line-height:1.6;border-radius:5px}.callout{padding:14px 16px;background:var(--soft);border:1px solid var(--line);font-size:12.5px;color:#444;margin:17px 0}.status{display:inline-block;font-size:9.5px;text-transform:uppercase;letter-spacing:.1em;font-weight:750;border:1px solid #cfcfcf;border-radius:3px;padding:3px 7px;margin-bottom:8px}.file-list{list-style:none;margin:0;padding:0}.file-list li{padding:12px 0;border-top:1px solid var(--line);display:grid;grid-template-columns:minmax(160px,.72fr) minmax(0,1.7fr);gap:22px}.file-list strong{font-size:13px}.file-list span{font-size:13px;line-height:1.65;color:#555}.ref-list{padding-left:18px}.ref-list li{margin:0 0 11px;color:#444;font-size:13.5px;line-height:1.7}.footer{padding:25px 0 38px;color:#777;font-size:12px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}.back-top{font-size:10.5px}.metric{font-family:var(--serif);font-size:23px;letter-spacing:-.03em;line-height:1.2}.small{font-size:13px;color:#666}.equation{padding:12px 14px;background:#fafaf9;border:1px solid var(--line);font-family:"Times New Roman",Times,serif;font-size:14px;overflow-x:auto;margin:10px 0 14px}.two-col{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+@media(max-width:900px){.header .wrap.nav{width:calc(100% - 48px)}}@media(max-width:760px){.wrap{width:min(100% - 32px,var(--max))}.hero{padding:22px 0 27px}.hero-grid{grid-template-columns:1fr;gap:22px}h1{font-size:clamp(36px,10vw,48px)}.section{padding:24px 0 26px}.cards,.two-col{grid-template-columns:1fr}.file-list li{grid-template-columns:1fr;gap:4px}table{min-width:580px}}@media(max-width:620px){.header .wrap.nav{width:calc(100% - 32px)}}@media print{.header,.toc,.back-top{display:none}.hero{padding-top:0}.section{break-inside:avoid}body{font-size:11pt}.wrap{width:100%}}
+
+/* Force Times New Roman across every element, with slightly larger, more readable text. */
+html, body, body *, body *::before, body *::after {
+  font-family: "Times New Roman", Times, serif !important;
+}
+
+/* Further readability increase: modestly larger text across the full page. */
+body { font-size: 17px !important; line-height: 1.75 !important; }
+.deck, .lead { font-size: 16.5px !important; }
+.pd-breadcrumb { font-size: 13px !important; }
+.kicker, .section-no, .eyebrow { font-size: 12px !important; }
+.tag, .toc a { font-size: 13px !important; }
+.pipeline .node strong { font-size: 13px !important; }
+.pipeline .node span, .pipeline-note { font-size: 12px !important; }
+.section-body h3, .card h3 { font-size: 16px !important; }
+.card p, .steps strong, .steps span { font-size: 15px !important; }
+table { font-size: 15px !important; }
+th { font-size: 12px !important; }
+.callout, .file-list span, .file-list strong, .ref-list li, .small { font-size: 14px !important; }
+pre { font-size: 14px !important; }
+.status, .back-top { font-size: 12px !important; }
+@media print { body { font-size: 12pt !important; } }
+
+</style>
 </head>
-<body>
-  <a class="skip" href="#main">Skip to content</a>
-  <header class="header"><div class="wrap nav"><a class="brand" href="../index.html">aryan.phd</a><button class="menu" aria-expanded="false" aria-label="Toggle navigation">Menu</button><nav class="links" aria-label="Main navigation"><a href="../index.html">Home</a><a href="../about.html">About</a><a aria-current="page" href="../research.html">Research</a><a href="../experience.html">Experience</a><a href="../notebook.html">Notebook</a><a href="../contact.html">Contact</a></nav></div></header>
-  <main class="pd wrap" id="main">
-    <p class="pd-breadcrumb"><a href="../research.html">← Back to research archive</a><span>/</span><span>Deep learning · Literature and initial experiment</span></p>
-    <header class="pd-hero">
-      <div><p class="pd-eyebrow">Research project · Previous</p><h1>Amur Tiger Re-identification Using Deep Learning</h1><p class="pd-lede">Literature review and an initial Vision Transformer experiment related to identifying individual tigers from images.</p><ul class="pd-tags"><li>Computer vision</li><li>Vision Transformer</li><li>Deep learning</li></ul></div>
-      <figure class="pd-figure"><div class="pd-figure-placeholder"><strong>Figure placeholder</strong><span>Add a real image to <code>../assets/images/projects/</code> and update the <code>src</code> path.</span></div><figcaption>Figure 12 · Ensure any dataset image is permitted for public reuse.</figcaption></figure>
-    </header>
-    <nav class="pd-toc" aria-label="On this page"><a href="#overview">Overview</a><a href="#methods">Methods</a><a href="#results">Results &amp; data</a><a href="#discussion">Interpretation</a><a href="#references">References</a></nav>
-    <section class="pd-section" id="overview"><p class="pd-eyebrow">01 / Overview</p><h2>Research question</h2><p>State the specific research question this project addresses, and define the material/system and the variable being investigated.</p><h3>Project scope</h3><p>Literature review and an initial Vision Transformer experiment related to identifying individual tigers from images.</p><p class="pd-note"><strong>Reporting rule:</strong> label work as completed, ongoing, exploratory, or planned. State your own contribution accurately and do not imply that preliminary calculations are validated results.</p></section>
-    <section class="pd-section" id="methods"><p class="pd-eyebrow">02 / Methods</p><h2>Materials, methods &amp; workflow</h2><p>Describe the materials/system, experimental or computational method, equipment/software, workflow, and key settings. Distinguish your contribution from collaborators’ work.</p><h3>Method details to document</h3><ul><li>System/sample and its identifier.</li><li>Experimental or computational settings, units, and software/instrument versions.</li><li>Processing, fitting, or convergence criteria.</li><li>Analysis steps and the scripts used to generate figures/tables.</li><li>Which steps you performed independently and which were performed with guidance or by collaborators.</li></ul></section>
-    <section class="pd-section" id="results"><p class="pd-eyebrow">03 / Results</p><h2>Results &amp; supporting data</h2><p>Add the verified results here. For each result, provide the underlying figure/table, sample or run identifier, units, conditions, and a concise interpretation. If results are not available for public release, say so rather than substituting an unsupported claim.</p><div class="pd-table-wrap"><table><thead><tr><th>Result / figure</th><th>Dataset or run</th><th>Conditions / units</th><th>Status</th></tr></thead><tbody><tr><td>[Add result]</td><td>[File / sample ID]</td><td>[Conditions and units]</td><td>[Verified / preliminary]</td></tr><tr><td>[Add result]</td><td>[File / sample ID]</td><td>[Conditions and units]</td><td>[Verified / preliminary]</td></tr></tbody></table></div><p class="pd-small">Replace the example rows with real results or remove the table if it is not useful. Do not publish placeholder rows.</p><h3>Data files</h3><ul><li><strong>Raw data:</strong> <code>[relative path or approved repository link]</code></li><li><strong>Processed data:</strong> <code>[relative path]</code></li><li><strong>Analysis script:</strong> <code>[relative path or repository URL]</code></li></ul></section>
-    <section class="pd-section" id="discussion"><p class="pd-eyebrow">04 / Interpretation</p><h2>What the results mean</h2><p>Explain the main trend and what evidence supports it. Separate direct observation from interpretation, discuss uncertainty and limitations, and compare with published work only when the comparison is appropriate.</p><h3>Limitations / next steps</h3><ul><li>[State a limitation of the current dataset or model.]</li><li>[State the next calculation, experiment, or validation step.]</li></ul></section>
-    <section class="pd-section" id="references"><p class="pd-eyebrow">05 / References</p><h2>References &amp; resources</h2><p>Add verifiable references used in this project: authors, title, journal/conference or software documentation, year, DOI/URL, and the specific method or claim supported.</p><ol class="pd-references"><li>[Author(s)], “[Paper / method title],” <em>[Journal / source]</em>, [year]. <a href="#references">DOI or stable URL</a> — replace with a real reference or delete this example.</li></ol><h3>Downloadable material</h3><ul><li><a href="#results">Project report / summary (add approved PDF link)</a></li><li><a href="#results">Presentation or poster (add approved PDF link)</a></li><li><a href="#results">Dataset / code repository (add verified link)</a></li></ul><p class="pd-note">Only link files that exist in your site folder or a verified public repository. Confirm that unpublished results, collaborator materials, and institution-owned data are approved for public sharing.</p></section>
-    <footer class="pd-footer"><a href="../research.html">← Research archive</a><a href="../experience.html">Related research experience →</a></footer>
-  </main>
-  <footer class="footer"><div class="wrap footer-inner"><a class="brand" href="../index.html">aryan.phd</a><span>Research portfolio</span><span>Project details · October 2026</span></div></footer>
+<body id="top">
+<a class="skip" href="#main">Skip to content</a>
+<header class="header">
+  <div class="wrap nav">
+    <a class="brand" href="https://aryan-mat-research.github.io/phd_aryan_/index.html">aryan.phd</a>
+    <button class="menu" aria-expanded="false" aria-label="Toggle navigation">Menu</button>
+    <nav class="links" aria-label="Main navigation">
+      <a href="https://aryan-mat-research.github.io/phd_aryan_/index.html">Home</a>
+      <a href="https://aryan-mat-research.github.io/phd_aryan_/about.html">About</a>
+      <a href="https://aryan-mat-research.github.io/phd_aryan_/research.html" aria-current="page">Research</a>
+      <a href="https://aryan-mat-research.github.io/phd_aryan_/experience.html">Experience</a>
+      <a href="https://aryan-mat-research.github.io/phd_aryan_/notebook.html">Notebook</a>
+      <a href="https://aryan-mat-research.github.io/phd_aryan_/contact.html">Contact</a>
+    </nav>
+  </div>
+</header>
+<div class="wrap"><p class="pd-breadcrumb"><a href="https://aryan-mat-research.github.io/phd_aryan_/research.html">← Back to research archive</a><span>/</span><span>Deep learning · Literature review and exploratory implementation</span></p></div>
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <div class="kicker">Computer vision · Wildlife re-identification · Deep learning</div>
+      <h1>Amur Tiger Re-identification Using Deep Learning</h1>
+      <p class="deck">A technical study of individual tiger recognition from images, focused on the ATRW benchmark, transformer-based re-identification, fine-grained stripe features, image preprocessing, and exploratory CNN/GAN workflows.</p>
+      <div class="meta"><span class="tag">ATRW dataset</span><span class="tag">Vision Transformer</span><span class="tag">ResNet-50</span><span class="tag">MGN / NFormer</span><span class="tag">CNN & GAN experiments</span></div>
+    </div>
+    <figure class="hero-visual" aria-label="Conceptual technical pipeline for tiger re-identification">
+      <div class="pipeline">
+        <div class="node"><strong>Input frames</strong><span>Camera-trap / video images</span></div><div class="arrow" aria-hidden="true">→</div><div class="node"><strong>Tiger detection</strong><span>Bounding box and crop</span></div>
+        <div class="node"><strong>Preprocessing</strong><span>Resize · augment · normalize</span></div><div class="arrow" aria-hidden="true">→</div><div class="node"><strong>Feature encoder</strong><span>ResNet-50 / ViT / MGN</span></div>
+        <div class="node"><strong>Embedding</strong><span>Stripe and appearance features</span></div><div class="arrow" aria-hidden="true">→</div><div class="node"><strong>Ranking / match</strong><span>Identity retrieval</span></div>
+      </div>
+      <p class="pipeline-note">Conceptual workflow only. This is not a claim that the complete detection-to-re-identification pipeline was implemented or validated in the project.</p>
+    </figure>
+  </div>
+</header>
+<div class="wrap">
+<nav class="toc" aria-label="On this page">
+  <a href="#overview">Overview</a><a href="#dataset">Dataset</a><a href="#methods">Methods</a><a href="#implementation">Implementation</a><a href="#results">Results & data</a><a href="#limitations">Limitations</a><a href="#next-steps">Next steps</a><a href="#references">References</a>
+</nav>
+<main id="main">
+<section class="section" id="overview"><aside class="section-aside"><span class="section-no">01 / Overview</span></aside><div class="section-body">
+<h2>Technical objective and scope</h2>
+<p class="lead">The task is to determine whether two images or video frames show the same individual Amur tiger, despite changes in pose, viewpoint, illumination, background, scale, and camera location.</p>
+<p>Unlike species classification, which predicts a category such as “tiger”, re-identification (re-ID) distinguishes individual identities within the same species. The primary visual cue is the spatial arrangement of body stripes, supported by other appearance cues. Non-rigid body motion can deform the visible stripe pattern, making alignment and robust feature representation central technical challenges.</p>
+<div class="cards">
+<article class="card"><div class="n">01</div><h3>Problem formulation</h3><p>Given a query tiger image and a gallery of candidate images, rank gallery images by identity similarity and retrieve images belonging to the same individual.</p></article>
+<article class="card"><div class="n">02</div><h3>Primary technical focus</h3><p>Review transformer-based re-ID architectures and their combination with convolutional feature extraction and multi-granularity descriptors.</p></article>
+<article class="card"><div class="n">03</div><h3>Exploratory implementation</h3><p>Review notes and notebooks cover image preprocessing, a ViT learning attempt on flower images, and GAN-based tiger-image experimentation. These are separate levels of evidence and are not equivalent to a validated tiger re-ID model.</p></article>
+<article class="card"><div class="n">04</div><h3>Project status</h3><p>Literature review and exploratory coding. The supplied artifacts do not establish a completed, validated end-to-end tiger re-identification system.</p></article>
+</div>
+<h3>Research questions</h3><ol class="steps">
+<li><div><strong>Representation</strong><span>Can global self-attention features from a Vision Transformer complement local, fine-grained stripe features learned by convolutional and multi-granularity networks?</span></div></li>
+<li><div><strong>Cross-camera generalization</strong><span>How do changes in camera, pose, lighting, and background affect retrieval performance compared with images captured by the same camera?</span></div></li>
+<li><div><strong>Data scarcity and augmentation</strong><span>Can image transformations or generative augmentation increase visual diversity without changing tiger identity or introducing synthetic artifacts that harm retrieval?</span></div></li>
+<li><div><strong>Evaluation integrity</strong><span>How should mean average precision (mAP), cumulative matching characteristics (CMC), and Top-1 / Top-5 retrieval accuracy be used to compare methods?</span></div></li>
+</ol>
+</div></section>
+<section class="section" id="dataset"><aside class="section-aside"><span class="section-no">02 / Dataset</span></aside><div class="section-body">
+<h2>ATRW: Amur Tiger Re-identification in the Wild</h2>
+<p>The ATRW dataset was introduced to support a full wildlife re-identification pipeline rather than a cropped-image-only identity benchmark. The original paper describes 8,076 high-resolution video clips from 92 Amur tiger identities, with annotations including bounding boxes, identity labels, and pose keypoints. The dataset includes varied poses, lighting conditions, and natural backgrounds.</p>
+<div class="table-wrap"><table><thead><tr><th>Dataset attribute</th><th>Details reported in the original ATRW paper</th><th>Technical relevance</th></tr></thead><tbody>
+<tr><td>Target species</td><td>Amur tiger</td><td>Fine-grained identity recognition within one species.</td></tr>
+<tr><td>Video clips</td><td>8,076</td><td>Source material sampled from video; frames may be temporally correlated.</td></tr>
+<tr><td>Identities</td><td>92</td><td>Distinct tiger identities represented in the benchmark.</td></tr>
+<tr><td>Bounding boxes</td><td>9,496 in the original dataset paper</td><td>Supports detection and standardized tiger cropping.</td></tr>
+<tr><td>Identity-labelled boxes</td><td>3,649 in the original dataset paper</td><td>Provides identity supervision for re-ID.</td></tr>
+<tr><td>Pose annotations</td><td>Tiger skeleton keypoints on annotated frames</td><td>Can support pose normalization and part-aware feature learning.</td></tr>
+<tr><td>Task subsets</td><td>Detection, pose estimation, plain re-ID, and wild re-ID</td><td>Separates cropped/controlled matching from more complete, unconstrained pipeline evaluation.</td></tr>
+</tbody></table></div>
+<h3>Annotation and data organization</h3><ol class="steps">
+<li><div><strong>Tiger detection</strong><span>Annotate a bounding box around each visible tiger. A detector can then filter irrelevant camera-trap frames and localize the animal before re-ID.</span></div></li>
+<li><div><strong>View orientation and pose</strong><span>View orientation categories include frontal, left, right, and back. Skeleton keypoints provide a representation of body pose for alignment or part-based modeling.</span></div></li>
+<li><div><strong>Identity and temporal metadata</strong><span>Images/crops are associated with identity and capture metadata such as camera ID, shot ID, and frame number. Such grouping matters when constructing train/test splits to reduce leakage between correlated frames.</span></div></li>
+<li><div><strong>Re-ID gallery and query</strong><span>A query image is matched against a gallery. Performance should be reported separately for single-camera and cross-camera cases where the benchmark protocol distinguishes them.</span></div></li>
+</ol>
+<div class="callout"><strong>Dataset provenance:</strong> ATRW statistics in this section describe the published dataset, not a claim that all 8,076 clips or all annotations were processed by this project. The supplied DCGAN notebook separately reports 5,160 images loaded from a local “Amur Tigers” folder; the exact subset composition and identity split are not documented in the notebook.</div>
+</div></section>
+<section class="section" id="methods"><aside class="section-aside"><span class="section-no">03 / Methods</span></aside><div class="section-body">
+<h2>Re-identification pipeline and model families</h2>
+<p>The literature review compares conventional identity classification, metric-learning objectives, local/global alignment, pose-part modeling, and transformer-based feature extraction. The methods below are described as literature methods; they should not be interpreted as all having been independently implemented in the project.</p>
+<h3>3.1 Baseline: classification with cross-entropy</h3><p>A backbone such as ResNet-50 maps a cropped tiger image to a feature representation, followed by an identity-classification head. In the reviewed baseline, the ResNet-50 backbone is frozen and only the added classifier is trained. The number of classifier outputs corresponds to the training identities (107 entities in the 2024 paper's described setup).</p>
+<div class="equation">L<sub>CE</sub> = − Σ<sub>c</sub> y<sub>c</sub> log p<sub>c</sub></div><p class="small">Here, y is the one-hot identity label and p is the predicted class-probability vector. The equation is a standard representation of cross-entropy, not a reported project-specific implementation.</p>
+<h3>3.2 Metric learning: triplet and batch-hard triplet loss</h3><p>Triplet learning embeds an anchor image, a positive image of the same identity, and a negative image of a different identity. Training encourages the anchor-positive distance to be smaller than the anchor-negative distance by a margin.</p>
+<div class="equation">L<sub>tri</sub> = max(0, d(f(x<sub>a</sub>), f(x<sub>p</sub>)) − d(f(x<sub>a</sub>), f(x<sub>n</sub>)) + m)</div><p>Batch-hard mining selects challenging positive and negative examples within a mini-batch. This objective is directly relevant to retrieval because the embedding geometry—not only a closed-set class label—determines which gallery images rank nearest to the query.</p>
+<h3>3.3 Aligned re-ID and local/global distances</h3><p>Aligned re-ID divides feature maps into horizontal parts and combines local part-level distances with a global distance. The reviewed report gives the local triplet-style term as:</p><div class="equation">L<sub>local</sub> = max(0, D<sub>local</sub>(x<sub>a</sub>,x<sub>p</sub>) − D<sub>local</sub>(x<sub>a</sub>,x<sub>n</sub>) + m)</div><p>The combined objective is reported as <code>L = L<sub>TH</sub> + L<sub>local</sub></code>, where L<sub>TH</sub> is the batch-hard triplet term. Horizontal part alignment is a useful reference point, but tiger pose changes can make fixed partitions misalign corresponding stripe regions.</p>
+<h3>3.4 Pose-part-based modeling (PPbM)</h3><p>Pose-part-based models use estimated keypoints to guide the extraction or alignment of body-part features. The reviewed ATRW work uses tiger-specific pose estimation and part modeling to address non-rigid pose variation. The literature notes that human pose estimators require adaptation to the tiger skeleton definition; pose estimation errors can propagate into re-ID.</p>
+<h3>3.5 Vision Transformer (ViT)</h3><p>ViT divides an image into fixed-size patches, projects each patch into an embedding, adds positional information, and processes the sequence through transformer encoder blocks. Self-attention lets each patch representation use information from other image regions. A pooled or designated output representation is then used for classification or retrieval.</p>
+<p>In the 2024 transformer-based tiger re-ID paper, preprocessed images pass through a shared ResNet-50 backbone; its feature maps are then processed by ViT to combine convolutional local features with global contextual relationships. This is the architecture described in the paper, not evidence of a successful ViT training run on tiger images in the user's notebook.</p>
+<h3>3.6 Multiple Granularity Network (MGN)</h3><p>MGN learns descriptors at multiple spatial granularities, using global and part-level feature branches. The purpose is to retain fine-grained appearance cues at different scales. In the reviewed hybrid architecture, the ViT and MGN embeddings are concatenated so global contextual information and multi-granularity details can contribute to the final representation.</p>
+<h3>3.7 Neighbor Transformer (NFormer)</h3><p>NFormer is a transformer-based re-ID architecture designed to model relationships among neighboring features. It was evaluated as a separate method in the 2024 paper. Its reported performance is a literature benchmark and does not represent a project-run result.</p>
+<h3>3.8 Retrieval refinement</h3><p>Query expansion and re-ranking modify the initial query representation or the ordering of retrieved gallery candidates using information from top-ranked results. The reviewed paper evaluates these refinements with CMC curves and reports that the benefit varies by rank and model; a refinement may improve early ranks without improving the full rank range.</p>
+</div></section>
+<section class="section" id="implementation"><aside class="section-aside"><span class="section-no">04 / Implementation</span></aside><div class="section-body">
+<h2>Image preprocessing and exploratory code</h2>
+<h3>4.1 Preprocessing reported by the transformer-based paper</h3><ol class="steps">
+<li><div><strong>Resize</strong><span>Images are resized to 128 × 288 pixels using bicubic interpolation in the reviewed pipeline. This is the paper's reported input preprocessing; it is distinct from the 256 × 128 resolution described for some baseline methods.</span></div></li>
+<li><div><strong>Random horizontal flip</strong><span>Randomly flip images horizontally to expose the model to mirrored appearances and improve robustness.</span></div></li>
+<li><div><strong>ColorJitter</strong><span>Apply randomized brightness, contrast, and saturation changes to reduce sensitivity to illumination and color variation.</span></div></li>
+<li><div><strong>Tensor conversion and normalization</strong><span>Convert images into tensors and normalize channels using the mean and standard deviation specified by the implementation. The exact normalization constants are not provided in the available report excerpt.</span></div></li>
+<li><div><strong>Random erasing</strong><span>Randomly occlude image regions during training to improve resilience to partial occlusion. Exact probability and erase-area settings are not documented in the supplied notes.</span></div></li>
+</ol>
+<h3>4.2 GAN-based tiger-image exploration (PyTorch DCGAN notebook)</h3><p>The supplied notebook loads an image folder with PyTorch <code>ImageFolder</code> and defines a DCGAN-style generator and discriminator. The recorded dataset object contains 5,160 images. The notebook is useful as an exploratory generative-model implementation, but it does not yet establish validated synthetic-data augmentation for re-ID.</p>
+<div class="table-wrap"><table><thead><tr><th>Setting</th><th>Value in notebook</th><th>Technical note</th></tr></thead><tbody>
+<tr><td>Framework</td><td>PyTorch / torchvision</td><td>Uses <code>nn.Module</code>, <code>DataLoader</code>, and image transforms.</td></tr>
+<tr><td>Loaded images</td><td>5,160</td><td>Notebook output for the local image folder; identity balance is not shown.</td></tr>
+<tr><td>Image preprocessing</td><td>Resize to 64, center crop 64 × 64, tensor conversion</td><td>RGB channels normalized with mean 0.5 and standard deviation 0.5.</td></tr>
+<tr><td>Latent dimension</td><td>100</td><td>Noise sampled with shape (batch, 100, 1, 1).</td></tr>
+<tr><td>Batch size</td><td>128</td><td>Configured in the notebook.</td></tr>
+<tr><td>Epoch target</td><td>50</td><td>Configured target; captured output shows only the first epoch's first batch log, not a completed 50-epoch run.</td></tr>
+<tr><td>Optimizer</td><td>Adam, learning rate 0.0002, β₁ = 0.5, β₂ = 0.999</td><td>Configured for both generator and discriminator.</td></tr>
+<tr><td>Loss</td><td>Binary cross-entropy</td><td>Real/fake discrimination objective.</td></tr>
+<tr><td>Generator</td><td>Transposed convolutions: 100 → 512 → 256 → 128 → 64 → 3 channels; BatchNorm/ReLU; Tanh output</td><td>Designed to upsample noise to 64 × 64 RGB images.</td></tr>
+<tr><td>Discriminator</td><td>Convolutional stack: 3 → 64 → 128 → 256 → 512 → 1; LeakyReLU, BatchNorm, sigmoid</td><td>Classifies real versus generated images.</td></tr>
+<tr><td>Important data-split issue</td><td>Train and test roots point to the same directory</td><td>The reported setup does not provide an independent test split; its test loop is not a reliable generalization metric.</td></tr>
+</tbody></table></div>
+<p>The captured log contains only <code>Epoch [1/50] Batch [0/41]</code> with discriminator loss 1.4269 and generator loss 3.2970. These are an intermediate training log, not an image-quality metric and not evidence of successful identity-preserving augmentation.</p>
+<h3>4.3 TensorFlow/Keras GAN notebook</h3><p>A second notebook loads <code>Amur Tigers/reid_list_train.csv</code>, uses TensorFlow/Keras layers to define a generator and discriminator, and includes a small custom GAN training loop. The recorded preview shows numeric identity-like values paired with image filenames. The notebook defines Adam optimizers at learning rate 0.0002 with β₁ = 0.5 and binary cross-entropy losses. The saved execution output includes a warning that the combined model has no trainable weights and very large loss values in an early iteration; therefore the run should be treated as debugging-stage exploration, not a successful trained generator.</p>
+<p>The notebook's generator creates 224 × 224 × 3 outputs using dense layers and a tanh output; its discriminator begins with flattening the full image and dense layers. This design creates a very large parameter count and is not a conventional convolutional DCGAN discriminator. The captured model summaries report approximately 154.97 million generator parameters and 77.20 million discriminator parameters. The available output does not verify convergence or usable synthetic images.</p>
+<h3>4.4 Auxiliary CNN and augmentation experiment on flower images</h3><p>A separate TensorFlow/Keras notebook uses the public flower-photo dataset to learn CNN classification and augmentation. This is a methodological exercise—not an Amur tiger re-ID result. The baseline CNN uses three convolution/max-pooling blocks (16, 32, 64 filters), a 128-unit dense layer, and a five-class output; it is trained for 30 epochs with Adam and sparse categorical cross-entropy. The training accuracy reaches approximately 99%, while test accuracy is 66.99%, indicating overfitting in the recorded run.</p><p>The augmented version adds random horizontal flipping, random rotation (factor 0.1), random zoom (factor 0.1), and dropout of 0.2 before the dense classifier. Its recorded test accuracy is 73.75% (loss ≈ 0.8419), an increase of about 6.75 percentage points over the baseline on that flower task. These numbers must not be presented as tiger identification performance or as evidence that augmentation improved tiger re-ID.</p>
+<h3>4.5 Vision Transformer learning attempt</h3><p>The internship notes record an attempt to run a ViT model on the flower dataset, with the note “not got result.” The provided material includes transformer-concept notes (patch embeddings, positional embeddings, self-attention, query/key/value) but does not contain a verified training log, trained checkpoint, or validated evaluation for ViT on ATRW. No ViT accuracy is claimed for the user's implementation.</p>
+</div></section>
+<section class="section" id="results"><aside class="section-aside"><span class="section-no">05 / Results & data</span></aside><div class="section-body">
+<h2>Published benchmarks versus project evidence</h2>
+<p>To keep attribution clear, the published numbers below are transcribed from Bai et al. (2024). They are research-paper benchmarks, not results generated by this project.</p>
+<h3>5.1 Published transformer-based re-ID benchmark</h3><div class="table-wrap"><table><thead><tr><th>Method</th><th colspan="3">Single-camera</th><th colspan="3">Cross-camera</th></tr><tr><th></th><th>mAP</th><th>Top-1</th><th>Top-5</th><th>mAP</th><th>Top-1</th><th>Top-5</th></tr></thead><tbody>
+<tr><td>Cross-entropy (CE)</td><td>59.1</td><td>78.6</td><td>92.7</td><td>38.1</td><td>69.7</td><td>87.8</td></tr>
+<tr><td>Triplet loss</td><td>71.3</td><td>86.6</td><td>96.0</td><td>47.2</td><td>77.6</td><td>90.06</td></tr>
+<tr><td>Aligned re-ID</td><td>64.8</td><td>81.2</td><td>92.4</td><td>44.2</td><td>73.8</td><td>90.05</td></tr>
+<tr><td>PPbM-a</td><td>74.1</td><td>88.2</td><td>96.4</td><td>51.7</td><td>76.8</td><td>91.0</td></tr>
+<tr><td>PPbM-b</td><td>72.8</td><td>89.4</td><td>95.6</td><td>47.8</td><td>77.1</td><td>90.07</td></tr>
+<tr><td>ResNet-50 + ViT</td><td>80.8</td><td>88.3</td><td>93.7</td><td>41.4</td><td>68.0</td><td>80.6</td></tr>
+<tr><td>ResNet-50 + ViT + MGN</td><td>83.4</td><td>92.3</td><td>94.9</td><td>43.6</td><td>79.4</td><td>85.7</td></tr>
+<tr><td>ResNet-50 + NFormer</td><td>81.1</td><td>91.1</td><td>94.6</td><td>46.1</td><td>78.9</td><td>87.4</td></tr>
+</tbody></table></div><p class="small">Values are percentages as presented in the paper's table. Minor formatting in the source table is retained for the reported Top-5 values of Triplet loss and Aligned re-ID (90.06 and 90.05); consult the original paper before reusing these values in a formal publication.</p>
+<h3>5.2 Metrics</h3><div class="cards"><article class="card"><div class="n">mAP</div><h3>Mean average precision</h3><p>Measures ranking quality over relevant gallery matches across queries. It evaluates more than whether the first retrieved image is correct.</p></article><article class="card"><div class="n">Top-1 / Top-5</div><h3>Retrieval hit rate</h3><p>Measures whether a correct identity appears within the first one or five ranked candidates.</p></article><article class="card"><div class="n">CMC</div><h3>Cumulative matching characteristic</h3><p>Plots recognition rate against rank and helps show how query expansion or re-ranking changes early and later retrieval ranks.</p></article><article class="card"><div class="n">Cross-camera</div><h3>Generalization across views</h3><p>Evaluates identity matching across cameras, where viewpoint, illumination, and capture conditions can differ.</p></article></div>
+<h3>5.3 What the supplied project files demonstrate</h3><div class="table-wrap"><table><thead><tr><th>Artifact / claim</th><th>Evidence available</th><th>Status</th></tr></thead><tbody>
+<tr><td>ATRW literature review</td><td>Notes summarize the dataset, re-ID task, ViT, MGN, NFormer, metric-learning baselines, and refinement methods.</td><td>Documented review</td></tr>
+<tr><td>PyTorch DCGAN</td><td>Notebook constructs generator/discriminator and logs the first batch of epoch 1; target is 50 epochs.</td><td>Exploratory; completion not evidenced</td></tr>
+<tr><td>Keras GAN</td><td>Model definitions and an early iteration are saved; warning indicates no trainable weights in the combined model and losses are high.</td><td>Debugging stage; no validated output</td></tr>
+<tr><td>CNN with flower augmentation</td><td>Recorded test accuracy rises from 66.99% to 73.75% after augmentation and dropout.</td><td>Auxiliary flower-classification experiment only</td></tr>
+<tr><td>ViT on flower images</td><td>Notes state that a result was not obtained; no validated metric or checkpoint supplied.</td><td>Unsuccessful / undocumented</td></tr>
+<tr><td>End-to-end tiger re-ID</td><td>No verified user-run retrieval metrics, identity-level split, trained checkpoint, or query-gallery evaluation supplied.</td><td>Not established</td></tr>
+</tbody></table></div>
+</div></section>
+<section class="section" id="limitations"><aside class="section-aside"><span class="section-no">06 / Limitations</span></aside><div class="section-body">
+<h2>Technical limitations and reproducibility gaps</h2><ol class="steps">
+<li><div><strong>No verified ATRW training/evaluation run</strong><span>The available files do not establish that a transformer or re-ID model was trained and evaluated on an identity-disjoint ATRW split. Published benchmark values must remain attributed to their authors.</span></div></li>
+<li><div><strong>GAN notebook data leakage risk</strong><span>The PyTorch notebook points both train and test datasets to the same folder. A valid evaluation requires a disjoint split and a clear protocol. The current discriminator accuracy loop also tests real/fake discrimination, not whether synthetic images preserve tiger identity.</span></div></li>
+<li><div><strong>Generative training instability</strong><span>The Keras GAN notebook records a “no trainable weights” warning for the combined model and large early losses. Training graph connectivity, trainability toggling, and generator/discriminator update steps need debugging before interpreting generated images.</span></div></li>
+<li><div><strong>Identity-preserving augmentation is unverified</strong><span>Generated samples could alter stripe topology or produce unrealistic texture. Before using synthetic images for re-ID, validate visual fidelity and identity consistency, and report performance on an untouched real-image test set.</span></div></li>
+<li><div><strong>Dataset split and temporal correlation</strong><span>Adjacent video frames can be near duplicates. Splits should respect identity and capture metadata as required by the benchmark protocol to avoid optimistic leakage and unfair comparisons.</span></div></li>
+<li><div><strong>Missing experiment metadata</strong><span>There is no complete record of random seeds, exact dataset subset, class/identity counts, software versions, training curves, saved checkpoints, or reproducible query-gallery predictions for a tiger re-ID model.</span></div></li>
+</ol>
+</div></section>
+<section class="section" id="next-steps"><aside class="section-aside"><span class="section-no">07 / Next steps</span></aside><div class="section-body">
+<h2>Recommended technical workflow</h2><ol class="steps">
+<li><div><strong>Audit and document the data</strong><span>Record the exact ATRW subset, file counts, identity labels, camera/shot/frame metadata, class balance, license/usage terms, and train/validation/test protocol.</span></div></li>
+<li><div><strong>Establish a reproducible baseline</strong><span>Start from a published re-ID implementation with a documented ResNet-50 backbone and cross-entropy or triplet loss. Verify identity-disjoint splits and reproduce mAP, CMC, Top-1, and Top-5 before introducing augmentation.</span></div></li>
+<li><div><strong>Validate the input pipeline</strong><span>Unit-test resizing, normalization, identity-label mapping, batch sampling, and query/gallery construction. Save a grid of transformed images and confirm labels remain unchanged after augmentation.</span></div></li>
+<li><div><strong>Stabilize the GAN independently</strong><span>Fix model trainability and update order, verify output shapes and loss gradients, save checkpoints, inspect generated samples at multiple epochs, and avoid using the same directory as train and test data.</span></div></li>
+<li><div><strong>Test synthetic-data utility</strong><span>Compare baseline real-only training against real-plus-synthetic training using the same held-out real test set. Report mAP and Top-k metrics with multiple seeds or confidence intervals, not discriminator accuracy alone.</span></div></li>
+<li><div><strong>Run controlled ablations</strong><span>Compare standard preprocessing, geometric/color augmentation, random erasing, and GAN augmentation separately. Keep model, split, sampler, training budget, and evaluation protocol fixed.</span></div></li>
+<li><div><strong>Publish only reproducible results</strong><span>Include source notebooks, environment requirements, configuration files, checkpoints where redistribution is permitted, and plots generated from saved evaluation predictions.</span></div></li>
+</ol>
+</div></section>
+<section class="section" id="references"><aside class="section-aside"><span class="section-no">08 / References</span></aside><div class="section-body">
+<h2>References and technical resources</h2><ol class="ref-list">
+<li>Shuyuan Li, Jianguo Li, Weiyao Lin, and Hanlin Tang, “<em>Amur Tiger Re-identification in the Wild</em>,” arXiv:1906.05586, 2019. <a href="https://arxiv.org/abs/1906.05586" target="_blank" rel="noopener">arXiv paper</a>. Dataset and baseline reference for ATRW, detection, pose annotations, and tiger re-ID.</li>
+<li>Xufeng Bai, Tasmina Islam, and M. A. Hannan Bin Azhar, “<em>Transformer-based Models for Enhanced Amur Tiger Re-Identification</em>,” 2024 IEEE 22nd World Symposium on Applied Machine Intelligence and Informatics (SAMI), DOI: <a href="https://doi.org/10.1109/SAMI60510.2024.10432893" target="_blank" rel="noopener">10.1109/SAMI60510.2024.10432893</a>. Source for the ResNet-50 + ViT, ViT + MGN, NFormer and baseline comparison table.</li>
+<li>Connor Shorten and Taghi M. Khoshgoftaar, “<em>A survey on Image Data Augmentation for Deep Learning</em>,” <em>Journal of Big Data</em>, 6, 60 (2019). DOI: <a href="https://doi.org/10.1186/s40537-019-0197-0" target="_blank" rel="noopener">10.1186/s40537-019-0197-0</a>. Survey of geometric, color, erasing, and GAN-based augmentation.</li>
+<li>Alexey Dosovitskiy et al., “<em>An Image is Worth 16×16 Words: Transformers for Image Recognition at Scale</em>,” ICLR, 2021. <a href="https://arxiv.org/abs/2010.11929" target="_blank" rel="noopener">arXiv version</a>. Vision Transformer reference.</li>
+<li>Hao Wang, Jian Shen, Yuyu Liu, Yao Gao, and Evangelos Gavves, “<em>NFormer: Robust Person Re-identification with Neighbor Transformer</em>,” CVPR, 2022. DOI: <a href="https://doi.org/10.1109/CVPR52688.2022.00713" target="_blank" rel="noopener">CVPR paper</a>. Architecture background referenced by the tiger re-ID comparison.</li>
+<li>Shukla et al., “<em>A Hybrid Approach to Tiger Re-Identification</em>,” IEEE/CVF International Conference on Computer Vision Workshop (ICCVW), 2019. DOI: <a href="https://doi.org/10.1109/ICCVW.2019.00039" target="_blank" rel="noopener">10.1109/ICCVW.2019.00039</a>. Related tiger re-ID benchmark work.</li>
+</ol>
+<h3>Project artifacts</h3><ul class="file-list">
+<li><strong>ATRW literature notes</strong><span>Review notes on the ATRW dataset, re-ID baselines, ViT/MGN/NFormer, pose-based modeling, and retrieval metrics. These notes are a secondary summary; cite the original papers for formal claims.</span></li>
+<li><strong>PyTorch DCGAN notebook</strong><span>Exploratory 64 × 64 tiger-image generator/discriminator implementation with a local folder of 5,160 images. Public code/data links are not included because a verified public repository URL was not provided.</span></li>
+<li><strong>TensorFlow/Keras GAN notebook</strong><span>Exploratory generator/discriminator definitions based on a local training list; captured output indicates unresolved training issues.</span></li>
+<li><strong>Flower CNN augmentation notebook</strong><span>Auxiliary five-class flower classification experiment illustrating overfitting and augmentation; results are not tiger re-ID results.</span></li>
+</ul>
+<div class="callout"><strong>Reporting note:</strong> The page intentionally separates literature-reported benchmark numbers from the exploratory code and metrics present in the supplied notebooks. No unsupported claim of a successful Amur tiger re-identification model is made.</div>
+</div></section>
+<div class="footer"><a class="back-top" href="#top">↑ Back to top</a><span>aryan.phd · Research project documentation · October 2026</span><a href="https://aryan-mat-research.github.io/phd_aryan_/research.html">Research archive ↗</a></div>
+</main>
+</div>
 </body>
 </html>
