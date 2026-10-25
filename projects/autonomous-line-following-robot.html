@@ -17,7 +17,7 @@ a{color:inherit;text-underline-offset:3px}a:hover{opacity:.72}
 .nav{min-height:62px;display:flex;align-items:center;justify-content:space-between;gap:24px}
 .brand{text-decoration:none;font-size:13px;font-weight:750;letter-spacing:-.025em}
 .nav-links{display:flex;gap:21px;flex-wrap:wrap}.nav-links a{text-decoration:none;font-size:11.5px;color:#4b4b4b}
-.crumbs{font-size:11.5px;color:var(--muted);padding:22px 0 12px}.crumbs a{text-decoration:none}
+.pd-breadcrumb{display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:11.5px;color:var(--muted);padding:22px 0 12px;margin:0}.pd-breadcrumb a{text-decoration:none;color:var(--ink)}.pd-breadcrumb span:first-of-type{color:#aaa}
 .kicker,.section-no,.eyebrow{font-size:10px;letter-spacing:.14em;text-transform:uppercase;font-weight:750;color:#666}
 .hero{padding:26px 0 34px;border-bottom:1px solid var(--line)}
 .hero-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(280px,.95fr);gap:clamp(28px,4vw,48px);align-items:center}
@@ -70,7 +70,11 @@ pre{white-space:pre;overflow:auto;background:#171717;color:#f3f3f3;padding:17px;
 </header>
 
 <div class="wrap">
-  <div class="crumbs"><a href="../index.html">Research archive</a> / Undergraduate academic project / <span>Grade A+</span></div>
+  <p class="pd-breadcrumb">
+    <a href="https://aryan-mat-research.github.io/phd_aryan_/research.html">← Back to research archive</a>
+    <span>/</span>
+    <span>Undergraduate Academic Project. Grade A+</span>
+  </p>
 </div>
 
 <header class="hero">
