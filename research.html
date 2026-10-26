@@ -8,8 +8,68 @@
   <meta content="#ffffff" name="theme-color">
   <link href="assets/css/style.css" rel="stylesheet">
   <link href="assets/css/research.css" rel="stylesheet">
+  <style>
+    /* Slightly larger, more readable text in the research project cards */
+    .rp .rp-card-body .rp-summary {
+      font-size: 1.05rem;
+      line-height: 1.8;
+    }
+
+    .rp .rp-card-body .rp-tags li {
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    .rp .rp-card-body .rp-project-link {
+      font-size: 1rem;
+      line-height: 1.65;
+    }
+
+    .rp .rp-card-body .rp-kicker {
+      font-size: 0.82rem;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 600px) {
+      .rp .rp-card-body .rp-summary {
+        font-size: 1rem;
+      }
+
+      .rp .rp-card-body .rp-tags li,
+      .rp .rp-card-body .rp-project-link {
+        font-size: 0.95rem;
+      }
+    }
+  </style>
   <script defer src="assets/js/site.js"></script>
   <script defer src="assets/js/research.js"></script>
+
+  <style id="research-typography-adjustments">
+    /* Typography-only refinement: retain the existing layout, colours and behaviour. */
+    html, body, body *, body *::before, body *::after {
+      font-family: "Times New Roman", Times, serif !important;
+    }
+    body { font-size: 18px; line-height: 1.65; }
+    .rp-hero-grid > p { font-size: 18px; line-height: 1.7; }
+    .rp-toolbar label, .rp-toolbar > div, .rp-toolbar .eyebrow { font-size: 15px; }
+    .rp-search { font-family: "Times New Roman", Times, serif !important; font-size: 17px; }
+    .rp-filter { font-family: "Times New Roman", Times, serif !important; font-size: 16px; }
+    .rp-count { font-size: 15px; }
+    .rp-card-body .rp-kicker { font-size: 14px; }
+    .rp-card-body h3 { font-size: 25px; line-height: 1.25; }
+    .rp-card-body .rp-summary { font-size: 18px; line-height: 1.7; }
+    .rp-tags li { font-size: 14px; }
+    .rp-links .rp-project-link { font-size: 16px; line-height: 1.6; }
+    .rp-number, .rp-status { font-size: 14px; }
+    .footer, .footer a, .footer span { font-size: 15px; }
+    @media (max-width: 700px) {
+      body { font-size: 17px; }
+      .rp-hero-grid > p, .rp-card-body .rp-summary { font-size: 17px; }
+      .rp-card-body h3 { font-size: 23px; }
+      .rp-filter { font-size: 15px; }
+      .rp-links .rp-project-link { font-size: 15px; }
+    }
+  </style>
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
@@ -406,7 +466,7 @@
         <article class="rp-card" data-project="" data-search="autonomous line following robot Arduino infrared sensors robotics embedded systems" data-status="previous" id="line-robot">
           <div class="rp-card-top"><span class="rp-number">13 / Bachelor Major Project</span><span class="rp-status">Previous</span></div>
         
-   <figure class="rp-media">
+           <figure class="rp-media">
   <img
     src="./assets/images/Robotics.png"
     alt="Four-wheel Arduino line-following robot"
