@@ -41,6 +41,26 @@
       }
     }
   </style>
+
+  <style id="header-font-size-refinement">
+    /* Slightly larger header typography; preserve the existing Times New Roman style and layout. */
+    .header .brand { font-size: 28px !important; }
+    .header .links a,
+    .header .menu { font-size: 16px !important; }
+    .rp-hero .eyebrow { font-size: 14px !important; }
+    .rp-hero-grid h2,
+    .rp-hero h2#projects-title { font-size: 50px !important; line-height: 1.15; }
+    .rp-hero-grid > p { font-size: 19px !important; line-height: 1.8; }
+    @media (max-width: 700px) {
+      .header .brand { font-size: 26px !important; }
+      .header .links a,
+      .header .menu { font-size: 16px !important; }
+      .rp-hero-grid h2,
+      .rp-hero h2#projects-title { font-size: 39px !important; }
+      .rp-hero-grid > p { font-size: 17px !important; }
+    }
+  </style>
+
   <script defer src="assets/js/site.js"></script>
   <script defer src="assets/js/research.js"></script>
 
