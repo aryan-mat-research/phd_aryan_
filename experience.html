@@ -199,6 +199,84 @@
       }
     }
 
+
+    /* Final refinement: lighter typography and clean project-link wrapping */
+    .experience-content > p,
+    .experience-content .experience-institution,
+    .experience-content .experience-advisor,
+    .experience-content .experience-date {
+      font-size: 17.5px !important;
+      line-height: 1.55;
+    }
+
+    .experience-content h3 {
+      font-size: 22px !important;
+      line-height: 1.3;
+      margin-bottom: 10px;
+    }
+
+    .experience-content .experience-date {
+      margin-bottom: 8px;
+      color: #666;
+    }
+
+    .experience-content .experience-institution {
+      margin-bottom: 8px;
+      font-weight: bold;
+    }
+
+    .experience-content .experience-advisor {
+      margin-bottom: 12px;
+      color: #666;
+    }
+
+    .experience-content > p:not(.experience-date):not(.experience-institution):not(.experience-advisor) {
+      font-size: 17px !important;
+      line-height: 1.6;
+      margin: 10px 0 14px;
+    }
+
+    .experience-tags li {
+      font-size: 14.5px !important;
+    }
+
+    .experience-projects-label {
+      font-size: 16px !important;
+      margin-bottom: 6px;
+    }
+
+    /* Keep each project link together instead of splitting its text */
+    .experience-projects a {
+      display: inline-block;
+      font-size: 16px !important;
+      line-height: 1.65;
+      margin: 2px 12px 3px 0;
+      white-space: normal;
+      overflow-wrap: normal;
+      vertical-align: top;
+    }
+
+    @media (max-width: 700px) {
+      .experience-content > p,
+      .experience-content .experience-institution,
+      .experience-content .experience-advisor,
+      .experience-content .experience-date {
+        font-size: 16.5px !important;
+      }
+
+      .experience-content h3 {
+        font-size: 21px !important;
+      }
+
+      .experience-content > p:not(.experience-date):not(.experience-institution):not(.experience-advisor) {
+        font-size: 16.5px !important;
+      }
+
+      .experience-projects a {
+        font-size: 15.5px !important;
+      }
+    }
+
   </style>
 
 </head>
