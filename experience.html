@@ -75,25 +75,29 @@
       p, li { font-size: 18px; }
     }
 
-    /* Experience layout fixes: keep the image and text aligned */
-    .experience-list {
-      width: 100%;
+
+    /* FINAL EXPERIENCE LAYOUT FIX
+       Compact typography and project links that wrap as complete items. */
+    .experience-page,
+    .experience-section,
+    .experience-list,
+    .experience-card,
+    .experience-content {
       min-width: 0;
     }
 
     .experience-card {
-      display: grid;
-      grid-template-columns: minmax(240px, 280px) minmax(0, 1fr);
+      display: grid !important;
+      grid-template-columns: minmax(220px, 300px) minmax(0, 1fr) !important;
       align-items: start;
-      column-gap: 34px;
-      row-gap: 22px;
-      min-width: 0;
+      column-gap: 32px;
+      row-gap: 20px;
+      padding: 28px 0;
     }
 
     .experience-image {
       width: 100%;
-      max-width: 280px;
-      min-width: 0;
+      max-width: 300px;
       height: auto;
       margin: 0;
       padding: 0;
@@ -103,7 +107,6 @@
     .experience-image a {
       display: block;
       width: 100%;
-      height: auto;
       line-height: 0;
     }
 
@@ -116,51 +119,86 @@
       object-fit: contain;
       object-position: top left;
       margin: 0;
-      padding: 0;
       border: 0;
       border-radius: 0;
       box-shadow: none;
     }
 
-    .experience-content {
-      width: 100%;
-      min-width: 0;
-      margin: 0;
+    .experience-date,
+    .experience-institution,
+    .experience-advisor,
+    .experience-content > p:not(.experience-projects-label) {
+      font-size: 17px !important;
+      line-height: 1.55 !important;
+    }
+
+    .experience-content > p {
+      margin-top: 10px;
+      margin-bottom: 12px;
+    }
+
+    .experience-content .experience-date {
+      margin-top: 0;
+      margin-bottom: 8px;
+      color: #666;
     }
 
     .experience-content h3 {
-      margin-top: 0;
-      overflow-wrap: normal;
+      margin: 0 0 10px;
+      font-size: 22px !important;
+      line-height: 1.3;
+    }
+
+    .experience-content .experience-institution {
+      margin: 0 0 8px;
+    }
+
+    .experience-content .experience-advisor {
+      margin: 0 0 12px;
+      color: #666;
     }
 
     .experience-tags {
       display: flex;
       flex-wrap: wrap;
-      align-items: center;
-      gap: 6px 16px;
-      margin: 14px 0 8px;
+      gap: 5px 14px;
+      margin: 12px 0 8px;
       padding: 0;
       list-style: none;
     }
 
     .experience-tags li {
       margin: 0;
+      font-size: 15px !important;
+      line-height: 1.5;
     }
 
     .experience-projects {
-      min-width: 0;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 3px 16px;
       margin-top: 8px;
     }
 
     .experience-projects-label {
-      margin: 0 0 8px;
+      flex: 0 0 100%;
+      margin: 0 0 3px;
+      font-size: 16px !important;
+      line-height: 1.5;
     }
 
     .experience-projects a {
-      display: inline;
-      margin: 0 14px 0 0;
-      line-height: 1.9;
-      overflow-wrap: anywhere;
+      display: inline-block !important;
+      flex: 0 1 auto;
+      width: fit-content;
+      max-width: 100%;
+      margin: 0 !important;
+      font-size: 16px !important;
+      line-height: 1.6 !important;
+      white-space: normal;
+      overflow-wrap: normal;
+      word-break: normal;
       text-decoration: none;
     }
 
@@ -171,109 +209,30 @@
 
     @media (max-width: 760px) {
       .experience-card {
-        grid-template-columns: minmax(0, 1fr);
-        row-gap: 20px;
+        grid-template-columns: minmax(0, 1fr) !important;
+        row-gap: 18px;
       }
 
       .experience-image {
-        width: 100%;
         max-width: 420px;
-      }
-
-      .experience-content {
-        width: 100%;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .experience-card {
-        row-gap: 16px;
-      }
-
-      .experience-image {
-        max-width: 100%;
-      }
-
-      .experience-projects a {
-        margin-right: 10px;
-      }
-    }
-
-
-    /* Final refinement: lighter typography and clean project-link wrapping */
-    .experience-content > p,
-    .experience-content .experience-institution,
-    .experience-content .experience-advisor,
-    .experience-content .experience-date {
-      font-size: 17.5px !important;
-      line-height: 1.55;
-    }
-
-    .experience-content h3 {
-      font-size: 22px !important;
-      line-height: 1.3;
-      margin-bottom: 10px;
-    }
-
-    .experience-content .experience-date {
-      margin-bottom: 8px;
-      color: #666;
-    }
-
-    .experience-content .experience-institution {
-      margin-bottom: 8px;
-      font-weight: bold;
-    }
-
-    .experience-content .experience-advisor {
-      margin-bottom: 12px;
-      color: #666;
-    }
-
-    .experience-content > p:not(.experience-date):not(.experience-institution):not(.experience-advisor) {
-      font-size: 17px !important;
-      line-height: 1.6;
-      margin: 10px 0 14px;
-    }
-
-    .experience-tags li {
-      font-size: 14.5px !important;
-    }
-
-    .experience-projects-label {
-      font-size: 16px !important;
-      margin-bottom: 6px;
-    }
-
-    /* Keep each project link together instead of splitting its text */
-    .experience-projects a {
-      display: inline-block;
-      font-size: 16px !important;
-      line-height: 1.65;
-      margin: 2px 12px 3px 0;
-      white-space: normal;
-      overflow-wrap: normal;
-      vertical-align: top;
-    }
-
-    @media (max-width: 700px) {
-      .experience-content > p,
-      .experience-content .experience-institution,
-      .experience-content .experience-advisor,
-      .experience-content .experience-date {
-        font-size: 16.5px !important;
       }
 
       .experience-content h3 {
         font-size: 21px !important;
       }
+    }
 
-      .experience-content > p:not(.experience-date):not(.experience-institution):not(.experience-advisor) {
-        font-size: 16.5px !important;
+    @media (max-width: 480px) {
+      .experience-image {
+        max-width: 100%;
+      }
+
+      .experience-projects {
+        gap: 5px 12px;
       }
 
       .experience-projects a {
-        font-size: 15.5px !important;
+        font-size: 15px !important;
       }
     }
 
