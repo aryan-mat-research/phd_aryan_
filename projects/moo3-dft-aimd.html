@@ -1,932 +1,590 @@
-```html
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>DFT and AIMD Studies of MoO3 Structural Disorder | aryan.phd</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="CVD growth and characterization of MoSe2, WS2 and WSe2 on patterned Si/SiO2 substrates.">
+<title>CVD Growth of 2D Semiconductors | aryan.phd</title>
 
 <style>
-* {
-    box-sizing: border-box;
-    font-family: "Times New Roman", Times, serif !important;
-}
-
-:root {
-    --ink: #171717;
-    --muted: #666;
-    --line: #d8d8d8;
-    --paper: #fff;
-    --soft: #f8f8f8;
-}
-
-html {
-    scroll-behavior: smooth;
-    scroll-padding-top: 25px;
-}
-
-body {
-    margin: 0;
-    color: var(--ink);
-    background: var(--paper);
-    font-size: 16px;
-    line-height: 1.5;
-}
-
-a {
-    color: inherit;
-    text-decoration: none;
-}
-
-a:hover {
-    text-decoration: underline;
-    text-underline-offset: 4px;
-}
-
-/* HEADER — matched to the reference project page */
-
-.site-header {
-    min-height: 89px;
-    padding: 20px 2.5%;
-    border-bottom: 1px solid var(--line);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 28px;
-}
-
-.brand {
-    font-size: 30px;
-    line-height: 1;
-    white-space: nowrap;
-}
-
-.site-nav {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    gap: clamp(20px, 3vw, 43px);
-    flex-wrap: wrap;
-}
-
-.site-nav a {
-    font-size: 18px;
-    white-space: nowrap;
-}
-
-.site-nav a.active {
-    text-decoration: underline;
-    text-underline-offset: 14px;
-}
-
-/* PAGE WIDTH AND BREADCRUMB */
-
-.page {
-    width: 100%;
-    margin: 0 auto;
-}
-
-.breadcrumb {
-    padding: 27px 2.5% 0;
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 12px;
-    font-size: 15px;
-    color: #555;
-}
-
-.breadcrumb .back {
-    color: var(--ink);
-}
-
-.breadcrumb .slash {
-    color: #aaa;
-}
-
-/* EDITORIAL HERO */
-
-.hero {
-    padding: 48px 2.5% 42px;
-    display: grid;
-    grid-template-columns: minmax(0, 1.05fr) minmax(400px, 0.95fr);
-    gap: clamp(35px, 5vw, 80px);
-    align-items: center;
-    border-bottom: 1px solid var(--line);
-}
-
-.eyebrow {
-    margin-bottom: 23px;
-    color: #555;
-    font-size: 15px;
-    font-weight: bold;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-}
-
-h1 {
-    max-width: 720px;
-    margin: 0 0 22px;
-    font-size: clamp(42px, 5vw, 68px);
-    font-weight: normal;
-    letter-spacing: -1.8px;
-    line-height: 1.04;
-}
-
-.hero-description {
-    max-width: 690px;
-    margin: 0;
-    color: #454545;
-    font-size: 21px;
-    line-height: 1.7;
-}
-
-.tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 9px;
-    margin-top: 25px;
-}
-
-.tag {
-    display: inline-block;
-    border: 1px solid #d1d1d1;
-    border-radius: 30px;
-    padding: 7px 13px;
-    font-size: 15px;
-    white-space: nowrap;
-}
-
-.hero-figure {
-    margin: 0;
-    min-width: 0;
-}
-
-.hero-image {
-    display: block;
-    width: 100%;
-    aspect-ratio: 1.48 / 1;
-    object-fit: contain;
-    border: 1px solid var(--line);
-    background: #fafafa;
-}
-
-.hero-placeholder {
-    width: 100%;
-    aspect-ratio: 1.48 / 1;
-    border: 1px dashed #bdbdbd;
-    background: var(--soft);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 30px;
-    color: #555;
-}
-
-.hero-placeholder strong {
-    display: block;
-    margin-bottom: 10px;
-    color: var(--ink);
-    font-size: 19px;
-}
-
-.hero-figure figcaption {
-    padding-top: 9px;
-    font-size: 14px;
-    color: #666;
-}
-
-/* SECTION NAVIGATION */
-
-.section-navigation {
-    padding: 16px 2.5%;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 9px;
-    border-bottom: 1px solid var(--line);
-}
-
-.section-navigation a {
-    display: inline-block;
-    padding: 8px 12px;
-    border: 1px solid #d5d5d5;
-    border-radius: 4px;
-    font-size: 15px;
-}
-
-.section-navigation a:hover {
-    background: #f4f4f4;
-    text-decoration: none;
-}
-
-/* MAIN CONTENT */
-
-.content {
-    padding: 0 2.5%;
-}
-
-section {
-    padding: 35px 0;
-    border-bottom: 1px solid var(--line);
-    scroll-margin-top: 20px;
-}
-
-.section-label {
-    margin-bottom: 10px;
-    color: #666;
-    font-size: 14px;
-    font-weight: bold;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-}
-
-h2 {
-    margin: 0 0 20px;
-    font-size: 31px;
-    font-weight: normal;
-    line-height: 1.2;
-}
-
-h3 {
-    margin: 0 0 10px;
-    font-size: 20px;
-    font-weight: bold;
-}
-
-p {
-    margin: 8px 0 13px;
-}
-
-.section-intro {
-    max-width: 900px;
-    margin-bottom: 22px;
-    color: #444;
-    font-size: 18px;
-}
-
-/* TECHNICAL GRIDS */
-
-.grid-2,
-.grid-3,
-.grid-4 {
-    display: grid;
-    gap: 18px;
-}
-
-.grid-2 {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-
-.grid-3 {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-
-.grid-4 {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-}
-
-.card {
-    min-width: 0;
-    padding: 18px;
-    border: 1px solid var(--line);
-}
-
-.card p:last-child {
-    margin-bottom: 0;
-}
-
-.card ul {
-    margin-bottom: 0;
-    padding-left: 20px;
-}
-
-.card li {
-    margin: 5px 0;
-}
-
-.figure {
-    min-width: 0;
-    margin: 0;
-    border: 1px solid var(--line);
-}
-
-.figure img {
-    display: block;
-    width: 100%;
-    aspect-ratio: 4 / 3;
-    object-fit: contain;
-    background: var(--soft);
-}
-
-.figure figcaption {
-    padding: 11px 13px;
-    border-top: 1px solid var(--line);
-    font-size: 15px;
-}
-
-.plot-placeholder {
-    min-height: 210px;
-    padding: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    background: #fafafa;
-    border: 1px dashed #bdbdbd;
-    color: #555;
-}
-
-.plot-placeholder strong {
-    display: block;
-    margin-bottom: 8px;
-    color: #222;
-}
-
-.plot-caption {
-    padding-top: 11px;
-    font-size: 15px;
-}
-
-/* TABLES */
-
-.table-wrap {
-    width: 100%;
-    overflow-x: auto;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 15px 0 20px;
-    font-size: 15px;
-}
-
-th,
-td {
-    padding: 11px 13px;
-    border: 1px solid #d5d5d5;
-    text-align: left;
-    vertical-align: top;
-}
-
-th {
-    background: #f6f6f6;
-    font-weight: bold;
-}
-
-/* WORKFLOW */
-
-.workflow {
-    display: grid;
-    grid-template-columns: repeat(5, minmax(0, 1fr));
-    gap: 12px;
-}
-
-.step {
-    padding: 15px;
-    border: 1px solid #d2d2d2;
-    min-width: 0;
-}
-
-.step-number {
-    margin-bottom: 10px;
-    color: #666;
-    font-size: 14px;
-}
-
-.step p {
-    margin-bottom: 0;
-    font-size: 15px;
-}
-
-/* EQUATIONS AND NOTES */
-
-.equation {
-    padding: 14px 17px;
-    margin: 14px 0;
-    border: 1px solid var(--line);
-    background: #fafafa;
-    overflow-wrap: anywhere;
-    font-size: 17px;
-}
-
-.note {
-    padding: 13px 16px;
-    margin-top: 18px;
-    border-left: 3px solid #333;
-    background: #f7f7f7;
-}
-
-/* STATUS AND REFERENCES */
-
-.status {
-    display: inline-block;
-    padding: 3px 8px;
-    border: 1px solid #bbb;
-    font-size: 14px;
-}
-
-.references {
-    padding-left: 22px;
-}
-
-.references li {
-    margin-bottom: 14px;
-    overflow-wrap: anywhere;
-}
-
-.references a {
-    text-decoration: underline;
-    text-underline-offset: 3px;
-}
-
-.footer {
-    padding: 24px 2.5% 30px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 15px;
-    color: #555;
-    font-size: 15px;
-}
-
-/* RESPONSIVE */
-
-@media (max-width: 900px) {
-    .hero {
-        grid-template-columns: 1fr;
-        gap: 28px;
-    }
-
-    .hero-figure {
-        max-width: 760px;
-    }
-
-    .grid-4 {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    .workflow {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-}
-
-@media (max-width: 620px) {
-    .site-header {
-        align-items: flex-start;
-        flex-direction: column;
-        padding: 20px 5%;
-    }
-
-    .site-nav {
-        justify-content: flex-start;
-        gap: 12px 19px;
-    }
-
-    .site-nav a {
-        font-size: 16px;
-    }
-
-    .breadcrumb,
-    .hero,
-    .section-navigation,
-    .content,
-    .footer {
-        padding-left: 5%;
-        padding-right: 5%;
-    }
-
-    .hero {
-        padding-top: 36px;
-        padding-bottom: 32px;
-    }
-
-    h1 {
-        font-size: 43px;
-        letter-spacing: -1px;
-    }
-
-    .hero-description {
-        font-size: 19px;
-    }
-
-    h2 {
-        font-size: 27px;
-    }
-
-    .grid-2,
-    .grid-3,
-    .grid-4,
-    .workflow {
-        grid-template-columns: 1fr;
-    }
-
-    .quick-facts {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    th,
-    td {
-        padding: 9px;
-    }
+:root{--ink:#171717;--muted:#666;--line:#d8d8d8;--paper:#fff;--soft:#f8f8f8;--page:1080px}
+*{box-sizing:border-box;font-family:"Times New Roman",Times,serif !important}
+html{scroll-behavior:smooth;scroll-padding-top:75px}
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Times New Roman",Times,serif;font-size:16px;line-height:1.5;
+}
+a{color:inherit;text-underline-offset:4px}
+a:hover{opacity:.65}
+img{display:block;max-width:100%}
+.wrap{width:min(var(--page),100% - 64px);margin-inline:auto}
+
+/* Breadcrumb header — styled to match the reference image */
+.breadcrumb{
+  border-top:1px solid var(--line);
+  margin:0;
+  padding:27px 0 22px;
+  font-size:15px;
+  line-height:1.7;
+  color:var(--muted);
+}
+.breadcrumb a{
+  color:var(--ink);
+  text-decoration:none;
+}
+.breadcrumb a:hover{
+  text-decoration:underline;
+  text-underline-offset:4px;
+}
+.breadcrumb-separator{
+  padding:0 3px;
+  color:var(--muted);
+}
+
+/* Shared typography */
+
+.eyebrow{
+  margin:0 0 13px;font-size:10px;font-weight:700;
+  letter-spacing:1.8px;text-transform:uppercase;color:var(--muted);
+}
+h1,h2,h3,p{margin-top:0}
+h1,h2,h3{font-weight:400;letter-spacing:-.7px}
+h1{font-size:clamp(35px,4.8vw,53px);line-height:1.12;margin-bottom:21px}
+h2{font-size:34px;line-height:1.2;margin-bottom:12px}
+h3{font-size:22px;line-height:1.3;margin-bottom:10px}
+p{margin-bottom:15px}
+.muted{color:var(--muted)}
+.small{font-size:12px;color:var(--muted)}
+.breadcrumb{padding:25px 0;font-size:12px;color:var(--muted)}
+.breadcrumb a{text-decoration:none}
+
+/* Hero */
+.hero{
+  display:grid;grid-template-columns:1.02fr .98fr;
+  align-items:center;gap:55px;padding:18px 0 48px;
+  border-bottom:1px solid var(--line);
+}
+.hero-copy{max-width:520px}
+.hero .lead{font-size:17px;line-height:1.85;color:#505050}
+.status{
+  display:inline-flex;align-items:center;gap:9px;
+  font-size:11px;color:#555;margin-bottom:20px;
+}
+.status:before{
+  content:"";width:7px;height:7px;border-radius:50%;
+  background:#555;display:inline-block;
+}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:23px}
+.tag{
+  font-size:11px;line-height:1.5;padding:6px 11px;
+  border:1px solid var(--line);border-radius:2px;
+}
+.hero-figure{margin:0;min-width:0}
+.hero-image{
+  width:100%;height:350px;object-fit:contain;
+  background:var(--soft);border:1px solid var(--line);
+  padding:10px;
+}
+figcaption{font-size:11px;line-height:1.6;color:var(--muted);margin-top:10px}
+
+/* Sticky section navigation */
+.section-nav{
+  position:sticky;top:0;z-index:10;background:rgba(255,255,255,.97);
+  border-bottom:1px solid var(--line);
+}
+.section-nav-inner{display:flex;gap:30px;overflow-x:auto;padding:15px 0}
+.section-nav a{
+  font-size:11px;color:#555;text-decoration:none;white-space:nowrap;
+}
+.section-nav a:hover{color:var(--ink)}
+
+/* Main sections */
+.section{padding:53px 0;border-bottom:1px solid var(--line)}
+.section-top{
+  display:grid;grid-template-columns:.75fr 1.25fr;
+  gap:40px;margin-bottom:28px;align-items:start;
+}
+.section-top .intro{max-width:610px;color:#5e5e5e;font-size:14px}
+.section-number{
+  display:block;font-size:10px;letter-spacing:1.5px;
+  color:var(--muted);margin-bottom:9px;
+}
+.subheading{
+  display:flex;align-items:baseline;justify-content:space-between;
+  gap:20px;margin:30px 0 17px;
+}
+.subheading h3{margin:0}
+.subheading p{margin:0;font-size:11px;color:var(--muted)}
+
+/* Experimental design table */
+.table-shell{border:1px solid var(--line);overflow-x:auto}
+table{width:100%;border-collapse:collapse;min-width:600px;font-size:13px}
+th,td{text-align:left;padding:15px 17px;vertical-align:top;border-bottom:1px solid var(--line)}
+th{
+  font-size:10px;letter-spacing:1.1px;text-transform:uppercase;
+  font-weight:700;background:var(--soft);color:#555;
+}
+tbody tr:last-child td{border-bottom:0}
+td:first-child{font-weight:600}
+.method-note{
+  margin-top:15px;padding:15px 18px;background:var(--soft);
+  border-left:2px solid #888;font-size:12px;color:#555;
+}
+
+/* Figures */
+.figure-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:17px}
+.figure-card{margin:0;min-width:0}
+.figure-frame{
+  aspect-ratio:4/3;background:var(--soft);
+  border:1px solid var(--line);overflow:hidden;
+  display:flex;align-items:center;justify-content:center;
+}
+.figure-frame img{width:100%;height:100%;object-fit:contain}
+.figure-placeholder{
+  padding:20px;text-align:center;color:#777;font-size:12px;
+  line-height:1.65;max-width:260px;
+}
+.figure-placeholder strong{
+  display:block;font-size:13px;font-weight:600;color:#454545;margin-bottom:5px;
+}
+.figure-card figcaption strong{color:var(--ink);font-weight:600}
+.figure-card figcaption{min-height:38px}
+
+/* Findings */
+.finding-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.finding{
+  padding:21px;border:1px solid var(--line);min-width:0;
+}
+.finding .index{font-size:10px;letter-spacing:1.5px;color:var(--muted)}
+.finding h3{margin:12px 0 9px}
+.finding p{font-size:13px;color:#5c5c5c;margin:0}
+
+/* Contribution */
+.contribution-list{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.contribution-list li{
+  display:grid;grid-template-columns:35px 1fr;gap:14px;
+  padding:15px 0;border-bottom:1px solid var(--line);
+  font-size:14px;
+}
+.contribution-list .n{font-size:11px;color:var(--muted);padding-top:3px}
+
+/* References */
+.references{list-style:none;padding:0;margin:0;counter-reset:ref}
+.references li{
+  counter-increment:ref;display:grid;
+  grid-template-columns:30px 1fr;gap:13px;
+  padding:17px 0;border-bottom:1px solid var(--line);
+  font-size:13px;line-height:1.8;
+}
+.references li:before{
+  content:"[" counter(ref) "]";color:var(--muted);font-size:11px;padding-top:2px;
+}
+.references a{font-size:11px;font-weight:600;white-space:nowrap}
+.end-links{
+  display:flex;justify-content:space-between;gap:20px;
+  padding:27px 0;font-size:12px;
+}
+.end-links a{text-decoration:none}
+footer{
+    margin-top:35px;
+    padding:22px 5% 30px;
+    border-top:1px solid var(--line);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px 25px;
+    flex-wrap:wrap;
+    font-size:15px;
+    color:#555;
+}
+footer a{color:inherit}
+footer a:hover{text-decoration:underline;text-underline-offset:4px}
+
+/* Responsive layout */
+@media (max-width:760px){
+  .breadcrumb{padding:22px 0 18px;font-size:14px;}
+
+  .wrap{width:calc(100% - 36px)}
+  .hero{grid-template-columns:1fr;gap:25px;padding-top:10px}
+  .hero-image{height:auto;aspect-ratio:4/3}
+  .section{padding:39px 0}
+  .section-top{grid-template-columns:1fr;gap:10px}
+  .section-nav-inner{gap:22px}
+  h2{font-size:30px}
+  .figure-grid,.finding-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:480px){
+  .figure-grid,.finding-grid{grid-template-columns:1fr}
+  .figure-card figcaption{min-height:0}
+  .subheading{align-items:flex-start;flex-direction:column;gap:5px}
+  .end-links,.footer-inner{flex-direction:column}
+  h1{font-size:37px}
+  .hero .lead{font-size:15px}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
 }
 </style>
 </head>
 
 <body>
 
-<header class="site-header">
-    <a class="brand" href="../index.html">aryan.phd</a>
+<main class="wrap">
 
-    <nav class="site-nav" aria-label="Main navigation">
-        <a href="../index.html">Home</a>
-        <a href="../about.html">About</a>
-        <a class="active" href="../research.html">Research</a>
-        <a href="../experience.html">Experience</a>
-        <a href="../notebook.html">Notebook</a>
-        <a href="../contact.html">Contact</a>
-    </nav>
-</header>
+  <div class="breadcrumb">
+    <a href="../research.html">← Back to research archive</a>
+    <span class="breadcrumb-separator"> / </span>
+    <span>Experimental growth</span>
+  </div>
 
-<main class="page">
+  <article>
+    <section class="hero" aria-labelledby="project-title">
+      <div class="hero-copy">
+        <p class="eyebrow">Research project · 01</p>
+        <div class="status">Ongoing research</div>
 
-    <div class="breadcrumb">
-        <a class="back" href="../research.html">← Back to research archive</a>
-        <span class="slash">/</span>
-        <span>First-principles simulation · Oxide structure</span>
-    </div>
+        <h2 id="project-title">
+          CVD Growth and Characterization of 2D Semiconductors
+        </h2>
 
-    <!-- HERO -->
-    <section class="hero">
+        <p class="lead">
+          Investigating the growth of MoSe₂, WS₂ and WSe₂ on
+          lithographically patterned Si/SiO₂ substrates, focusing on
+          precursor selection, temperature, hydrogen flow and dwell time.
+        </p>
 
-        <div class="hero-text">
-            <div class="eyebrow">
-                Computational materials · DFT · AIMD
-            </div>
-
-            <h2>DFT and AIMD Studies of MoO₃ Structural Disorder</h2>
-
-            <p class="hero-description">
-                First-principles simulations of MoO₃ structural relaxation,
-                thermal evolution, local coordination, and disorder analysis.
-            </p>
-
-            <div class="tags">
-                <span class="tag">Quantum ESPRESSO</span>
-                <span class="tag">DFT / PBE</span>
-                <span class="tag">AIMD</span>
-                <span class="tag">Mo–O Coordination</span>
-                <span class="tag">RDF Analysis</span>
-            </div>
+        <div class="tags">
+          <span class="tag">MoSe₂</span>
+          <span class="tag">WS₂</span>
+          <span class="tag">WSe₂</span>
+          <span class="tag">CVD</span>
+          <span class="tag">Raman spectroscopy</span>
+          <span class="tag">Growth kinetics</span>
         </div>
+      </div>
 
-        <figure class="hero-figure">
-            <!-- Replace with an actual structure rendering from your calculations -->
-            <div class="hero-placeholder">
-                <div>
-                    <strong>MoO₃ Structural Disorder</strong>
-                    Crystalline reference → AIMD configuration<br>
-                    Insert your actual QE structure visualization here.
-                </div>
-            </div>
-            <figcaption>
-                Figure 01 · MoO₃ atomic model and disordered-structure workflow.
-            </figcaption>
-        </figure>
+      <figure class="hero-figure">
+        <img class="hero-image"
+             src="../assets/images/cvd-tmdc-composite.jpg"
+             alt="Optical microscopy and characterization of CVD-grown two-dimensional semiconductors">
+      
+      </figure>
+    </section>
+
+    <nav class="section-nav" aria-label="Project sections">
+      <div class="section-nav-inner">
+        <a href="#design">Experimental design</a>
+        <a href="#results">Results & data</a>
+        <a href="#findings">Key findings</a>
+        <a href="#contribution">My contribution</a>
+        <a href="#references">References</a>
+      </div>
+    </nav>
+
+    <section class="section" id="design">
+      <div class="section-top">
+        <div>
+          <span class="section-number">01 / EXPERIMENTS</span>
+          <h2>Experimental design</h2>
+        </div>
+        <!-- <p class="intro">
+          Metal or metal-oxide precursor layers were deposited by RF
+          sputtering onto Si/SiO₂ substrates with triangular lithographic
+          patterns. Sulfur or selenium was supplied from a separate boat
+          during the CVD growth process.
+        </p> -->
+      </div>
+
+      <div class="table-shell">
+        <table>
+          <thead>
+            <tr>
+              <th>Study</th>
+              <th>Precursor layer</th>
+              <th>Variables investigated</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>MoSe₂ growth</td>
+              <td>Mo and MoO₃</td>
+              <td>400, 450 and 500 °C</td>
+            </tr>
+            <tr>
+              <td>Hydrogen-flow study</td>
+              <td>MoO₃</td>
+              <td>14, 20 and 24 sccm H₂</td>
+            </tr>
+            <tr>
+              <td>Growth-time study</td>
+              <td>MoO₃</td>
+              <td>1, 2, 3, 4 and 5 min at 24 sccm H₂</td>
+            </tr>
+            <tr>
+              <td>WS₂ growth</td>
+              <td>W</td>
+              <td>400–500 °C</td>
+            </tr>
+            <tr>
+              <td>WSe₂ growth</td>
+              <td>W</td>
+              <td>400–500 °C</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
 
     </section>
 
-    <!-- SECTION NAVIGATION -->
-    <nav class="section-navigation" aria-label="Project sections">
-        <a href="#overview">Overview</a>
-        <a href="#methods">Methods</a>
-        <a href="#workflow">Workflow</a>
-        <a href="#analysis">Structural analysis</a>
-        <a href="#results">Results & data</a>
-        <a href="#contribution">My contribution</a>
-        <a href="#references">References</a>
-    </nav>
+    <section class="section" id="results">
+      <div class="section-top">
+        <div>
+          <span class="section-number">02 / DATA</span>
+          <h2>Results & data</h2>
+        </div>
+      
+      </div>
 
-    <div class="content">
+      <div class="subheading">
+        <h3>MoSe₂ · Precursor and temperature</h3>
+        <p>400 / 450 / 500 °C</p>
+      </div> 
 
-        <!-- OVERVIEW -->
-        <section id="overview">
-            <div class="section-label">01 / Overview</div>
-            <h2>Atomic Models and Calculation Scope</h2>
-
-            <div class="grid-2">
-                <figure class="figure">
-                    <div class="plot-placeholder">
-                        Crystalline α-MoO₃ structure<br>
-                        Insert a rendering from relaxed QE coordinates.
-                    </div>
-                    <figcaption>
-                        <strong>(a) Crystalline reference</strong> · Mo/O sites and unit cell.
-                    </figcaption>
-                </figure>
-
-                <figure class="figure">
-                    <div class="plot-placeholder">
-                        Candidate disordered structure<br>
-                        Insert the verified final MD configuration.
-                    </div>
-                    <figcaption>
-                        <strong>(b) Disordered configuration</strong> · Label the run and frame.
-                    </figcaption>
-                </figure>
+      <div class="figure-grid">
+        <figure class="figure-card">
+          <div class="figure-frame">
+            <div class="figure-placeholder">
+              <strong>Mo precursor</strong>
+              Insert optical micrograph
             </div>
+          </div>
+          <figcaption><strong>Figure 1.</strong> Mo-based precursor growth. Add sample ID and actual temperature.</figcaption>
+        </figure>
 
-            <div class="table-wrap">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>System</th>
-                            <th>Composition</th>
-                            <th>Simulation method</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>144-atom MoO₃</td>
-                            <td>36 Mo + 108 O</td>
-                            <td>QE first-principles workflow</td>
-                        </tr>
-                        <tr>
-                            <td>256-atom MoO₃</td>
-                            <td>64 Mo + 192 O</td>
-                            <td>Separate staged QE workflow</td>
-                        </tr>
-                        <tr>
-                            <td>256 / 1024-atom models</td>
-                            <td>MoO₃</td>
-                            <td>Separate classical LAMMPS branch</td>
-                        </tr>
-                    </tbody>
-                </table>
+        <figure class="figure-card">
+          <div class="figure-frame">
+            <div class="figure-placeholder">
+              <strong>MoO₃ · Lower temperature</strong>
+              Insert optical micrograph
             </div>
-        </section>
+          </div>
+          <figcaption><strong>Figure 2.</strong> MoO₃-based growth. Specify the measured condition.</figcaption>
+        </figure>
 
-        <!-- METHODS -->
-        <section id="methods">
-            <div class="section-label">02 / Methods</div>
-            <h2>DFT and AIMD Parameters</h2>
-
-            <div class="table-wrap">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Parameter</th>
-                            <th>144-atom QE output</th>
-                            <th>Role</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>Code</td><td>PWscf · Quantum ESPRESSO v8.0dev</td><td>Plane-wave DFT</td></tr>
-                        <tr><td>XC functional</td><td>PBE-GGA</td><td>Exchange–correlation</td></tr>
-                        <tr><td>Mo pseudopotential</td><td>Mo.pbe-spn-kjpaw_psl.1.0.0.UPF</td><td>PAW</td></tr>
-                        <tr><td>O pseudopotential</td><td>O.pbe-n-kjpaw_psl.1.0.0.UPF</td><td>PAW</td></tr>
-                        <tr><td>ecutwfc</td><td>60 Ry</td><td>Wavefunction cutoff</td></tr>
-                        <tr><td>ecutrho</td><td>480 Ry</td><td>Charge-density cutoff</td></tr>
-                        <tr><td>conv_thr</td><td>1.0 × 10⁻⁶ Ry</td><td>SCF convergence</td></tr>
-                        <tr><td>MD temperature</td><td>300 K in inspected stage</td><td>Nosé thermostat stage</td></tr>
-                        <tr><td>Timestep / k-points</td><td>Confirm from matching input</td><td>Reproducibility</td></tr>
-                    </tbody>
-                </table>
+        <figure class="figure-card">
+          <div class="figure-frame">
+            <div class="figure-placeholder">
+              <strong>MoO₃ · Higher temperature</strong>
+              Insert optical micrograph
             </div>
+          </div>
+          <figcaption><strong>Figure 3.</strong> Temperature-dependent morphology. Add sample ID and scale bar.</figcaption>
+        </figure>
+      </div>
 
-            <p class="note">
-                Parameters above refer to the inspected 144-atom output.
-                Verify the 256-atom settings against its own input and log.
-            </p>
-        </section>
+      <div class="subheading">
+        <h3>MoSe₂ · Hydrogen flow and growth time</h3>
+        <p>14 / 20 / 24 sccm · 1–5 min</p>
+      </div>
 
-        <!-- WORKFLOW -->
-        <section id="workflow">
-            <div class="section-label">03 / Workflow</div>
-            <h2>Simulation Pipeline</h2>
-
-            <div class="workflow">
-                <div class="step">
-                    <div class="step-number">STEP 01</div>
-                    <h3>Structure</h3>
-                    <p>Cell, stoichiometry, coordinates, periodic boundaries.</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">STEP 02</div>
-                    <h3>Relaxation</h3>
-                    <p>SCF convergence and ionic structural optimization.</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">STEP 03</div>
-                    <h3>AIMD</h3>
-                    <p>Temperature schedule, thermostat, timestep, trajectory.</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">STEP 04</div>
-                    <h3>Final frame</h3>
-                    <p>Validate final coordinates and thermal-stage history.</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">STEP 05</div>
-                    <h3>Analysis</h3>
-                    <p>RDF, bonds, coordination, energy and temperature.</p>
-                </div>
+      <div class="figure-grid">
+        <figure class="figure-card">
+          <div class="figure-frame">
+            <div class="figure-placeholder">
+              <strong>Hydrogen-flow comparison</strong>
+              Insert matched images for 14, 20 and 24 sccm
             </div>
-        </section>
+          </div>
+          <figcaption><strong>Figure 4.</strong> Morphology as a function of H₂ flow at matched conditions.</figcaption>
+        </figure>
 
-        <!-- STRUCTURAL ANALYSIS -->
-        <section id="analysis">
-            <div class="section-label">04 / Structural analysis</div>
-            <h2>Quantitative Structure Descriptors</h2>
-
-            <div class="grid-3">
-
-                <article class="card">
-                    <div class="plot-placeholder">
-                        <div>
-                            <strong>g(r) vs r (Å)</strong>
-                            Mo–O · Mo–Mo · O–O
-                        </div>
-                    </div>
-                    <h3>Radial Distribution Function</h3>
-                    <p>Peak positions, peak broadening, and medium-range order.</p>
-                </article>
-
-                <article class="card">
-                    <div class="plot-placeholder">
-                        <div>
-                            <strong>Mo–O distance (Å)</strong>
-                            Bond-length histogram
-                        </div>
-                    </div>
-                    <h3>Bond-Length Distribution</h3>
-                    <p>Mean distance, spread, and local bonding variation.</p>
-                </article>
-
-                <article class="card">
-                    <div class="plot-placeholder">
-                        <div>
-                            <strong>Coordination number</strong>
-                            Mo neighbour statistics
-                        </div>
-                    </div>
-                    <h3>Coordination Statistics</h3>
-                    <p>Fraction of Mo sites by O-neighbour count and cutoff.</p>
-                </article>
-
-                <article class="card">
-                    <div class="plot-placeholder">
-                        <div>
-                            <strong>Angle (degrees)</strong>
-                            Bond-angle distribution
-                        </div>
-                    </div>
-                    <h3>Bond-Angle Analysis</h3>
-                    <p>O–Mo–O / Mo–O–Mo angular distributions.</p>
-                </article>
-
-                <article class="card">
-                    <div class="plot-placeholder">
-                        <div>
-                            <strong>Temperature / energy</strong>
-                            Value vs time or MD step
-                        </div>
-                    </div>
-                    <h3>Thermal Evolution</h3>
-                    <p>Temperature stability, energy evolution, and stage transitions.</p>
-                </article>
-
-                <article class="card">
-                    <div class="plot-placeholder">
-                        <div>
-                            <strong>Density / S(q)</strong>
-                            Include if calculated
-                        </div>
-                    </div>
-                    <h3>Density / Structure Factor</h3>
-                    <p>Cell-based density or a documented reciprocal-space analysis.</p>
-                </article>
-
+        <figure class="figure-card">
+          <div class="figure-frame">
+            <div class="figure-placeholder">
+              <strong>Dwell-time series</strong>
+              Insert the 1–5 min image sequence
             </div>
+          </div>
+          <figcaption><strong>Figure 5.</strong> Time-dependent domain growth under the selected conditions.</figcaption>
+        </figure>
 
-            <p class="note">
-                All plots must be generated from actual structures or trajectories.
-                Record frame range, units, bin width, cutoff, normalization,
-                and averaging method.
-            </p>
-        </section>
-
-        <!-- RESULTS -->
-        <section id="results">
-            <div class="section-label">05 / Results & data</div>
-            <h2>Calculation Status</h2>
-
-            <div class="table-wrap">
-                <table>
-                    <thead>
-                        <tr><th>Work package</th><th>Evidence</th><th>Status</th></tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>144-atom QE</td>
-                            <td>Setup details present in inspected output</td>
-                            <td><span class="status">Verify completion</span></td>
-                        </tr>
-                        <tr>
-                            <td>256-atom QE</td>
-                            <td>Staged input/output files</td>
-                            <td><span class="status">Verify stages</span></td>
-                        </tr>
-                        <tr>
-                            <td>LAMMPS branch</td>
-                            <td>Separate classical input files</td>
-                            <td><span class="status">Report separately</span></td>
-                        </tr>
-                        <tr>
-                            <td>RDF / coordination</td>
-                            <td>Requires verified trajectory and analysis</td>
-                            <td><span class="status">Add actual data</span></td>
-                        </tr>
-                    </tbody>
-                </table>
+        <figure class="figure-card">
+          <div class="figure-frame">
+            <div class="figure-placeholder">
+              <strong>Quantitative growth plot</strong>
+              Insert measured area, size or coverage data
             </div>
-        </section>
+          </div>
+          <figcaption><strong>Figure 6.</strong> Quantitative growth metric versus dwell time, with uncertainty if available.</figcaption>
+        </figure>
+      </div>
 
-        <!-- CONTRIBUTION -->
-        <section id="contribution">
-            <div class="section-label">06 / My contribution</div>
-            <h2>Technical Work</h2>
+      <div class="subheading">
+        <h3>WS₂ and WSe₂ · Temperature-dependent growth</h3>
+        <p>W precursor · 400–500 °C</p>
+      </div>
 
-            <div class="grid-2">
-                <div class="card">
-                    <h3>DFT and simulation setup</h3>
-                    <ul>
-                        <li>Prepared and organized MoO₃ structures and QE inputs.</li>
-                        <li>Worked with pseudopotentials, cutoffs, and SCF settings.</li>
-                        <li>Organized structural-relaxation and AIMD stages.</li>
-                    </ul>
-                </div>
-
-                <div class="card">
-                    <h3>Output and analysis workflow</h3>
-                    <ul>
-                        <li>Inspected logs and troubleshot calculation inputs.</li>
-                        <li>Maintained separate QE and LAMMPS calculation records.</li>
-                        <li>Defined structural descriptors for disorder analysis.</li>
-                    </ul>
-                </div>
+      <div class="figure-grid">
+        <figure class="figure-card">
+          <div class="figure-frame">
+            <div class="figure-placeholder">
+              <strong>WS₂ growth</strong>
+              Insert temperature-series images
             </div>
-        </section>
+          </div>
+          <figcaption><strong>Figure 7.</strong> WS₂ morphology across the investigated temperature range.</figcaption>
+        </figure>
 
-        <!-- REFERENCES -->
-        <section id="references">
-            <div class="section-label">07 / References</div>
-            <h2>Methods and Software</h2>
+        <figure class="figure-card">
+          <div class="figure-frame">
+            <div class="figure-placeholder">
+              <strong>WSe₂ growth</strong>
+              Insert temperature-series images
+            </div>
+          </div>
+          <figcaption><strong>Figure 8.</strong> WSe₂ morphology across the investigated temperature range.</figcaption>
+        </figure>
 
-            <ol class="references">
-                <li>
-                    Giannozzi, P. et al. “QUANTUM ESPRESSO: a modular and open-source
-                    software project for quantum simulations of materials.”
-                    <i>J. Phys.: Condens. Matter</i> 21, 395502 (2009).
-                    <a href="https://doi.org/10.1088/0953-8984/21/39/395502"
-                       target="_blank" rel="noopener">DOI</a>
-                </li>
-                <li>
-                    Giannozzi, P. et al. “Advanced capabilities for materials modelling
-                    with Quantum ESPRESSO.”
-                    <i>J. Phys.: Condens. Matter</i> 29, 465901 (2017).
-                    <a href="https://doi.org/10.1088/1361-648X/aa8f79"
-                       target="_blank" rel="noopener">DOI</a>
-                </li>
-                <li>
-                    Perdew, J. P., Burke, K. and Ernzerhof, M. “Generalized Gradient
-                    Approximation Made Simple.”
-                    <i>Phys. Rev. Lett.</i> 77, 3865 (1996).
-                    <a href="https://doi.org/10.1103/PhysRevLett.77.3865"
-                       target="_blank" rel="noopener">DOI</a>
-                </li>
-                <li>
-                    Blöchl, P. E. “Projector augmented-wave method.”
-                    <i>Phys. Rev. B</i> 50, 17953 (1994).
-                    <a href="https://doi.org/10.1103/PhysRevB.50.17953"
-                       target="_blank" rel="noopener">DOI</a>
-                </li>
-            </ol>
-        </section>
+        <figure class="figure-card">
+          <div class="figure-frame">
+            <div class="figure-placeholder">
+              <strong>Characterization</strong>
+              Insert actual Raman spectra or other measured data
+            </div>
+          </div>
+          <figcaption><strong>Figure 9.</strong> Experimental characterization with verified peak assignments.</figcaption>
+        </figure>
+      </div>
 
+    </section>
+
+    <section class="section" id="findings">
+      <div class="section-top">
+        <div>
+          <span class="section-number">03 / INTERPRETATION</span>
+          <h2>Key findings</h2>
+        </div>
+  
+      </div>
+
+      <div class="finding-grid">
+        <article class="finding">
+          <span class="index">FINDING 01</span>
+          <h3>Morphology</h3>
+          <p>Summarize observed triangular domains, lateral dimensions,
+          nucleation density or coverage using measured values.</p>
+        </article>
+
+        <article class="finding">
+          <span class="index">FINDING 02</span>
+          <h3>Growth conditions</h3>
+          <p>Report the trends supported by the temperature, H₂-flow
+          and dwell-time comparisons.</p>
+        </article>
+
+        <article class="finding">
+          <span class="index">FINDING 03</span>
+          <h3>Material characterization</h3>
+          <p>Report verified Raman features or other characterization
+          results and explain what they support.</p>
+        </article>
+      </div>
+
+    </section>
+
+    <section class="section" id="contribution">
+      <div class="section-top">
+        <div>
+          <span class="section-number">04 / RESEARCH ROLE</span>
+          <h2>My contribution</h2>
+        </div>
+      
+      </div>
+
+      <ol class="contribution-list">
+        <li><span class="n">01</span><span>Conducted CVD growth studies using RF-sputtered metal or metal-oxide layers on patterned Si/SiO₂ substrates.</span></li>
+        <li><span class="n">02</span><span>Investigated precursor selection and process conditions for MoSe₂, including temperature, hydrogen flow and dwell time.</span></li>
+        <li><span class="n">03</span><span>Extended growth experiments to WS₂ and WSe₂ using W-containing precursor layers.</span></li>
+        <li><span class="n">04</span><span>Documented experimental morphology and performed image analysis or material characterization where applicable.</span></li>
+      </ol>
+    </section>
+
+    <section class="section" id="references">
+      <div class="section-top">
+        <div>
+          <span class="section-number">05 / LITERATURE</span>
+          <h2>References</h2>
+        </div>
+        
+      </div>
+
+      <ol class="references">
+        <li>
+          <div>
+            Singh et al., “Raman spectroscopic investigations of the
+            selenization of MoO₃ in the chemical vapor deposition process
+            to form two-dimensional MoSe₂,” <em>Applied Surface Science</em>,
+            538, 147946 (2021).
+            <br><a href="https://doi.org/10.1016/j.apsusc.2020.147946"
+            target="_blank" rel="noopener">Read paper ↗</a>
+          </div>
+        </li>
+
+        <li>
+          <div>
+            “Revealing the microscopic CVD growth mechanism of MoSe₂ and
+            the role of hydrogen gas during the growth procedure,”
+            <em>Nanotechnology</em>, 29, 314001 (2018).
+            <br><a href="https://doi.org/10.1088/1361-6528/aac397"
+            target="_blank" rel="noopener">Read paper ↗</a>
+          </div>
+        </li>
+
+        <li>
+          <div>
+            “WS₂ nanotube formation by sulphurization: Effect of precursor
+            tungsten film thickness and stress,”
+            <em>Materials Chemistry and Physics</em> (2016).
+            <br><a href="https://doi.org/10.1016/j.matchemphys.2016.06.069"
+            target="_blank" rel="noopener">Read paper ↗</a>
+          </div>
+        </li>
+
+        <li>
+          <div>
+            “Optimisation of processing conditions during CVD growth of
+            2D WS₂ films from a chloride precursor,”
+            <em>Journal of Materials Science</em> (2022).
+            <br><a href="https://doi.org/10.1007/s10853-021-06708-1"
+            target="_blank" rel="noopener">Read paper ↗</a>
+          </div>
+        </li>
+
+        <li>
+          <div>
+            “Thickness-dependent Raman spectra of CVD-grown WSe₂ thin films,”
+            <em>New Physics: Sae Mulli</em>, 65, 633–637 (2015).
+            <br><a href="https://doi.org/10.3938/NPSM.65.633"
+            target="_blank" rel="noopener">Read paper ↗</a>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <div class="end-links">
+      <a href="../research.html">← Back to research archive</a>
+      <a href="../experience.html#iith">Related research experience ↗</a>
     </div>
-
-    <footer class="footer">
-        <span>aryan.phd · Research portfolio</span>
-        <a href="../research.html">← Research archive</a>
-        <span>Project details · October 2026</span>
-    </footer>
-
+  </article>
 </main>
+
+<footer class="footer">
+    <span>aryan.phd · Research portfolio</span>
+    <span>CVD growth and characterization · October 2026</span>
+    <a href="../research.html">Back to research archive ↑</a>
+</footer>
 
 </body>
 </html>
-```
