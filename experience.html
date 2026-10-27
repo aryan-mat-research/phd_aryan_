@@ -74,6 +74,131 @@
       h3 { font-size: 22px; }
       p, li { font-size: 18px; }
     }
+
+    /* Experience layout fixes: keep the image and text aligned */
+    .experience-list {
+      width: 100%;
+      min-width: 0;
+    }
+
+    .experience-card {
+      display: grid;
+      grid-template-columns: minmax(240px, 280px) minmax(0, 1fr);
+      align-items: start;
+      column-gap: 34px;
+      row-gap: 22px;
+      min-width: 0;
+    }
+
+    .experience-image {
+      width: 100%;
+      max-width: 280px;
+      min-width: 0;
+      height: auto;
+      margin: 0;
+      padding: 0;
+      overflow: visible;
+    }
+
+    .experience-image a {
+      display: block;
+      width: 100%;
+      height: auto;
+      line-height: 0;
+    }
+
+    .experience-image img {
+      display: block;
+      width: 100%;
+      max-width: 100%;
+      height: auto;
+      max-height: none;
+      object-fit: contain;
+      object-position: top left;
+      margin: 0;
+      padding: 0;
+      border: 0;
+      border-radius: 0;
+      box-shadow: none;
+    }
+
+    .experience-content {
+      width: 100%;
+      min-width: 0;
+      margin: 0;
+    }
+
+    .experience-content h3 {
+      margin-top: 0;
+      overflow-wrap: normal;
+    }
+
+    .experience-tags {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 6px 16px;
+      margin: 14px 0 8px;
+      padding: 0;
+      list-style: none;
+    }
+
+    .experience-tags li {
+      margin: 0;
+    }
+
+    .experience-projects {
+      min-width: 0;
+      margin-top: 8px;
+    }
+
+    .experience-projects-label {
+      margin: 0 0 8px;
+    }
+
+    .experience-projects a {
+      display: inline;
+      margin: 0 14px 0 0;
+      line-height: 1.9;
+      overflow-wrap: anywhere;
+      text-decoration: none;
+    }
+
+    .experience-projects a:hover {
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    @media (max-width: 760px) {
+      .experience-card {
+        grid-template-columns: minmax(0, 1fr);
+        row-gap: 20px;
+      }
+
+      .experience-image {
+        width: 100%;
+        max-width: 420px;
+      }
+
+      .experience-content {
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .experience-card {
+        row-gap: 16px;
+      }
+
+      .experience-image {
+        max-width: 100%;
+      }
+
+      .experience-projects a {
+        margin-right: 10px;
+      }
+    }
+
   </style>
 
 </head>
