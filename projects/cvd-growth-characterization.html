@@ -8,45 +8,48 @@
 <title>CVD Growth of 2D Semiconductors | aryan.phd</title>
 
 <style>
-:root{
-  --ink:#171717;
-  --muted:#6d6d6d;
-  --line:#dededb;
-  --paper:#fff;
-  --soft:#f7f7f5;
-  --serif:Georgia,"Times New Roman",serif;
-  --sans:Arial,Helvetica,sans-serif;
-  --page:1080px;
-}
-*{box-sizing:border-box}
+:root{--ink:#171717;--muted:#666;--line:#d8d8d8;--paper:#fff;--soft:#f8f8f8;--page:1080px}
+*{box-sizing:border-box;font-family:"Times New Roman",Times,serif !important}
 html{scroll-behavior:smooth;scroll-padding-top:75px}
 body{
   margin:0;background:var(--paper);color:var(--ink);
-  font-family:var(--sans);font-size:15px;line-height:1.75;
-  -webkit-font-smoothing:antialiased;
+  font-family:"Times New Roman",Times,serif;font-size:16px;line-height:1.5;
 }
 a{color:inherit;text-underline-offset:4px}
 a:hover{opacity:.65}
 img{display:block;max-width:100%}
 .wrap{width:min(var(--page),100% - 64px);margin-inline:auto}
 
-/* Navigation */
-.site-header{border-bottom:1px solid var(--line)}
-.nav{
-  min-height:76px;display:flex;align-items:center;
-  justify-content:space-between;gap:25px;
+/* Breadcrumb header — styled to match the reference image */
+.breadcrumb{
+  border-top:1px solid var(--line);
+  margin:0;
+  padding:27px 0 22px;
+  font-size:15px;
+  line-height:1.7;
+  color:var(--muted);
 }
-.brand{font-size:21px;font-weight:700;text-decoration:none;letter-spacing:-.8px}
-.nav-links{display:flex;gap:23px;flex-wrap:wrap}
-.nav-links a{font-size:12px;text-decoration:none;color:#454545}
+.breadcrumb a{
+  color:var(--ink);
+  text-decoration:none;
+}
+.breadcrumb a:hover{
+  text-decoration:underline;
+  text-underline-offset:4px;
+}
+.breadcrumb-separator{
+  padding:0 3px;
+  color:var(--muted);
+}
 
 /* Shared typography */
+
 .eyebrow{
   margin:0 0 13px;font-size:10px;font-weight:700;
   letter-spacing:1.8px;text-transform:uppercase;color:var(--muted);
 }
 h1,h2,h3,p{margin-top:0}
-h1,h2,h3{font-family:var(--serif);font-weight:400;letter-spacing:-.7px}
+h1,h2,h3{font-weight:400;letter-spacing:-.7px}
 h1{font-size:clamp(35px,4.8vw,53px);line-height:1.12;margin-bottom:21px}
 h2{font-size:34px;line-height:1.2;margin-bottom:12px}
 h3{font-size:22px;line-height:1.3;margin-bottom:10px}
@@ -183,18 +186,26 @@ td:first-child{font-weight:600}
   padding:27px 0;font-size:12px;
 }
 .end-links a{text-decoration:none}
-footer{border-top:1px solid var(--line);padding:23px 0 30px}
-.footer-inner{
-  display:flex;justify-content:space-between;gap:20px;
-  font-size:11px;color:var(--muted);
+footer{
+    margin-top:35px;
+    padding:22px 5% 30px;
+    border-top:1px solid var(--line);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px 25px;
+    flex-wrap:wrap;
+    font-size:15px;
+    color:#555;
 }
-.footer-inner strong{font-size:13px;color:var(--ink)}
+footer a{color:inherit}
+footer a:hover{text-decoration:underline;text-underline-offset:4px}
 
 /* Responsive layout */
-@media(max-width:760px){
+@media (max-width:760px){
+  .breadcrumb{padding:22px 0 18px;font-size:14px;}
+
   .wrap{width:calc(100% - 36px)}
-  .nav{padding:18px 0;align-items:flex-start;flex-direction:column;gap:13px}
-  .nav-links{gap:15px}
   .hero{grid-template-columns:1fr;gap:25px;padding-top:10px}
   .hero-image{height:auto;aspect-ratio:4/3}
   .section{padding:39px 0}
@@ -219,25 +230,12 @@ footer{border-top:1px solid var(--line);padding:23px 0 30px}
 
 <body>
 
-<header class="site-header">
-  <div class="wrap nav">
-    <a class="brand" href="../index.html">aryan.phd</a>
-    <nav class="nav-links" aria-label="Main navigation">
-      <a href="../index.html">Home</a>
-      <a href="../about.html">About</a>
-      <a href="../research.html">Research</a>
-      <a href="../experience.html">Experience</a>
-      <a href="../notebook.html">Notebook</a>
-      <a href="../contact.html">Contact</a>
-    </nav>
-  </div>
-</header>
-
 <main class="wrap">
 
   <div class="breadcrumb">
-    <a href="../research.html">Research archive</a>
-    &nbsp; / &nbsp; Experimental growth
+    <a href="../research.html">← Back to research archive</a>
+    <span class="breadcrumb-separator"> / </span>
+    <span>Experimental growth</span>
   </div>
 
   <article>
@@ -582,11 +580,10 @@ footer{border-top:1px solid var(--line);padding:23px 0 30px}
   </article>
 </main>
 
-<footer>
-  <div class="wrap footer-inner">
-    <strong>aryan.phd</strong>
-    <span>IIT Hyderabad, India · Research portfolio · 2026</span>
-  </div>
+<footer class="footer">
+    <span>aryan.phd · Research portfolio</span>
+    <span>CVD growth and characterization · October 2026</span>
+    <a href="../research.html">Back to research archive ↑</a>
 </footer>
 
 </body>
