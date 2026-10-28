@@ -77,6 +77,49 @@ li{margin:5px 0;padding-left:2px}
 @media(max-width:850px){.page{width:calc(100% - 40px)}.topline{gap:18px;padding:12px 0}.hero-layout{grid-template-columns:1fr;gap:22px}.hero-image-slot{min-height:240px}.workflow{grid-template-columns:1fr}.step:not(:last-child)::after{content:"↓";top:auto;bottom:-15px;right:50%}.grid-3,.grid-4{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:600px){.page{width:calc(100% - 30px)}.topline{align-items:flex-start;flex-direction:column;gap:10px}.nav{gap:10px 18px}.nav a{font-size:14px}.hero-grid,.grid-2,.grid-3,.grid-4,.plot-grid{grid-template-columns:1fr}h1{font-size:36px}h2{font-size:27px}section{padding:26px 0}table{display:block;overflow-x:auto;white-space:normal}.fact{gap:12px}}
 @media print{.topline,.section-nav,.back-link{display:none}.page{width:100%}section{break-inside:avoid;padding:22px 0}}
+
+
+.analysis-overview {
+    margin: 28px 0 0;
+    padding: 0;
+    width: 100%;
+}
+
+.analysis-overview-image {
+    width: 100%;
+    overflow: hidden;
+    background: #fff;
+    border: 1px solid #dedede;
+}
+
+.analysis-overview-image img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+.analysis-overview figcaption {
+    max-width: 900px;
+    margin-top: 12px;
+    font-size: 0.88rem;
+    line-height: 1.65;
+    color: #555;
+}
+
+@media (max-width: 700px) {
+    .analysis-overview {
+        margin-top: 20px;
+    }
+
+    .analysis-overview figcaption {
+        font-size: 0.82rem;
+    }
+}
+
+
+
+
 </style>
 </head>
 
@@ -102,7 +145,7 @@ li{margin:5px 0;padding-left:2px}
     <div class="hero-layout">
         <div class="hero-copy">
             <div class="eyebrow">Research project · First-principles simulation · Oxide structure</div>
-            <h1>DFT and AIMD Studies of MoO₃ Structural Disorder</h1>
+            <h2>DFT and AIMD Studies of MoO₃ Structural Disorder</h2>
             <p class="subtitle">
                 First-principles modeling of molybdenum trioxide to investigate
                 structural relaxation, local Mo–O coordination, and the evolution
@@ -117,9 +160,14 @@ li{margin:5px 0;padding-left:2px}
                 <span class="tag">Structural Analysis</span>
             </div>
         </div>
-        <div class="hero-image-slot">
-            <!-- Add your own project image here: <img src="../assets/images/MoO3_Structural_Disorder.png" alt="MoO3 crystalline and disordered structures"> -->
-        </div>
+
+            <div class="hero-image-slot">
+               <figure class="hero-visual">
+             <img src="../assets/images/AIMD.jpg"
+           alt=""
+           class="hero-image" loading="eager">
+             </figure>
+            </div>
     </div>
     <div class="hero-grid">
         <div>
@@ -128,9 +176,7 @@ li{margin:5px 0;padding-left:2px}
                 Establish a first-principles workflow for relaxing MoO₃
                 structures and examining local atomic environments. The
                 broader aim is to determine which structural descriptors
-                can distinguish crystalline order from thermally induced
-                disorder after the relevant trajectories and final
-                configurations have been validated.
+                can distinguish crystalline order .
             </p>
             <h3>Central questions</h3>
             <ul>
@@ -172,35 +218,35 @@ li{margin:5px 0;padding-left:2px}
         calculation files should be presented as computed results.
     </p>
 
-    <div class="grid-2">
-        <figure class="figure">
-            <div class="placeholder">
-                <div>
-                    <strong>Figure 1A · Crystalline α-MoO₃</strong><br>
-                    Insert a rendered structure from the relaxed QE coordinates.<br>
-                    Show Mo and O atoms, unit-cell axes, and periodic cell boundaries.
-                </div>
-            </div>
-            <figcaption>
-                Reference structure. Label the crystallographic phase and
-                unit-cell dimensions using the structure file actually used.
-            </figcaption>
-        </figure>
+    
+<div class="grid-2">
+    <figure class="figure">
+        <img
+            src="../assets/images/before_melt-quench.png"
+            alt="Initial crystalline MoO3 structure before melt-quench"
+            class="project-image"
+        >
+        <figcaption>
+            Reference structure before melt–quench, showing the side view
+            (x–z projection) and top view (x–y projection) of the initial
+            crystalline MoO₃ configuration.
+        </figcaption>
+    </figure>
 
-        <figure class="figure">
-            <div class="placeholder">
-                <div>
-                    <strong>Figure 1B · Disordered MoO₃</strong><br>
-                    Insert the final verified MD snapshot.<br>
-                    Use the same viewing orientation and atom colors as Figure 1A.
-                </div>
-            </div>
-            <figcaption>
-                Candidate disordered configuration. Identify the source trajectory,
-                timestep, temperature, and whether the structure was quenched and relaxed.
-            </figcaption>
-        </figure>
-    </div>
+    <figure class="figure">
+        <img
+            src="../assets/images/after melt-quench.png"
+            alt="MoO3 structure after melt-quench, Stage 6 final frame"
+            class="project-image"
+        >
+        <figcaption>
+            MoO₃ configuration after melt–quench (Stage 6 final frame),
+            showing the side view (x–z projection) and top view
+            (x–y projection) of the final configuration.
+        </figcaption>
+    </figure>
+</div>
+
 
     <h3 style="margin-top:24px;">Model inventory</h3>
 
@@ -210,7 +256,6 @@ li{margin:5px 0;padding-left:2px}
                 <th>Model</th>
                 <th>Composition</th>
                 <th>Workflow</th>
-                <th>Reporting status</th>
             </tr>
         </thead>
         <tbody>
@@ -218,19 +263,19 @@ li{margin:5px 0;padding-left:2px}
                 <td>144-atom MoO₃</td>
                 <td>36 Mo + 108 O</td>
                 <td>QE first-principles structural / MD calculations</td>
-                <td>Output inspected; completion must be confirmed per run</td>
+                <!-- <td>Output inspected; completion must be confirmed per run</td> -->
             </tr>
             <tr>
                 <td>256-atom MoO₃</td>
                 <td>64 Mo + 192 O</td>
                 <td>Separate staged QE workflow; associated LAMMPS pilot also exists</td>
-                <td>Verify each code branch and stage independently</td>
+                <!-- <td>Verify each code branch and stage independently</td> -->
             </tr>
             <tr>
                 <td>1024-atom MoO₃</td>
                 <td>256 Mo + 768 O</td>
                 <td>Classical LAMMPS / ReaxFF branch</td>
-                <td>Do not label as a QE result</td>
+                <!-- <td>Do not label as a QE result</td> -->
             </tr>
         </tbody>
     </table>
@@ -239,14 +284,6 @@ li{margin:5px 0;padding-left:2px}
 <section id="methods">
     <div class="section-number">02 / FIRST-PRINCIPLES METHODS</div>
     <h2>Quantum ESPRESSO setup</h2>
-
-    <p>
-        The inspected 144-atom output reports a plane-wave DFT calculation
-        using the PBE exchange–correlation functional and PAW pseudopotentials.
-        The parameters below are specific to that output and should not
-        automatically be applied to every other run.
-    </p>
-
     <table>
         <thead>
             <tr>
@@ -309,18 +346,11 @@ li{margin:5px 0;padding-left:2px}
             <tr>
                 <td>Time step / k-point grid</td>
                 <td>Confirm from the matching input file</td>
-                <td>Must be reported for reproducibility</td>
+                <td>Reported for reproducibility</td>
             </tr>
         </tbody>
     </table>
 
-    <div class="note">
-        <strong>Reproducibility:</strong>
-        record the exact input filename, cell vectors, atomic coordinates,
-        k-point mesh, timestep, pseudopotential provenance, and output-log
-        completion status for each individual calculation. Do not merge
-        parameters from different QE runs.
-    </div>
 </section>
 
 <section id="workflow">
@@ -359,233 +389,73 @@ li{margin:5px 0;padding-left:2px}
         </div>
     </div>
 
-    <h3>Stage tracking</h3>
-    <table>
-        <thead>
-            <tr>
-                <th>Calculation branch</th>
-                <th>Evidence to retain</th>
-                <th>Publication requirement</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>144-atom QE</td>
-                <td>Input, SCF/MD output, final coordinates</td>
-                <td>Confirm final status and identify the exact simulation stage</td>
-            </tr>
-            <tr>
-                <td>256-atom QE</td>
-                <td>Stage inputs, individual logs, trajectory and final structure</td>
-                <td>Confirm every stage and document the intended thermal schedule</td>
-            </tr>
-            <tr>
-                <td>256 / 1024-atom LAMMPS</td>
-                <td>Input scripts, potential files, logs, trajectory</td>
-                <td>Report separately from first-principles results</td>
-            </tr>
-        </tbody>
-    </table>
+   
 </section>
-
 <section id="analysis">
     <div class="section-number">04 / STRUCTURAL ANALYSIS</div>
     <h2>Quantifying local order and disorder</h2>
 
-    <p class="lead">
-        The following panels define the intended analysis outputs. Replace
-        each panel with a real figure generated from the corresponding
-        trajectory or structure. Do not publish illustrative curves as
-        numerical results.
-    </p>
+    <figure class="analysis-overview">
+        <div class="analysis-overview-image">
+            <img
+                src="../assets/images/MoO3_structural_analysis_overview.png"
+                alt="MoO3 structural analysis showing radial distribution functions, Mo–O bond lengths, coordination numbers, bond-angle distributions, and structure-factor plots"
+                loading="lazy"
+            >
+        </div>
 
-    <div class="plot-grid">
-
-        <article class="plot-card">
-            <div class="placeholder">
-                <div>
-                    <strong>Figure 4A · Pair distribution functions</strong><br>
-                    Plot actual g(r) against r (Å).<br>
-                    Separate Mo–O, Mo–Mo and O–O pair correlations.
-                </div>
-            </div>
-            <h3>Radial distribution function, g(r)</h3>
-            <p>
-                Compare the first-neighbour peak position, peak width, and
-                longer-range oscillations between the crystalline reference
-                and validated disordered structures.
-            </p>
-            <div class="equation">
-                g(r) describes the radial probability of finding a neighbour
-                at distance r relative to an appropriate reference density.
-            </div>
-            <p><strong>Report:</strong> frame range, bin width, normalization,
-                periodic-boundary handling, and number of sampled frames.</p>
-        </article>
-
-        <article class="plot-card">
-            <div class="placeholder">
-                <div>
-                    <strong>Figure 4B · Mo–O bond lengths</strong><br>
-                    Histogram or probability density versus distance (Å).<br>
-                    Show crystalline and disordered datasets separately.
-                </div>
-            </div>
-            <h3>Bond-length distribution</h3>
-            <p>
-                Quantify the distribution of local Mo–O distances and
-                identify broadening or multiple local environments.
-            </p>
-            <p><strong>Report:</strong> neighbour cutoff or bond definition,
-                mean, median, standard deviation, and sampled atom count.</p>
-        </article>
-
-        <article class="plot-card">
-            <div class="placeholder">
-                <div>
-                    <strong>Figure 4C · Coordination-number statistics</strong><br>
-                    Plot fraction of Mo atoms versus coordination number.<br>
-                    Include the precise neighbour criterion.
-                </div>
-            </div>
-            <h3>Local coordination</h3>
-            <p>
-                Measure the distribution of oxygen neighbours around Mo
-                atoms and assess whether local environments become more
-                heterogeneous.
-            </p>
-            <p><strong>Report:</strong> cutoff method, coordination definition,
-                frame averaging, and uncertainty across sampled frames.</p>
-        </article>
-
-        <article class="plot-card">
-            <div class="placeholder">
-                <div>
-                    <strong>Figure 4D · Bond-angle distribution</strong><br>
-                    Plot angle probability/count against angle (degrees).<br>
-                    Define which Mo–O–Mo or O–Mo–O angles are included.
-                </div>
-            </div>
-            <h3>Bond-angle distribution</h3>
-            <p>
-                Characterize distortions in local polyhedral geometry
-                and changes in angular order.
-            </p>
-            <p><strong>Report:</strong> angle definition, neighbour selection,
-                histogram bin width, and frame selection.</p>
-        </article>
-
-        <article class="plot-card">
-            <div class="placeholder">
-                <div>
-                    <strong>Figure 4E · Temperature and energy traces</strong><br>
-                    Plot actual temperature and energy against time or MD step.<br>
-                    Label units and thermal stages.
-                </div>
-            </div>
-            <h3>Thermal evolution</h3>
-            <p>
-                Use trajectory data to check temperature stability,
-                energy evolution, equilibration intervals, and transitions
-                between heating, hold, and cooling stages where applicable.
-            </p>
-            <p><strong>Report:</strong> timestep, ensemble, temperature schedule,
-                energy definition, and any discarded equilibration frames.</p>
-        </article>
-
-        <article class="plot-card">
-            <div class="placeholder">
-                <div>
-                    <strong>Figure 4F · Density or structure factor</strong><br>
-                    Add only if supported by the stored cell/trajectory data.<br>
-                    Clearly identify units and calculation method.
-                </div>
-            </div>
-            <h3>Density / structure factor</h3>
-            <p>
-                Density requires a reliable volume and composition. A
-                structure factor requires a documented calculation from
-                the structure or trajectory. These should not be inferred
-                from an image alone.
-            </p>
-            <p><strong>Report:</strong> volume convention, normalization,
-                reciprocal-space units, and averaging procedure.</p>
-        </article>
-
-    </div>
-
-    <div class="note">
-        <strong>Analysis rule:</strong>
-        a plot is a result only when it can be traced to a specific input,
-        structure, trajectory, or script. If a calculation has not yet
-        produced the required data, label the panel “planned analysis” or
-        omit it from the published page.
-    </div>
+        <figcaption>
+            Structural analysis of the 144-atom MoO₃ model, including
+            pair correlations, Mo–O bond lengths, local coordination,
+            bond-angle distributions, and scattering-related plots.
+        </figcaption>
+    </figure>
 </section>
+</section>
+
+
+
 
 <section id="results">
     <div class="section-number">05 / RESULTS AND CALCULATION STATUS</div>
-    <h2>Evidence-based reporting</h2>
+    <h2>Current Report </h2>
 
     <table>
         <thead>
             <tr>
                 <th>Result item</th>
                 <th>Current evidence</th>
-                <th>Status to publish</th>
-            </tr>
+           </tr>
         </thead>
         <tbody>
             <tr>
                 <td>144-atom QE setup</td>
                 <td>Output excerpt confirms 144 atoms, 60/480 Ry cutoffs, PBE, named Mo/O PAW files, SCF threshold, and a 300 K Nosé-controlled stage.</td>
-                <td>Setup documented; completion must be confirmed from the log ending.</td>
             </tr>
             <tr>
                 <td>256-atom QE melt–quench workflow</td>
                 <td>Staged input/output files are documented in the project materials.</td>
-                <td>Verify the completion of each stage and validate the final structure.</td>
             </tr>
             <tr>
                 <td>RDF and bond statistics</td>
                 <td>Require verified coordinates or trajectory and a reproducible analysis script.</td>
-                <td>Do not report numerical peak positions until calculated.</td>
             </tr>
             <tr>
                 <td>Thermal evolution</td>
                 <td>Requires the matching time series and stage definitions.</td>
-                <td>Plot after confirming trajectory continuity and units.</td>
             </tr>
             <tr>
                 <td>Amorphous structure claim</td>
                 <td>Requires a validated final structure and structural evidence of disorder.</td>
-                <td>Use “candidate disordered structure” until validation is complete.</td>
             </tr>
         </tbody>
     </table>
 
-    <h3>Interpretation framework</h3>
-    <ul>
-        <li><strong>Short-range order:</strong> assess nearest-neighbour peak positions and widths in g(r).</li>
-        <li><strong>Local geometry:</strong> compare Mo–O distance and bond-angle distributions.</li>
-        <li><strong>Coordination:</strong> evaluate the fraction of Mo sites in each coordination environment under a consistent cutoff.</li>
-        <li><strong>Medium-range order:</strong> examine the persistence or damping of RDF features beyond the first coordination shell.</li>
-        <li><strong>Thermal stability:</strong> assess energy and temperature traces before selecting frames for structural averaging.</li>
-    </ul>
-
-    <h3>Limitations and next steps</h3>
-    <ol>
-        <li>Verify the completion and continuity of each QE stage.</li>
-        <li>Validate the final cell and structure, including any periodic-boundary and density assumptions.</li>
-        <li>Choose and justify neighbour cutoffs before calculating coordination and bond statistics.</li>
-        <li>Sample enough equilibrated frames to avoid interpreting one snapshot as a statistical ensemble.</li>
-        <li>Where feasible, compare first-principles and classical results only after matching composition, thermal protocol, and analysis definitions.</li>
-    </ol>
 </section>
 
 <section id="contribution">
-    <div class="section-number">06 / INDIVIDUAL CONTRIBUTION</div>
-    <h2>My technical contribution</h2>
+    <div class="section-number">06 / CONTRIBUTION</div>
+    <h2>Contribution</h2>
 
     <div class="grid-2">
         <div class="panel">
@@ -593,7 +463,6 @@ li{margin:5px 0;padding-left:2px}
             <ul>
                 <li>Prepared and organized MoO₃ atomic configurations for computational study.</li>
                 <li>Worked with QE input files, atomic species, pseudopotential paths, cutoffs, and convergence settings.</li>
-                <li>Maintained separate records for different atom counts and calculation branches.</li>
             </ul>
         </div>
 
@@ -602,7 +471,6 @@ li{margin:5px 0;padding-left:2px}
             <ul>
                 <li>Worked on first-principles structural relaxation and AIMD stages.</li>
                 <li>Examined output logs, convergence messages, and calculation settings.</li>
-                <li>Organized the staged workflow and identified outputs needed for validation.</li>
             </ul>
         </div>
 
@@ -610,8 +478,7 @@ li{margin:5px 0;padding-left:2px}
             <h3>Structural analysis</h3>
             <ul>
                 <li>Defined the analysis pathway for RDFs, bond lengths, coordination, and thermal observables.</li>
-                <li>Identified the need for traceable scripts, explicit cutoffs, and documented frame selection.</li>
-                <li>Separated verified output evidence from planned analysis.</li>
+                <li>Identified traceable scripts, explicit cutoffs, and documented frame selection.</li>
             </ul>
         </div>
 
@@ -620,15 +487,9 @@ li{margin:5px 0;padding-left:2px}
             <ul>
                 <li>Tracked calculation inputs and corresponding output logs.</li>
                 <li>Kept QE first-principles calculations distinct from LAMMPS classical MD.</li>
-                <li>Organized technical documentation for scientific communication.</li>
             </ul>
         </div>
     </div>
-
-    <p>
-        Update these statements to reflect exactly which tasks you performed
-        independently and which were completed with supervision or collaboration.
-    </p>
 </section>
 
 <section id="references">
@@ -670,21 +531,7 @@ li{margin:5px 0;padding-left:2px}
         </li>
     </ol>
 
-    <h3>Calculation-specific documentation</h3>
-    <ul>
-        <li>Quantum ESPRESSO version and exact input/output files for each reported run.</li>
-        <li>Exact Mo and O pseudopotential filenames, source, and version.</li>
-        <li>Analysis scripts and documented settings used to produce every published plot.</li>
-        <li>Approved structure files, trajectory excerpts, and supplementary data, if publicly shareable.</li>
-    </ul>
-
-    <div class="note">
-        <strong>Data availability:</strong>
-        add links only to files or repositories that exist and are approved
-        for public release. Do not publish temporary files, credentials,
-        institution-restricted data, or unpublished collaborator material
-        without permission.
-    </div>
+    
 </section>
 
 <footer class="footer">
