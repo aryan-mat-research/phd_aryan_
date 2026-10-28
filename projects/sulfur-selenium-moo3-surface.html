@@ -22,6 +22,11 @@ a:hover{opacity:.7}
 .breadcrumb{font-size:13px;color:var(--muted);padding:22px 0 14px}
 .breadcrumb a{text-decoration:none;color:var(--ink)}
 .hero{padding:22px 0 28px;border-bottom:1px solid var(--line)}
+.hero-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(300px,.9fr);gap:32px;align-items:center}
+.hero-copy{min-width:0}
+.hero-image-slot{width:100%;min-height:320px;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;overflow:hidden}
+.hero-image-slot img{display:block;width:100%;height:auto;max-height:440px;object-fit:contain}
+@media(max-width:850px){.hero-layout{grid-template-columns:1fr;gap:22px}.hero-image-slot{min-height:240px}}
 .kicker,.eyebrow,.section-index{font-size:12px;text-transform:uppercase;letter-spacing:.13em;font-weight:bold;color:var(--muted)}
 h1{font-size:clamp(36px,4.5vw,55px);font-weight:normal;letter-spacing:-.035em;line-height:1.03;margin:12px 0 16px;max-width:900px}
 .deck{font-size:18px;line-height:1.55;max-width:880px;color:#444;margin:0 0 18px}
@@ -33,7 +38,7 @@ h1{font-size:clamp(36px,4.5vw,55px);font-weight:normal;letter-spacing:-.035em;li
 .toc a{font-size:13px;text-decoration:none;border:1px solid var(--line);padding:5px 9px}
 main{padding-bottom:45px}
 section{padding:34px 0;border-bottom:1px solid var(--line)}
-.section-head{display:grid;grid-template-columns:135px minmax(0,1fr);gap:24px;margin-bottom:21px}
+.section-head{display:grid;grid-template-columns:1fr;gap:5px;margin-bottom:21px}
 .section-index{padding-top:7px}
 h2{font-size:clamp(25px,2.8vw,32px);font-weight:normal;letter-spacing:-.025em;line-height:1.15;margin:0 0 10px}
 h3{font-size:19px;font-weight:normal;margin:0 0 8px}
@@ -82,11 +87,18 @@ footer{padding:22px 0 35px;font-size:13px;color:#666;display:flex;justify-conten
 <div class="wrap">
   <div class="breadcrumb"><a href="../research.html">← Back to research archive</a> / Surface chemistry / Exploratory calculations</div>
   <header class="hero">
-    <div class="kicker">Computational materials science · First-principles surface chemistry</div>
-    <h1>Sulfur and Selenium Incorporation on MoO₃(010)</h1>
-    <p class="deck">A calculation-led investigation of α-MoO₃ bulk and surface relaxation, isolated S₂/Se₂ references, candidate centre/edge adsorption geometries, oxygen-site substitution, and planned NEB pathways.</p>
-    <div class="tags"><span class="tag">DFT</span><span class="tag">Quantum ESPRESSO</span><span class="tag">α-MoO₃</span><span class="tag">MoO₃(010)</span><span class="tag">S₂ / Se₂</span><span class="tag">BFGS relaxation</span><span class="tag">NEB</span></div>
-    <div class="project-state"><strong>Calculation status</strong><span>Reference calculations have reported final energies and geometry-convergence records. Surface–molecule configurations still require complete-output verification. Substitution energetics and NEB barriers are not claimed as completed results.</span></div>
+    <div class="hero-layout">
+      <div class="hero-copy">
+        <div class="kicker">Computational materials science · First-principles surface chemistry</div>
+        <h1>Sulfur and Selenium Incorporation on MoO₃(010)</h1>
+        <p class="deck">A calculation-led investigation of α-MoO₃ bulk and surface relaxation, isolated S₂/Se₂ references, candidate centre/edge adsorption geometries, oxygen-site substitution, and planned NEB pathways.</p>
+        <div class="tags"><span class="tag">DFT</span><span class="tag">Quantum ESPRESSO</span><span class="tag">α-MoO₃</span><span class="tag">MoO₃(010)</span><span class="tag">S₂ / Se₂</span><span class="tag">BFGS relaxation</span><span class="tag">NEB</span></div>
+        <div class="project-state"><strong>Calculation status</strong><span>Reference calculations have reported final energies and geometry-convergence records. Surface–molecule configurations still require complete-output verification. Substitution energetics and NEB barriers are not claimed as completed results.</span></div>
+      </div>
+      <div class="hero-image-slot">
+        <!-- Add your own image here: <img src="../assets/images/your-image.png" alt="Sulfur and selenium incorporation on MoO3 surface"> -->
+      </div>
+    </div>
   </header>
 
   <nav class="toc" aria-label="Project sections">
