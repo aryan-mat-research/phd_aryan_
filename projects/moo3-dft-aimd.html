@@ -1,10 +1,10 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Technical record of DFT calculations for sulfur and selenium species on MoO3(010), including reference relaxations, adsorption candidates, substitution models, and planned NEB pathways.">
-<title>S/Se Incorporation on MoO₃(010) | Aryan — Research</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DFT and AIMD Studies of MoO3 Structural Disorder | Aryan</title>
+
 <style>
 :root{--ink:#171717;--muted:#666;--line:#d7d7d7;--soft:#f5f5f3;--paper:#fff;--max:1100px}
 *{box-sizing:border-box}
@@ -12,244 +12,687 @@ html{scroll-behavior:smooth;scroll-padding-top:82px}
 body{margin:0;background:var(--paper);color:var(--ink);font-family:"Times New Roman",Times,serif;font-size:17px;line-height:1.6}
 a{color:inherit;text-underline-offset:3px}
 a:hover{opacity:.7}
-.wrap{width:min(var(--max),calc(100% - 48px));margin:auto}
-.site-header{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line)}
-.header-inner{max-width:1440px;width:calc(100% - 96px);min-height:74px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:28px}
-.brand{font-size:25px;text-decoration:none;white-space:nowrap}
+.page{width:min(var(--max),calc(100% - 48px));margin:0 auto}
+.topline{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);padding:0;min-height:74px;display:flex;justify-content:space-between;align-items:center;gap:28px}
+.brand{font-size:25px;font-weight:normal;white-space:nowrap}
 .nav{display:flex;gap:25px;flex-wrap:wrap}
 .nav a{font-size:15px;text-decoration:none;padding:4px 0;border-bottom:1px solid transparent}
 .nav a:hover{border-bottom-color:#111;opacity:1}
-.breadcrumb{font-size:13px;color:var(--muted);padding:22px 0 14px}
-.breadcrumb a{text-decoration:none;color:var(--ink)}
-.hero{padding:22px 0 28px;border-bottom:1px solid var(--line)}
-.kicker,.eyebrow,.section-index{font-size:12px;text-transform:uppercase;letter-spacing:.13em;font-weight:bold;color:var(--muted)}
+.back-link{display:inline-block;margin:22px 0 14px;font-size:13px;text-decoration:none;color:var(--muted)}
+.eyebrow,.section-number{font-size:12px;text-transform:uppercase;letter-spacing:.13em;font-weight:bold;color:var(--muted)}
 h1{font-size:clamp(36px,4.5vw,55px);font-weight:normal;letter-spacing:-.035em;line-height:1.03;margin:12px 0 16px;max-width:900px}
-.deck{font-size:18px;line-height:1.55;max-width:880px;color:#444;margin:0 0 18px}
-.tags{display:flex;flex-wrap:wrap;gap:7px}
-.tag{font-size:12px;border:1px solid #ccc;padding:3px 8px;border-radius:2px}
-.project-state{display:grid;grid-template-columns:160px 1fr;gap:16px;padding:13px 15px;margin-top:20px;background:var(--soft);border:1px solid var(--line);font-size:14px}
-.project-state strong{font-size:13px;text-transform:uppercase;letter-spacing:.06em}
-.toc{display:flex;flex-wrap:wrap;gap:7px;padding:14px 0;border-bottom:1px solid var(--line)}
-.toc a{font-size:13px;text-decoration:none;border:1px solid var(--line);padding:5px 9px}
-main{padding-bottom:45px}
-section{padding:34px 0;border-bottom:1px solid var(--line)}
-.section-head{display:grid;grid-template-columns:135px minmax(0,1fr);gap:24px;margin-bottom:21px}
-.section-index{padding-top:7px}
 h2{font-size:clamp(25px,2.8vw,32px);font-weight:normal;letter-spacing:-.025em;line-height:1.15;margin:0 0 10px}
-h3{font-size:19px;font-weight:normal;margin:0 0 8px}
-h4{font-size:15px;margin:0 0 6px}
+h3{font-size:19px;font-weight:normal;line-height:1.25;margin:0 0 10px}
+h4{font-size:16px;font-weight:normal;margin:0 0 8px}
 p{margin:0 0 12px}
-.section-intro{max-width:850px;color:#444}
-.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.subtitle{font-size:18px;line-height:1.55;max-width:700px;color:#444;margin:0 0 18px}
+.meta{display:flex;flex-wrap:wrap;gap:7px;margin:18px 0 0}
+.tag{font-size:12px;border:1px solid #ccc;padding:3px 8px;border-radius:2px}
+.hero{padding:22px 0 28px;border-bottom:1px solid var(--line)}
+.hero-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(300px,.9fr);gap:32px;align-items:center}
+.hero-copy{min-width:0}
+.hero-image-slot{width:100%;min-height:320px;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;overflow:hidden;background:#fff}
+.hero-image-slot img{display:block;width:100%;height:auto;max-height:440px;object-fit:contain}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,.72fr);gap:28px;align-items:start;margin-top:26px;padding-top:24px;border-top:1px solid var(--line)}
+.hero-facts{border:1px solid var(--line);padding:16px}
+.fact{display:flex;justify-content:space-between;gap:18px;padding:9px 0;border-bottom:1px solid #ddd;font-size:15px}
+.fact:last-child{border-bottom:0}
+.fact span:first-child{color:var(--muted)}
+.section-nav{display:flex;flex-wrap:wrap;gap:18px;border-bottom:1px solid var(--line);padding:14px 0;margin-bottom:0}
+.section-nav a{font-size:13px;text-decoration:none;color:#444}
+section{padding:34px 0;border-bottom:1px solid var(--line);scroll-margin-top:82px}
+.section-number{margin-bottom:8px}
+.lead{max-width:850px;font-size:17px;color:#444;margin-bottom:18px}
+.grid-2,.grid-3,.grid-4{display:grid;gap:12px}
+.grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.grid-4{grid-template-columns:repeat(4,minmax(0,1fr))}
 .panel{border:1px solid var(--line);padding:16px;min-width:0}
-.panel .eyebrow{margin-bottom:8px}
-.panel p{font-size:15px;color:#444}
-.metric{font-size:20px;line-height:1.35;font-variant-numeric:tabular-nums;overflow-wrap:anywhere;margin:4px 0 8px}
-.note{font-size:14px;color:#555}
-.callout{padding:14px 16px;border:1px solid var(--line);background:var(--soft);font-size:15px;margin:16px 0}
-table{width:100%;border-collapse:collapse;font-size:14.5px}
-.table-wrap{overflow-x:auto;border:1px solid var(--line);margin:14px 0 18px}
-th,td{padding:10px 11px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line);line-height:1.5}
-th{background:var(--soft);font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:#555}
-tr:last-child td{border-bottom:0}
-.status{display:inline-block;font-size:11px;text-transform:uppercase;letter-spacing:.06em;border:1px solid #bbb;padding:2px 6px;white-space:nowrap}
-.flow{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px;margin:17px 0}
-.flow-item{border:1px solid var(--line);padding:12px 10px;min-height:105px}
-.flow-item b{display:block;font-size:15px;font-weight:normal;line-height:1.3}
-.flow-item span{display:block;font-size:13px;color:#666;margin-top:6px;line-height:1.4}
-.equation{border:1px solid var(--line);padding:16px;text-align:center;font-size:clamp(19px,2.2vw,25px);margin:12px 0 15px;overflow-x:auto}
+.panel p:last-child{margin-bottom:0}
+.figure{border:1px solid var(--line);margin:0;min-width:0}
+.figure img{width:100%;display:block;object-fit:contain;background:#fafafa;aspect-ratio:4/3}
+.figure figcaption{border-top:1px solid #ddd;padding:10px 12px;font-size:14px;color:#444}
+.placeholder{min-height:190px;border:1px dashed #999;display:flex;align-items:center;justify-content:center;padding:22px;text-align:center;background:#fafafa;color:#555;font-size:15px}
+.placeholder strong{color:#111}
+.note{border-left:3px solid #111;padding:10px 15px;margin:18px 0;background:#f7f7f7}
+table{width:100%;border-collapse:collapse;margin:14px 0 18px;font-size:14.5px}
+th,td{border:1px solid var(--line);padding:10px 11px;text-align:left;vertical-align:top;line-height:1.5}
+th{background:var(--soft);font-weight:bold;color:#555;font-size:11px;text-transform:uppercase;letter-spacing:.08em}
+.workflow{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;margin:22px 0}
+.step{border:1px solid #ccc;padding:14px 12px;min-width:0;position:relative}
+.step-number{font-size:12px;color:var(--muted);margin-bottom:8px;letter-spacing:.08em}
+.step h4{line-height:1.25}
+.step p{font-size:14px;color:#444}
+.step:not(:last-child)::after{content:"→";position:absolute;right:-12px;top:42%;z-index:2;background:white;padding:0 2px}
+.plot-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.plot-card{border:1px solid var(--line);padding:14px;min-width:0}
+.plot-card .placeholder{min-height:220px;margin-bottom:12px}
+.plot-card h3{font-size:19px}
+.equation{padding:13px;background:#f6f6f6;border:1px solid #ddd;overflow-wrap:anywhere;font-size:17px;margin:12px 0}
+.status{display:inline-block;border:1px solid #888;padding:3px 8px;font-size:12px}
 ul,ol{padding-left:22px;margin:8px 0 14px}
-li{padding-left:3px;margin:4px 0}
-.code{font-family:monospace;font-size:.9em;background:#f1f1f1;padding:1px 4px}
-.refs li{font-size:14px;color:#444;margin-bottom:12px}
-footer{padding:22px 0 35px;font-size:13px;color:#666;display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap}
-@media(max-width:850px){.header-inner{width:calc(100% - 40px)}.flow{grid-template-columns:repeat(3,minmax(0,1fr))}.section-head{grid-template-columns:1fr;gap:5px}.grid3{grid-template-columns:1fr 1fr}}
-@media(max-width:620px){.wrap{width:calc(100% - 30px)}.header-inner{width:calc(100% - 30px);padding:14px 0;align-items:flex-start;flex-direction:column;gap:10px}.nav{gap:10px 18px}.nav a{font-size:14px}.project-state{grid-template-columns:1fr;gap:5px}.grid2,.grid3,.flow{grid-template-columns:1fr}.flow-item{min-height:0}section{padding:26px 0}table{min-width:650px}}
-@media print{.site-header,.toc{display:none}.wrap{width:100%}section{break-inside:avoid;padding:22px 0}}
+li{margin:5px 0;padding-left:2px}
+.reference-list li{margin-bottom:13px;font-size:14px;color:#444}
+.footer{padding:22px 0 35px;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;color:#555;font-size:13px}
+@media(max-width:850px){.page{width:calc(100% - 40px)}.topline{gap:18px;padding:12px 0}.hero-layout{grid-template-columns:1fr;gap:22px}.hero-image-slot{min-height:240px}.workflow{grid-template-columns:1fr}.step:not(:last-child)::after{content:"↓";top:auto;bottom:-15px;right:50%}.grid-3,.grid-4{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){.page{width:calc(100% - 30px)}.topline{align-items:flex-start;flex-direction:column;gap:10px}.nav{gap:10px 18px}.nav a{font-size:14px}.hero-grid,.grid-2,.grid-3,.grid-4,.plot-grid{grid-template-columns:1fr}h1{font-size:36px}h2{font-size:27px}section{padding:26px 0}table{display:block;overflow-x:auto;white-space:normal}.fact{gap:12px}}
+@media print{.topline,.section-nav,.back-link{display:none}.page{width:100%}section{break-inside:avoid;padding:22px 0}}
 </style>
 </head>
+
 <body>
-<header class="site-header">
-  <div class="header-inner">
-    <a class="brand" href="../index.html" style="text-decoration:none">aryan.phd</a>
+
+<header class="page topline">
+    <div class="brand">aryan.phd</div>
     <nav class="nav" aria-label="Main navigation">
-      <a href="../index.html">Home</a><a href="../about.html">About</a><a href="../research.html">Research</a><a href="../experience.html">Experience</a><a href="../notebook.html">Notebook</a><a href="../contact.html">Contact</a>
+        <a href="../index.html">Home</a>
+        <a href="../about.html">About</a>
+        <a href="../research.html">Research</a>
+        <a href="../experience.html">Experience</a>
+        <a href="../notebook.html">Notebook</a>
+        <a href="../contact.html">Contact</a>
     </nav>
-  </div>
 </header>
 
-<div class="wrap">
-  <div class="breadcrumb"><a href="../research.html">← Back to research archive</a> / Surface chemistry / Exploratory calculations</div>
-  <header class="hero">
-    <div class="kicker">Computational materials science · First-principles surface chemistry</div>
-    <h1>Sulfur and Selenium Incorporation on MoO₃(010)</h1>
-    <p class="deck">A calculation-led investigation of α-MoO₃ bulk and surface relaxation, isolated S₂/Se₂ references, candidate centre/edge adsorption geometries, oxygen-site substitution, and planned NEB pathways.</p>
-    <div class="tags"><span class="tag">DFT</span><span class="tag">Quantum ESPRESSO</span><span class="tag">α-MoO₃</span><span class="tag">MoO₃(010)</span><span class="tag">S₂ / Se₂</span><span class="tag">BFGS relaxation</span><span class="tag">NEB</span></div>
-    <div class="project-state"><strong>Calculation status</strong><span>Reference calculations have reported final energies and geometry-convergence records. Surface–molecule configurations still require complete-output verification. Substitution energetics and NEB barriers are not claimed as completed results.</span></div>
-  </header>
+<main class="page">
 
-  <nav class="toc" aria-label="Project sections">
-    <a href="#workflow">Workflow</a><a href="#reference">Reference calculations</a><a href="#adsorption">Adsorption models</a><a href="#substitution">Substitution models</a><a href="#energetics">Energy analysis</a><a href="#neb">NEB pathway</a><a href="#settings">Settings</a><a href="#status">Status</a><a href="#references">References</a>
-  </nav>
+<a class="back-link" href="../research.html">← Back to research archive</a>
 
-  <main>
-    <section id="workflow">
-      <div class="section-head"><div class="section-index">01 / Workflow</div><div><h2>Calculation architecture</h2><p class="section-intro">The workflow separates reference-state preparation, candidate geometry optimization, thermodynamic comparisons, and kinetic pathway calculations. Each stage depends on verified structures and consistent computational settings from the preceding stage.</p></div></div>
-      <div class="flow">
-        <div class="flow-item"><b>Bulk α-MoO₃</b><span>144-atom relaxed reference</span></div>
-        <div class="flow-item"><b>Clean MoO₃(010)</b><span>Slab relaxation</span></div>
-        <div class="flow-item"><b>Isolated S₂ / Se₂</b><span>Molecular references</span></div>
-        <div class="flow-item"><b>Adsorption</b><span>Centre and edge candidates</span></div>
-        <div class="flow-item"><b>Substitution</b><span>One O replaced by S or Se</span></div>
-        <div class="flow-item"><b>NEB</b><span>Planned pathway calculation</span></div>
-      </div>
-      <div class="callout"><strong>Numerical reporting rule.</strong> An SCF-converged ionic step is not proof of geometry convergence. A reported relaxed structure should have a final energy, final coordinates, final force information, and an explicit optimization-convergence record.</div>
-    </section>
+<header class="hero">
+    <div class="hero-layout">
+        <div class="hero-copy">
+            <div class="eyebrow">Research project · First-principles simulation · Oxide structure</div>
+            <h1>DFT and AIMD Studies of MoO₃ Structural Disorder</h1>
+            <p class="subtitle">
+                First-principles modeling of molybdenum trioxide to investigate
+                structural relaxation, local Mo–O coordination, and the evolution
+                of atomic environments in crystalline and potentially disordered
+                configurations.
+            </p>
+            <div class="meta">
+                <span class="tag">Density Functional Theory</span>
+                <span class="tag">Ab Initio Molecular Dynamics</span>
+                <span class="tag">Quantum ESPRESSO</span>
+                <span class="tag">PBE–PAW</span>
+                <span class="tag">Structural Analysis</span>
+            </div>
+        </div>
+        <div class="hero-image-slot">
+            <!-- Add your own project image here: <img src="../assets/images/MoO3_Structural_Disorder.png" alt="MoO3 crystalline and disordered structures"> -->
+        </div>
+    </div>
+    <div class="hero-grid">
+        <div>
+            <h3>Research objective</h3>
+            <p>
+                Establish a first-principles workflow for relaxing MoO₃
+                structures and examining local atomic environments. The
+                broader aim is to determine which structural descriptors
+                can distinguish crystalline order from thermally induced
+                disorder after the relevant trajectories and final
+                configurations have been validated.
+            </p>
+            <h3>Central questions</h3>
+            <ul>
+                <li>How do local Mo–O distances and coordination environments change?</li>
+                <li>How does the pair distribution function evolve with structural disorder?</li>
+                <li>Which temperature and energy signatures can be extracted from the AIMD trajectory?</li>
+                <li>Are final structures sufficiently equilibrated and statistically representative?</li>
+            </ul>
+        </div>
+        <aside class="hero-facts">
+            <h3>Calculation overview</h3>
+            <div class="fact"><span>Primary material</span><strong>α-MoO₃</strong></div>
+            <div class="fact"><span>Electronic code</span><strong>PWscf / QE</strong></div>
+            <div class="fact"><span>QE model sizes</span><strong>144 and 256 atoms</strong></div>
+            <div class="fact"><span>Inspected output</span><strong>300 K stage</strong></div>
+            <div class="fact"><span>Project status</span><strong>Ongoing</strong></div>
+        </aside>
+    </div>
+</header>
 
-    <section id="reference">
-      <div class="section-head"><div class="section-index">02 / References</div><div><h2>Bulk, surface, and isolated-molecule calculations</h2><p class="section-intro">These systems establish the geometries and energy references needed for adsorption and substitution analyses. Total energies are system-specific and must not be compared directly across unmatched cells or compositions.</p></div></div>
-      <div class="grid2">
-        <article class="panel">
-          <div class="eyebrow">Calculation A · Bulk reference</div><h3>α-MoO₃ · 144 atoms</h3>
-          <div class="metric">−17605.2893157837 Ry</div>
-          <p>Reported final total energy for the relaxed bulk model. Used as the crystalline structural reference for constructing the surface slab.</p>
-          <p class="note">Audit items: cell vectors, lattice parameters, functional, pseudopotentials, cutoff energies, k-point mesh, residual forces, and final coordinates.</p>
+<nav class="section-nav" aria-label="Project sections">
+    <a href="#models">Atomic models</a>
+    <a href="#methods">Methods</a>
+    <a href="#workflow">Workflow</a>
+    <a href="#analysis">Structural analysis</a>
+    <a href="#results">Results and status</a>
+    <a href="#contribution">My contribution</a>
+    <a href="#references">References</a>
+</nav>
+
+<section id="models">
+    <div class="section-number">01 / ATOMIC MODELS</div>
+    <h2>Crystalline reference and disordered configurations</h2>
+
+    <p class="lead">
+        The crystalline structure provides the reference for assessing
+        changes in local coordination, bond-length distributions, and
+        medium-range order. Only structures extracted from verified
+        calculation files should be presented as computed results.
+    </p>
+
+    <div class="grid-2">
+        <figure class="figure">
+            <div class="placeholder">
+                <div>
+                    <strong>Figure 1A · Crystalline α-MoO₃</strong><br>
+                    Insert a rendered structure from the relaxed QE coordinates.<br>
+                    Show Mo and O atoms, unit-cell axes, and periodic cell boundaries.
+                </div>
+            </div>
+            <figcaption>
+                Reference structure. Label the crystallographic phase and
+                unit-cell dimensions using the structure file actually used.
+            </figcaption>
+        </figure>
+
+        <figure class="figure">
+            <div class="placeholder">
+                <div>
+                    <strong>Figure 1B · Disordered MoO₃</strong><br>
+                    Insert the final verified MD snapshot.<br>
+                    Use the same viewing orientation and atom colors as Figure 1A.
+                </div>
+            </div>
+            <figcaption>
+                Candidate disordered configuration. Identify the source trajectory,
+                timestep, temperature, and whether the structure was quenched and relaxed.
+            </figcaption>
+        </figure>
+    </div>
+
+    <h3 style="margin-top:24px;">Model inventory</h3>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Model</th>
+                <th>Composition</th>
+                <th>Workflow</th>
+                <th>Reporting status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>144-atom MoO₃</td>
+                <td>36 Mo + 108 O</td>
+                <td>QE first-principles structural / MD calculations</td>
+                <td>Output inspected; completion must be confirmed per run</td>
+            </tr>
+            <tr>
+                <td>256-atom MoO₃</td>
+                <td>64 Mo + 192 O</td>
+                <td>Separate staged QE workflow; associated LAMMPS pilot also exists</td>
+                <td>Verify each code branch and stage independently</td>
+            </tr>
+            <tr>
+                <td>1024-atom MoO₃</td>
+                <td>256 Mo + 768 O</td>
+                <td>Classical LAMMPS / ReaxFF branch</td>
+                <td>Do not label as a QE result</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<section id="methods">
+    <div class="section-number">02 / FIRST-PRINCIPLES METHODS</div>
+    <h2>Quantum ESPRESSO setup</h2>
+
+    <p>
+        The inspected 144-atom output reports a plane-wave DFT calculation
+        using the PBE exchange–correlation functional and PAW pseudopotentials.
+        The parameters below are specific to that output and should not
+        automatically be applied to every other run.
+    </p>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Parameter</th>
+                <th>Inspected 144-atom output</th>
+                <th>Technical purpose</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Code / executable</td>
+                <td>Quantum ESPRESSO PWscf v8.0dev</td>
+                <td>Plane-wave electronic-structure calculation</td>
+            </tr>
+            <tr>
+                <td>Exchange–correlation</td>
+                <td>PBE (GGA)</td>
+                <td>Approximation for the exchange–correlation energy</td>
+            </tr>
+            <tr>
+                <td>Mo pseudopotential</td>
+                <td>Mo.pbe-spn-kjpaw_psl.1.0.0.UPF</td>
+                <td>PAW representation of the Mo ionic potential</td>
+            </tr>
+            <tr>
+                <td>O pseudopotential</td>
+                <td>O.pbe-n-kjpaw_psl.1.0.0.UPF</td>
+                <td>PAW representation of the O ionic potential</td>
+            </tr>
+            <tr>
+                <td>Wavefunction cutoff</td>
+                <td>60 Ry</td>
+                <td>Plane-wave basis-set limit</td>
+            </tr>
+            <tr>
+                <td>Charge-density cutoff</td>
+                <td>480 Ry</td>
+                <td>Charge-density and augmentation representation</td>
+            </tr>
+            <tr>
+                <td>SCF threshold</td>
+                <td>1.0 × 10⁻⁶ Ry</td>
+                <td>Electronic self-consistency criterion</td>
+            </tr>
+            <tr>
+                <td>Mixing parameter</td>
+                <td>0.30</td>
+                <td>SCF charge-density mixing</td>
+            </tr>
+            <tr>
+                <td>Thermostat target</td>
+                <td>300 K</td>
+                <td>Temperature target in the inspected MD stage</td>
+            </tr>
+            <tr>
+                <td>MD ensemble</td>
+                <td>Nosé temperature control is reported</td>
+                <td>Thermostatted ionic dynamics</td>
+            </tr>
+            <tr>
+                <td>Time step / k-point grid</td>
+                <td>Confirm from the matching input file</td>
+                <td>Must be reported for reproducibility</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="note">
+        <strong>Reproducibility:</strong>
+        record the exact input filename, cell vectors, atomic coordinates,
+        k-point mesh, timestep, pseudopotential provenance, and output-log
+        completion status for each individual calculation. Do not merge
+        parameters from different QE runs.
+    </div>
+</section>
+
+<section id="workflow">
+    <div class="section-number">03 / COMPUTATIONAL WORKFLOW</div>
+    <h2>From initial structure to structural descriptors</h2>
+
+    <div class="workflow">
+        <div class="step">
+            <div class="step-number">STEP 01</div>
+            <h4>Structure preparation</h4>
+            <p>Validate stoichiometry, atom count, cell dimensions, coordinates, and periodic boundaries.</p>
+        </div>
+
+        <div class="step">
+            <div class="step-number">STEP 02</div>
+            <h4>SCF / relaxation</h4>
+            <p>Converge the electronic density and relax ions using the selected QE settings.</p>
+        </div>
+
+        <div class="step">
+            <div class="step-number">STEP 03</div>
+            <h4>AIMD stages</h4>
+            <p>Check the actual temperature schedule, ensemble, timestep, equilibration, and trajectory continuity.</p>
+        </div>
+
+        <div class="step">
+            <div class="step-number">STEP 04</div>
+            <h4>Final configuration</h4>
+            <p>Identify the final frame and establish whether the structure is quenched, equilibrated, or only a test snapshot.</p>
+        </div>
+
+        <div class="step">
+            <div class="step-number">STEP 05</div>
+            <h4>Analysis</h4>
+            <p>Calculate RDFs, bond lengths, coordination statistics, and thermal observables from verified frames.</p>
+        </div>
+    </div>
+
+    <h3>Stage tracking</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Calculation branch</th>
+                <th>Evidence to retain</th>
+                <th>Publication requirement</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>144-atom QE</td>
+                <td>Input, SCF/MD output, final coordinates</td>
+                <td>Confirm final status and identify the exact simulation stage</td>
+            </tr>
+            <tr>
+                <td>256-atom QE</td>
+                <td>Stage inputs, individual logs, trajectory and final structure</td>
+                <td>Confirm every stage and document the intended thermal schedule</td>
+            </tr>
+            <tr>
+                <td>256 / 1024-atom LAMMPS</td>
+                <td>Input scripts, potential files, logs, trajectory</td>
+                <td>Report separately from first-principles results</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<section id="analysis">
+    <div class="section-number">04 / STRUCTURAL ANALYSIS</div>
+    <h2>Quantifying local order and disorder</h2>
+
+    <p class="lead">
+        The following panels define the intended analysis outputs. Replace
+        each panel with a real figure generated from the corresponding
+        trajectory or structure. Do not publish illustrative curves as
+        numerical results.
+    </p>
+
+    <div class="plot-grid">
+
+        <article class="plot-card">
+            <div class="placeholder">
+                <div>
+                    <strong>Figure 4A · Pair distribution functions</strong><br>
+                    Plot actual g(r) against r (Å).<br>
+                    Separate Mo–O, Mo–Mo and O–O pair correlations.
+                </div>
+            </div>
+            <h3>Radial distribution function, g(r)</h3>
+            <p>
+                Compare the first-neighbour peak position, peak width, and
+                longer-range oscillations between the crystalline reference
+                and validated disordered structures.
+            </p>
+            <div class="equation">
+                g(r) describes the radial probability of finding a neighbour
+                at distance r relative to an appropriate reference density.
+            </div>
+            <p><strong>Report:</strong> frame range, bin width, normalization,
+                periodic-boundary handling, and number of sampled frames.</p>
         </article>
-        <article class="panel">
-          <div class="eyebrow">Calculation B · Surface reference</div><h3>Clean MoO₃(010)</h3>
-          <div class="metric">−8802.5043986329 Ry</div>
-          <p>Reported final total energy for the clean stoichiometric surface slab.</p>
-          <p class="note">Reported optimization record: 30 BFGS steps; gradient error 7.8 × 10⁻⁴ Ry/Bohr; energy error 3.7 × 10⁻⁵ Ry. Confirm final force convergence against the input threshold.</p>
+
+        <article class="plot-card">
+            <div class="placeholder">
+                <div>
+                    <strong>Figure 4B · Mo–O bond lengths</strong><br>
+                    Histogram or probability density versus distance (Å).<br>
+                    Show crystalline and disordered datasets separately.
+                </div>
+            </div>
+            <h3>Bond-length distribution</h3>
+            <p>
+                Quantify the distribution of local Mo–O distances and
+                identify broadening or multiple local environments.
+            </p>
+            <p><strong>Report:</strong> neighbour cutoff or bond definition,
+                mean, median, standard deviation, and sampled atom count.</p>
         </article>
-        <article class="panel">
-          <div class="eyebrow">Calculation C · Molecular reference</div><h3>Isolated S₂ · triplet</h3>
-          <div class="metric">−132.5019875009 Ry</div>
-          <p>Reported BFGS convergence in two ionic steps.</p>
-          <p class="note">Relaxed S–S distance: approximately 1.91 Å. Output: <span class="code">S2_triplet_final.out</span>.</p>
+
+        <article class="plot-card">
+            <div class="placeholder">
+                <div>
+                    <strong>Figure 4C · Coordination-number statistics</strong><br>
+                    Plot fraction of Mo atoms versus coordination number.<br>
+                    Include the precise neighbour criterion.
+                </div>
+            </div>
+            <h3>Local coordination</h3>
+            <p>
+                Measure the distribution of oxygen neighbours around Mo
+                atoms and assess whether local environments become more
+                heterogeneous.
+            </p>
+            <p><strong>Report:</strong> cutoff method, coordination definition,
+                frame averaging, and uncertainty across sampled frames.</p>
         </article>
-        <article class="panel">
-          <div class="eyebrow">Calculation D · Molecular reference</div><h3>Isolated Se₂</h3>
-          <div class="metric">−378.5638948032 Ry</div>
-          <p>Reported BFGS convergence in two ionic steps.</p>
-          <p class="note">Relaxed Se–Se distance: approximately 2.196 Å. Output: <span class="code">02_Se2_ISOLATED_OPT.out</span>. The output reports a force-correction warning; verify force accuracy before using this reference in quantitative comparisons.</p>
+
+        <article class="plot-card">
+            <div class="placeholder">
+                <div>
+                    <strong>Figure 4D · Bond-angle distribution</strong><br>
+                    Plot angle probability/count against angle (degrees).<br>
+                    Define which Mo–O–Mo or O–Mo–O angles are included.
+                </div>
+            </div>
+            <h3>Bond-angle distribution</h3>
+            <p>
+                Characterize distortions in local polyhedral geometry
+                and changes in angular order.
+            </p>
+            <p><strong>Report:</strong> angle definition, neighbour selection,
+                histogram bin width, and frame selection.</p>
         </article>
-      </div>
-      <div class="callout"><strong>Surface-model information still required from the actual input:</strong> slab thickness, termination, in-plane lattice vectors, vacuum separation, fixed layers or atomic constraints, k-point mesh, dipole treatment if any, and the pseudopotential/functional details.</div>
-    </section>
 
-    <section id="adsorption">
-      <div class="section-head"><div class="section-index">03 / Adsorption</div><div><h2>S₂ / Se₂ adsorption candidates on MoO₃(010)</h2><p class="section-intro">Molecular configurations were prepared above selected centre and edge regions of the surface. These are candidate starting geometries until the complete output confirms that the ionic optimization finished successfully.</p></div></div>
-      <div class="grid2">
-        <article class="panel"><div class="eyebrow">Site A</div><h3>Centre configuration</h3>
-          <ul><li>Place S₂ or Se₂ above the selected surface region.</li><li>Record initial molecule orientation, height above the surface, cell, and atom indices.</li><li>After relaxation, inspect the X–X bond, molecule–surface contacts, and displacement of neighbouring Mo/O atoms.</li></ul>
-          <p class="note">Current evidence: output excerpts are available, but final BFGS convergence must be verified from the complete output.</p>
+        <article class="plot-card">
+            <div class="placeholder">
+                <div>
+                    <strong>Figure 4E · Temperature and energy traces</strong><br>
+                    Plot actual temperature and energy against time or MD step.<br>
+                    Label units and thermal stages.
+                </div>
+            </div>
+            <h3>Thermal evolution</h3>
+            <p>
+                Use trajectory data to check temperature stability,
+                energy evolution, equilibration intervals, and transitions
+                between heating, hold, and cooling stages where applicable.
+            </p>
+            <p><strong>Report:</strong> timestep, ensemble, temperature schedule,
+                energy definition, and any discarded equilibration frames.</p>
         </article>
-        <article class="panel"><div class="eyebrow">Site B</div><h3>Edge configuration</h3>
-          <ul><li>Place the molecule near the chosen edge or under-coordinated surface site.</li><li>Use a clearly documented edge definition and comparable calculation settings.</li><li>Inspect possible dissociation, reconstruction, bond formation, and migration toward the surface.</li></ul>
-          <p class="note">Current evidence: candidate output exists; do not describe the final geometry as relaxed until convergence is confirmed.</p>
+
+        <article class="plot-card">
+            <div class="placeholder">
+                <div>
+                    <strong>Figure 4F · Density or structure factor</strong><br>
+                    Add only if supported by the stored cell/trajectory data.<br>
+                    Clearly identify units and calculation method.
+                </div>
+            </div>
+            <h3>Density / structure factor</h3>
+            <p>
+                Density requires a reliable volume and composition. A
+                structure factor requires a documented calculation from
+                the structure or trajectory. These should not be inferred
+                from an image alone.
+            </p>
+            <p><strong>Report:</strong> volume convention, normalization,
+                reciprocal-space units, and averaging procedure.</p>
         </article>
-      </div>
-      <h3>Required output audit</h3>
-      <div class="table-wrap"><table><thead><tr><th>Check</th><th>Evidence to extract</th><th>Why it matters</th></tr></thead><tbody>
-        <tr><td>Electronic convergence</td><td>Final SCF convergence message and electronic threshold</td><td>Confirms the electronic state was solved to the requested tolerance.</td></tr>
-        <tr><td>Ionic convergence</td><td>BFGS termination and final force/gradient information</td><td>Distinguishes a completed geometry optimization from an intermediate step.</td></tr>
-        <tr><td>Final structure</td><td>Final coordinates and cell vectors</td><td>Enables reproducible rendering and bond/contact analysis.</td></tr>
-        <tr><td>Structural changes</td><td>X–X bond, nearest Mo–X/O–X contacts, neighbouring Mo/O displacements</td><td>Shows whether the molecule remains intact or reacts with the surface.</td></tr>
-      </tbody></table></div>
-    </section>
 
-    <section id="substitution">
-      <div class="section-head"><div class="section-index">04 / Substitution</div><div><h2>One-for-one oxygen-site replacement</h2><p class="section-intro">The intended defect model replaces one lattice oxygen with one chalcogen atom. Centre and edge sites should be treated as separate structures with explicitly identified oxygen indices.</p></div></div>
-      <div class="equation">MoO₃(010) − O + X &nbsp;&nbsp; (X = S or Se)</div>
-      <div class="grid2">
-        <article class="panel"><div class="eyebrow">Defect family 1</div><h3>Centre-site substitution</h3><p>Remove one selected lattice O and insert one S or Se at the chosen site. Relax the structure, then inspect local coordination, Mo–X distances, adjacent Mo–O bonds, and surface reconstruction.</p></article>
-        <article class="panel"><div class="eyebrow">Defect family 2</div><h3>Edge-site substitution</h3><p>Perform the same one-for-one replacement at a selected edge oxygen. Document the site, atom index, initial coordinates, and any fixed atoms so the centre/edge comparison is reproducible.</p></article>
-      </div>
-      <h3>Composition and geometry checks</h3>
-      <ul><li>Confirm the original oxygen is removed; it must not remain alongside the inserted chalcogen in a one-for-one substitution model.</li><li>Check atom counts, composition, cell vectors, and the mapping between pristine and defect structures.</li><li>Record the final total energy and force convergence from the complete output.</li><li>Compare local bonding only after all candidate structures have been optimized under compatible settings.</li></ul>
-      <div class="callout">The existence of a candidate input file does not establish that its geometry converged or that substitution is energetically favourable. Those claims require the final output and a defined reference reaction.</div>
-    </section>
+    </div>
 
-    <section id="energetics">
-      <div class="section-head"><div class="section-index">05 / Energetics</div><div><h2>Thermodynamic definitions</h2><p class="section-intro">Use balanced reference states and state the sign convention. Adsorption energy and substitution formation energy describe different processes and should not be conflated.</p></div></div>
-      <h3>Molecular adsorption energy</h3>
-      <div class="equation">E<sub>ads</sub> = E<sub>slab+mol</sub> − E<sub>slab</sub> − E<sub>mol</sub></div>
-      <p>Here, the combined slab–molecule energy is compared with the clean slab and isolated molecule. With this convention, a negative value indicates a lower total energy for the combined system relative to the separated references.</p>
-      <h3 style="margin-top:23px">Substitution formation energy</h3>
-      <div class="equation">E<sub>sub</sub> = E<sub>defect</sub> − E<sub>clean</sub> + μ<sub>O</sub> − μ<sub>X</sub></div>
-      <p><i>E</i><sub>defect</sub> and <i>E</i><sub>clean</sub> are total energies of the substituted and pristine slabs. μ<sub>O</sub> and μ<sub>X</sub> are chemical potentials of the removed oxygen and incorporated chalcogen. The reservoir choices and their reference calculations must be explicitly stated.</p>
-      <div class="grid2">
-        <article class="panel"><h4>Reference consistency</h4><p>Keep functional, pseudopotentials, cutoffs, k-point sampling, spin treatment, cell setup, and convergence thresholds consistent wherever the energy expression requires a direct comparison.</p></article>
-        <article class="panel"><h4>Interpretation boundary</h4><p>A favourable adsorption or substitution energy is a thermodynamic statement. It does not demonstrate that the process is kinetically accessible; that requires a converged reaction pathway and barrier.</p></article>
-      </div>
-    </section>
+    <div class="note">
+        <strong>Analysis rule:</strong>
+        a plot is a result only when it can be traced to a specific input,
+        structure, trajectory, or script. If a calculation has not yet
+        produced the required data, label the panel “planned analysis” or
+        omit it from the published page.
+    </div>
+</section>
 
-    <section id="neb">
-      <div class="section-head"><div class="section-index">06 / NEB</div><div><h2>Candidate incorporation pathway</h2><p class="section-intro">The next computational stage is a minimum-energy path connecting a relaxed adsorbed initial state to a relaxed substitutional final state.</p></div></div>
-      <div class="grid3">
-        <article class="panel"><div class="eyebrow">Endpoint 1</div><h3>Initial state</h3><p>Relaxed adsorption configuration with defined composition, cell, coordinates, and residual forces.</p></article>
-        <article class="panel"><div class="eyebrow">Path construction</div><h3>Intermediate images</h3><p>Use a consistent atom mapping and identical cell vectors/composition. Converge NEB forces; refine the saddle region with climbing-image NEB if appropriate.</p></article>
-        <article class="panel"><div class="eyebrow">Endpoint 2</div><h3>Final state</h3><p>Relaxed substitutional configuration with the same atom inventory as the initial state.</p></article>
-      </div>
-      <div class="equation">E<sub>a</sub> = E<sub>TS</sub> − E<sub>initial</sub></div>
-      <p>The activation energy is measured from the initial state to a verified transition-state region on the converged path. An unconverged highest-energy image is not sufficient evidence of a transition state.</p>
-      <p><span class="status">Planned · No verified barrier reported</span></p>
-    </section>
+<section id="results">
+    <div class="section-number">05 / RESULTS AND CALCULATION STATUS</div>
+    <h2>Evidence-based reporting</h2>
 
-    <section id="settings">
-      <div class="section-head"><div class="section-index">07 / Settings</div><div><h2>Computational reproducibility record</h2><p class="section-intro">Populate this record from the actual input files and output logs. Values not verified from the source files should remain unspecified rather than inferred.</p></div></div>
-      <div class="table-wrap"><table><thead><tr><th>Parameter</th><th>Details to record</th></tr></thead><tbody>
-        <tr><td>Software</td><td>Quantum ESPRESSO version, executable, and any build-specific details</td></tr>
-        <tr><td>Exchange–correlation</td><td>Functional explicitly specified in the input</td></tr>
-        <tr><td>Pseudopotentials</td><td>Exact filenames and valence configurations for Mo, O, S, and Se</td></tr>
-        <tr><td>Plane-wave basis</td><td><span class="code">ecutwfc</span> and <span class="code">ecutrho</span> in Ry</td></tr>
-        <tr><td>k-points</td><td>Mesh, offset, and sampling scheme</td></tr>
-        <tr><td>Cell / vacuum</td><td>Cell vectors, slab dimensions, vacuum separation, and surface normal</td></tr>
-        <tr><td>SCF</td><td><span class="code">conv_thr</span>, mixing settings, occupations/smearing if used, and spin setup</td></tr>
-        <tr><td>Ionic relaxation</td><td>Calculation type, BFGS settings, force threshold, and constraints</td></tr>
-        <tr><td>Spin treatment</td><td><span class="code">nspin</span>, starting magnetizations, and molecular spin state where relevant</td></tr>
-        <tr><td>Final evidence</td><td>Final energy, coordinates, residual forces, and explicit convergence message</td></tr>
-      </tbody></table></div>
-    </section>
+    <table>
+        <thead>
+            <tr>
+                <th>Result item</th>
+                <th>Current evidence</th>
+                <th>Status to publish</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>144-atom QE setup</td>
+                <td>Output excerpt confirms 144 atoms, 60/480 Ry cutoffs, PBE, named Mo/O PAW files, SCF threshold, and a 300 K Nosé-controlled stage.</td>
+                <td>Setup documented; completion must be confirmed from the log ending.</td>
+            </tr>
+            <tr>
+                <td>256-atom QE melt–quench workflow</td>
+                <td>Staged input/output files are documented in the project materials.</td>
+                <td>Verify the completion of each stage and validate the final structure.</td>
+            </tr>
+            <tr>
+                <td>RDF and bond statistics</td>
+                <td>Require verified coordinates or trajectory and a reproducible analysis script.</td>
+                <td>Do not report numerical peak positions until calculated.</td>
+            </tr>
+            <tr>
+                <td>Thermal evolution</td>
+                <td>Requires the matching time series and stage definitions.</td>
+                <td>Plot after confirming trajectory continuity and units.</td>
+            </tr>
+            <tr>
+                <td>Amorphous structure claim</td>
+                <td>Requires a validated final structure and structural evidence of disorder.</td>
+                <td>Use “candidate disordered structure” until validation is complete.</td>
+            </tr>
+        </tbody>
+    </table>
 
-    <section id="status">
-      <div class="section-head"><div class="section-index">08 / Status</div><div><h2>Calculation audit and next actions</h2><p class="section-intro">The status below reflects the calculation records reviewed so far. It deliberately separates reported reference results from candidate calculations that still need full-output verification.</p></div></div>
-      <div class="table-wrap"><table><thead><tr><th>Work package</th><th>Current record</th><th>Status / next action</th></tr></thead><tbody>
-        <tr><td>Bulk α-MoO₃</td><td>144-atom model; final energy recorded</td><td><span class="status">Reported converged</span><br>Archive input, output, and final coordinates.</td></tr>
-        <tr><td>Clean MoO₃(010)</td><td>Final energy and BFGS data recorded</td><td><span class="status">Verify forces</span><br>Confirm force threshold and slab details.</td></tr>
-        <tr><td>Isolated S₂</td><td>Triplet; energy and bond length recorded</td><td><span class="status">BFGS converged</span><br>Archive settings and final geometry.</td></tr>
-        <tr><td>Isolated Se₂</td><td>Energy and bond length recorded; force-correction warning</td><td><span class="status">Review accuracy</span><br>Check final forces and SCF accuracy.</td></tr>
-        <tr><td>Surface adsorption</td><td>Centre/edge candidate output excerpts</td><td><span class="status">Audit outputs</span><br>Verify final BFGS convergence and coordinates.</td></tr>
-        <tr><td>S/Se substitution</td><td>Candidate structures require verification</td><td><span class="status">Pending verification</span><br>Confirm geometry, total energies, and references.</td></tr>
-        <tr><td>NEB pathway</td><td>Planned</td><td><span class="status">Planned</span><br>Prepare converged endpoints before running NEB.</td></tr>
-      </tbody></table></div>
-    </section>
+    <h3>Interpretation framework</h3>
+    <ul>
+        <li><strong>Short-range order:</strong> assess nearest-neighbour peak positions and widths in g(r).</li>
+        <li><strong>Local geometry:</strong> compare Mo–O distance and bond-angle distributions.</li>
+        <li><strong>Coordination:</strong> evaluate the fraction of Mo sites in each coordination environment under a consistent cutoff.</li>
+        <li><strong>Medium-range order:</strong> examine the persistence or damping of RDF features beyond the first coordination shell.</li>
+        <li><strong>Thermal stability:</strong> assess energy and temperature traces before selecting frames for structural averaging.</li>
+    </ul>
 
-    <section id="contribution">
-      <div class="section-head"><div class="section-index">09 / Contribution</div><div><h2>Work performed</h2><p class="section-intro">A concise record of the technical work without presenting ongoing tasks as completed results.</p></div></div>
-      <ul>
-        <li>Prepared and organized Quantum ESPRESSO calculations for bulk α-MoO₃, the MoO₃(010) surface, and isolated S₂/Se₂ reference systems.</li>
-        <li>Examined geometry-optimization outputs and recorded reference total energies and molecular bond lengths.</li>
-        <li>Developed candidate centre- and edge-site surface–molecule configurations for subsequent relaxation checks.</li>
-        <li>Defined the analysis framework for molecular adsorption and one-for-one oxygen-site substitution.</li>
-        <li>Outlined atom-balanced initial/final structures and convergence requirements for planned NEB calculations.</li>
-      </ul>
-      <p class="note">Keep this contribution statement limited to tasks personally performed; identify collaborative or guided work separately where applicable.</p>
-    </section>
+    <h3>Limitations and next steps</h3>
+    <ol>
+        <li>Verify the completion and continuity of each QE stage.</li>
+        <li>Validate the final cell and structure, including any periodic-boundary and density assumptions.</li>
+        <li>Choose and justify neighbour cutoffs before calculating coordination and bond statistics.</li>
+        <li>Sample enough equilibrated frames to avoid interpreting one snapshot as a statistical ensemble.</li>
+        <li>Where feasible, compare first-principles and classical results only after matching composition, thermal protocol, and analysis definitions.</li>
+    </ol>
+</section>
 
-    <section id="references">
-      <div class="section-head"><div class="section-index">10 / References</div><div><h2>Literature and software documentation</h2><p class="section-intro">These sources provide background and methodological context. They do not independently validate the numerical outcomes of the present calculations.</p></div></div>
-      <ol class="refs">
-        <li>R. Coquet and D. J. Willock, “The (010) surface of α-MoO₃, a DFT + U study,” <i>Physical Chemistry Chemical Physics</i>, 7, 3819–3828 (2005). <a href="https://doi.org/10.1039/B511044K" target="_blank" rel="noopener">doi:10.1039/B511044K</a>. Surface relaxation and oxygen-vacancy context.</li>
-        <li>“Tweaking the Electronic and Optical Properties of α-MoO₃ by Sulphur and Selenium Doping – a Density Functional Theory Study,” <i>Scientific Reports</i>, 8, 10144 (2018). <a href="https://doi.org/10.1038/s41598-018-28522-7" target="_blank" rel="noopener">doi:10.1038/s41598-018-28522-7</a>. Bulk substitution context, not direct evidence for these surface models.</li>
-        <li>J. P. Perdew, K. Burke, and M. Ernzerhof, “Generalized Gradient Approximation Made Simple,” <i>Physical Review Letters</i>, 77, 3865–3868 (1996). <a href="https://doi.org/10.1103/PhysRevLett.77.3865" target="_blank" rel="noopener">doi:10.1103/PhysRevLett.77.3865</a>. Cite if the PBE functional was used.</li>
-        <li>G. Henkelman, B. P. Uberuaga, and H. Jónsson, “A climbing image nudged elastic band method for finding saddle points and minimum energy paths,” <i>The Journal of Chemical Physics</i>, 113, 9901–9904 (2000). <a href="https://doi.org/10.1063/1.1329672" target="_blank" rel="noopener">doi:10.1063/1.1329672</a>. NEB methodology.</li>
-        <li>Quantum ESPRESSO, official documentation: <a href="https://www.quantum-espresso.org/documentation/" target="_blank" rel="noopener">general documentation</a>, <a href="https://www.quantum-espresso.org/Doc/INPUT_PW.html" target="_blank" rel="noopener">PWscf input description</a>, and <a href="https://www.quantum-espresso.org/documentation/package-specific-documentation/" target="_blank" rel="noopener">package-specific documentation</a>. Use documentation corresponding to the installed version.</li>
-      </ol>
-    </section>
-  </main>
-  <footer><span>aryan.phd · Computational materials science</span><span>MoO₃(010) surface chemistry · October 2026</span><a href="../research.html">Back to research archive ↑</a></footer>
-</div>
+<section id="contribution">
+    <div class="section-number">06 / INDIVIDUAL CONTRIBUTION</div>
+    <h2>My technical contribution</h2>
+
+    <div class="grid-2">
+        <div class="panel">
+            <h3>Structure and calculation setup</h3>
+            <ul>
+                <li>Prepared and organized MoO₃ atomic configurations for computational study.</li>
+                <li>Worked with QE input files, atomic species, pseudopotential paths, cutoffs, and convergence settings.</li>
+                <li>Maintained separate records for different atom counts and calculation branches.</li>
+            </ul>
+        </div>
+
+        <div class="panel">
+            <h3>Simulation workflow and troubleshooting</h3>
+            <ul>
+                <li>Worked on first-principles structural relaxation and AIMD stages.</li>
+                <li>Examined output logs, convergence messages, and calculation settings.</li>
+                <li>Organized the staged workflow and identified outputs needed for validation.</li>
+            </ul>
+        </div>
+
+        <div class="panel">
+            <h3>Structural analysis</h3>
+            <ul>
+                <li>Defined the analysis pathway for RDFs, bond lengths, coordination, and thermal observables.</li>
+                <li>Identified the need for traceable scripts, explicit cutoffs, and documented frame selection.</li>
+                <li>Separated verified output evidence from planned analysis.</li>
+            </ul>
+        </div>
+
+        <div class="panel">
+            <h3>Reproducibility and reporting</h3>
+            <ul>
+                <li>Tracked calculation inputs and corresponding output logs.</li>
+                <li>Kept QE first-principles calculations distinct from LAMMPS classical MD.</li>
+                <li>Organized technical documentation for scientific communication.</li>
+            </ul>
+        </div>
+    </div>
+
+    <p>
+        Update these statements to reflect exactly which tasks you performed
+        independently and which were completed with supervision or collaboration.
+    </p>
+</section>
+
+<section id="references">
+    <div class="section-number">07 / REFERENCES AND RESOURCES</div>
+    <h2>Methods and software references</h2>
+
+    <ol class="reference-list">
+        <li>
+            P. Giannozzi et al.,
+            “QUANTUM ESPRESSO: a modular and open-source software project
+            for quantum simulations of materials,”
+            <em>Journal of Physics: Condensed Matter</em>, 21, 395502 (2009).
+            <a href="https://doi.org/10.1088/0953-8984/21/39/395502"
+               target="_blank" rel="noopener noreferrer">https://doi.org/10.1088/0953-8984/21/39/395502</a>
+        </li>
+
+        <li>
+            P. Giannozzi et al.,
+            “Advanced capabilities for materials modelling with Quantum ESPRESSO,”
+            <em>Journal of Physics: Condensed Matter</em>, 29, 465901 (2017).
+            <a href="https://doi.org/10.1088/1361-648X/aa8f79"
+               target="_blank" rel="noopener noreferrer">https://doi.org/10.1088/1361-648X/aa8f79</a>
+        </li>
+
+        <li>
+            J. P. Perdew, K. Burke, and M. Ernzerhof,
+            “Generalized Gradient Approximation Made Simple,”
+            <em>Physical Review Letters</em>, 77, 3865 (1996).
+            <a href="https://doi.org/10.1103/PhysRevLett.77.3865"
+               target="_blank" rel="noopener noreferrer">https://doi.org/10.1103/PhysRevLett.77.3865</a>
+        </li>
+
+        <li>
+            P. E. Blöchl,
+            “Projector augmented-wave method,”
+            <em>Physical Review B</em>, 50, 17953 (1994).
+            <a href="https://doi.org/10.1103/PhysRevB.50.17953"
+               target="_blank" rel="noopener noreferrer">https://doi.org/10.1103/PhysRevB.50.17953</a>
+        </li>
+    </ol>
+
+    <h3>Calculation-specific documentation</h3>
+    <ul>
+        <li>Quantum ESPRESSO version and exact input/output files for each reported run.</li>
+        <li>Exact Mo and O pseudopotential filenames, source, and version.</li>
+        <li>Analysis scripts and documented settings used to produce every published plot.</li>
+        <li>Approved structure files, trajectory excerpts, and supplementary data, if publicly shareable.</li>
+    </ul>
+
+    <div class="note">
+        <strong>Data availability:</strong>
+        add links only to files or repositories that exist and are approved
+        for public release. Do not publish temporary files, credentials,
+        institution-restricted data, or unpublished collaborator material
+        without permission.
+    </div>
+</section>
+
+<footer class="footer">
+    <div>aryan.phd · Research portfolio</div>
+    <div>Project details · October 2026</div>
+    <a href="../research.html">← Research archive</a>
+</footer>
+
+</main>
 </body>
 </html>
