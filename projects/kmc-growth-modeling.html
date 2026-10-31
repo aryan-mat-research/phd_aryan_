@@ -106,6 +106,175 @@ footer{margin-top:35px;padding:22px 5% 30px;border-top:1px solid var(--line);dis
   .site-nav a{font-size:16px}
 }
 
+.growth-figure {
+  width: 100%;
+  margin: 0 auto;
+  max-width: 800px;
+}
+
+.growth-figure .figure-frame {
+  width: 100%;
+  border: 1px solid var(--line);
+  background: #fff;
+  overflow: hidden;
+}
+
+.growth-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.growth-figure figcaption {
+  margin-top: 10px;
+  font-size: 13px;
+  line-height: 1.6;
+  color:var(--muted);
+}
+
+@media (max-width: 760px) {
+  .growth-figure {
+    width: 100%;
+  }
+}
+/* =========================================
+   KMC MODELLING + RESULTS & DATA
+   ========================================= */
+
+
+.kmc-flowchart,
+.results-plot {
+  min-width: 0;
+  margin: 0;
+}
+
+.flowchart-frame,
+.results-frame {
+  width: 100%;
+  border: 1px solid var(--line);
+  background: #fff;
+  overflow: hidden;
+}
+
+.flowchart-frame img,
+.results-frame img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+/* =========================================
+   KMC FLOWCHARTS
+   ========================================= */
+
+.kmc-flowcharts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 18px;
+  align-items: start;
+}
+
+.kmc-flowchart {
+  max-width: 380px;
+  width: 100%;
+  justify-self: center;
+}
+
+.kmc-flowchart figcaption {
+  margin-top: 8px;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+.kmc-flowchart figcaption strong {
+  color: var(--ink);
+  font-weight: 500;
+}
+
+/* =========================================
+   RESULTS & DATA
+   ========================================= */
+
+.results-group {
+  margin-top: 26px;
+}
+
+.results-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.results-heading h3 {
+  margin: 0;
+  font-size: 19px;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+.results-heading span {
+  font-size: 12px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+/* Two plots side by side */
+
+.results-plots {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  align-items: start;
+}
+
+.results-plot {
+  width: 100%;
+  max-width: 92%;
+}
+
+.results-frame img {
+  object-fit: contain;
+}
+
+.results-plot figcaption {
+  margin-top: 7px;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+/* Spacing between materials */
+
+.results-group + .results-group {
+  margin-top: 28px;
+}
+
+/* =========================================
+   MOBILE
+   ========================================= */
+
+@media (max-width: 760px) {
+  .kmc-flowcharts,
+  .results-plots {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .kmc-flowchart {
+    max-width: 380px;
+  }
+
+    .results-heading h3 {
+    font-size: 18px;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -127,14 +296,13 @@ footer{margin-top:35px;padding:22px 5% 30px;border-top:1px solid var(--line);dis
 <article>
 <section class="hero" aria-labelledby="project-title">
 <div class="hero-copy">
-<p class="eyebrow">Research project · 02</p>
-<h1 id="project-title">Experimental Growth Analysis and KMC Modelling of Triangular MoS₂ and MoSe₂</h1>
-<p class="lead">Connecting image-based quantification of experimentally grown triangular crystals with a triangular-lattice Kinetic Monte Carlo model to investigate edge- and plane-mediated growth kinetics.</p>
+<h2 id="project-title">Experimental Growth Analysis and KMC Modelling of Triangular MoS₂ and MoSe₂</h2  >
+<p class="lead">Connecting image-based quantification of experimentally grown crystals on triangular substrates with Kinetic Monte Carlo model to investigate edge- and plane-mediated growth kinetics.</p>
 <div class="tags"><span class="tag">MoS₂</span><span class="tag">MoSe₂</span><span class="tag">Image analysis</span><span class="tag">Kinetic Monte Carlo</span><span class="tag">Differential Evolution</span></div>
 </div>
 <figure class="hero-figure">
-<img class="hero-image" src="../assets/images/KMC_Project_Overview.png" alt="Overview of experimental triangular growth analysis and KMC modelling">
-<figcaption>Experimental image analysis and computational growth modelling.</figcaption>
+<img class="hero-image" src="../assets/images/KMC_MoSe2_MoS2.png" alt="Overview of experimental triangular growth analysis and KMC modelling">
+<figcaption>Experimental growth analysis and computational growth modelling.</figcaption>
 </figure>
 </section>
 <nav class="section-nav" aria-label="Project sections"><div class="section-nav-inner">
@@ -144,43 +312,192 @@ footer{margin-top:35px;padding:22px 5% 30px;border-top:1px solid var(--line);dis
 <section class="section" id="experimental">
 <div class="section-top"><div><span class="section-number">EXPERIMENTAL ANALYSIS</span><h2>Triangular growth and image quantification</h2></div>
 <p class="intro">Experimental triangular MoS₂ and MoSe₂ crystals were analysed at successive growth stages. Python-based image processing was used to detect each crystal, define edge and centre regions, and quantify growth conversion and physical area.</p></div>
-<div class="subheading"><h3>MoS₂ · Image-based growth analysis</h3><p>400 °C · Five growth stages</p></div>
-<div class="figure-grid">
-<figure class="figure-card"><div class="figure-frame"><img src="../assets/images/MoS2_Image_Analysis_Flowchart.png" alt="MoS2 image analysis flowchart"></div><figcaption><strong>Image-processing algorithm.</strong> Triangle detection, region definition and growth classification.</figcaption></figure>
-<figure class="figure-card"><div class="figure-frame"><img src="../assets/images/MoS2_Experimental_Images.png" alt="MoS2 experimental image stages"></div><figcaption><strong>Experimental stages.</strong> Optical images processed at each growth time.</figcaption></figure>
-<figure class="figure-card"><div class="figure-frame"><img src="../assets/images/MoS2_Growth_Quantification.png" alt="MoS2 growth quantification"></div><figcaption><strong>Growth quantification.</strong> Edge, centre and total conversion and area.</figcaption></figure>
+
+<div class="subheading">
+  <h3>MoS₂ · Image-based growth analysis</h3>
+  <p>400 °C · Five growth stages</p>
 </div>
-<div class="subheading"><h3>MoSe₂ · Image-based growth analysis</h3><p>450 °C · Five growth stages</p></div>
-<div class="figure-grid">
-<figure class="figure-card"><div class="figure-frame"><img src="../assets/images/MoSe2_Image_Analysis_Flowchart.png" alt="MoSe2 image analysis flowchart"></div><figcaption><strong>Image-processing algorithm.</strong> Triangle detection and growth-region segmentation.</figcaption></figure>
-<figure class="figure-card"><div class="figure-frame"><img src="../assets/images/MoSe2_Experimental_Images.png" alt="MoSe2 experimental image stages"></div><figcaption><strong>Experimental stages.</strong> Image sequence used for growth analysis.</figcaption></figure>
-<figure class="figure-card"><div class="figure-frame"><img src="../assets/images/MoSe2_Growth_Quantification.png" alt="MoSe2 growth quantification"></div><figcaption><strong>Growth quantification.</strong> Edge, centre and total conversion and area.</figcaption></figure>
+
+<figure class="growth-figure">
+  <div class="figure-frame">
+    <img
+      src="../assets/images/MoS2_Growth_Analysis .png"
+      alt="Complete MoS₂ growth analysis showing the image-processing workflow, experimental growth stages, edge and centre classification, and growth quantification."
+      loading="lazy"
+    >
+  </div>
+
+  <figcaption>
+Image-based growth analysis of triangular MoS₂ crystals. Image-processing workflow, experimental growth stages, and edge–centre classification used to quantify growth evolution and area conversion at 400 °C, with uncertainty estimates derived from threshold variation.  </figcaption>
+</figure>
+
+<div class="subheading">
+  <h3>MoSe₂ · Image-based growth analysis</h3>
+  <p>450 °C · Five growth stages</p>
 </div>
-<p class="muted" style="font-size:12px;margin-top:18px">MoS₂ segmentation: nominal G/B threshold 0.84 (low/high: 0.79/0.89); physical edge shell: 3.5 µm. Threshold variation was used to estimate uncertainty and generate error bars.</p>
-</section>
+
+<figure class="growth-figure">
+  <div class="figure-frame">
+    <img
+      src="../assets/images/MoSe2_growth_Analysis.png"
+      alt="Combined MoSe₂ image-based growth analysis showing the image-processing workflow, experimental stages, growth classification, and quantitative results."
+      loading="lazy"
+    >
+  </div>
+
+  <figcaption>
+Image-based analysis of MoSe₂ growth, showing the image-processing workflow, experimental growth stages, edge and centre classification, and quantitative growth measurements.  </figcaption>
+</figure>
 
 <section class="section" id="modelling">
-<div class="section-top"><div><span class="section-number">COMPUTATIONAL MODELLING</span><h2>Triangular-lattice KMC model and parameter fitting</h2></div>
-<p class="intro">The experimental triangle was represented as a triangular lattice with edge and plane regions. A stochastic KMC algorithm was implemented to simulate competing edge and plane growth events. Differential Evolution was used to fit kinetic parameters against experimental conversion data.</p></div>
-<div class="figure-grid">
-<figure class="figure-card"><div class="figure-frame"><img src="../assets/images/Triangular_Lattice_Geometry.png" alt="Triangular lattice geometry"></div><figcaption><strong>Geometry construction.</strong> Triangular lattice with edge and plane cell labelling.</figcaption></figure>
-<figure class="figure-card"><div class="figure-frame"><img src="../assets/images/KMC_Algorithm_Flowchart.png" alt="KMC algorithm flowchart"></div><figcaption><strong>KMC algorithm.</strong> Initialization, event rates, event selection and time evolution.</figcaption></figure>
-<figure class="figure-card"><div class="figure-frame"><img src="../assets/images/KMC_Fitting_Workflow.png" alt="KMC fitting workflow"></div><figcaption><strong>Parameter fitting.</strong> Differential Evolution optimization and final ensemble simulation.</figcaption></figure>
-</div>
+
+  <div class="section-top">
+    <div>
+      <span class="section-number">COMPUTATIONAL MODELLING</span>
+      <h2>Triangular-lattice KMC model and parameter fitting</h2>
+    </div>
+
+    <p class="intro">
+      The experimental triangle was represented as a triangular lattice
+      with edge and plane regions. A stochastic KMC algorithm was
+      implemented to simulate competing edge and plane growth events.
+      Differential Evolution was used to fit kinetic parameters against
+      experimental conversion data.
+    </p>
+  </div>
+
+  <div class="kmc-flowcharts">
+
+    <figure class="kmc-flowchart">
+      <div class="flowchart-frame">
+        <img
+          src="../assets/images/MoS2_KMC.png"
+          alt="MoS₂ triangular-lattice KMC algorithm and parameter fitting workflow"
+          loading="lazy"
+        >
+      </div>
+
+      <figcaption>
+        <strong>MoS₂ · KMC modelling.</strong>
+        Growth simulation, parameter optimization and ensemble analysis.
+      </figcaption>
+    </figure>
+
+    <figure class="kmc-flowchart">
+      <div class="flowchart-frame">
+        <img
+          src="../assets/images/MoSe2_KMC.png"
+          alt="MoSe₂ triangular-lattice KMC algorithm and parameter fitting workflow"
+          loading="lazy"
+        >
+      </div>
+
+      <figcaption>
+        <strong>MoSe₂ · KMC modelling.</strong>
+        Growth simulation, parameter optimization and ensemble analysis.
+      </figcaption>
+    </figure>
+
+  </div>
+
 </section>
 
 <section class="section" id="results">
-<div class="section-top"><div><span class="section-number">RESULTS & DATA</span><h2>Experimental–KMC growth kinetics</h2></div>
-<p class="intro">Fitted KMC curves are compared with experimental edge, centre and total growth. Both percentage conversion and physical growth area are presented on linear and logarithmic scales, with experimental uncertainty shown as error bars.</p></div>
-<div class="subheading"><h3>MoS₂ · Growth kinetics and fitting</h3><p>400 °C</p></div>
-<figure class="figure-card wide-figure"><div class="figure-frame"><img src="../assets/images/MoS2_KMC_Growth_Fit.png" alt="MoS2 KMC growth kinetics and fitted curves"></div><figcaption>Experimental and KMC-predicted growth conversion and physical area, shown on linear and logarithmic scales.</figcaption></figure>
-<div class="subheading"><h3>MoSe₂ · Growth kinetics and fitting</h3><p>450 °C</p></div>
-<figure class="figure-card wide-figure"><div class="figure-frame"><img src="../assets/images/MoSe2_KMC_Growth_Fit.png" alt="MoSe2 KMC growth kinetics and fitted curves"></div><figcaption>Experimental and KMC-predicted growth conversion and physical area, shown on linear and logarithmic scales.</figcaption></figure>
-<div class="finding-grid">
-<div class="finding"><span class="index">01 / MoS₂</span><h3>Fitted kinetic parameters</h3><p>Edge barrier: 1.1568 eV · Plane barrier: 0.8356 eV</p></div>
-<div class="finding"><span class="index">02 / MoSe₂</span><h3>Fitted kinetic parameters</h3><p>Edge barrier: 1.0215 eV · Plane barrier: 0.8810 eV</p></div>
-<div class="finding"><span class="index">03 / Model evaluation</span><h3>Ensemble analysis</h3><p>Multiple KMC runs, RMSE evaluation and comparison with experimental uncertainty.</p></div>
-</div>
+
+  <div class="section-top">
+    <div>
+      <span class="section-number">RESULTS &amp; DATA</span>
+      <h2>Experimental–KMC growth kinetics</h2>
+    </div>
+
+    <p class="intro">
+      Fitted KMC curves are compared with experimental edge, centre
+      and total growth. Percentage conversion and physical growth
+      area are presented with experimental uncertainty shown as
+      error bars.
+    </p>
+  </div>
+
+  <!-- MoS2 results -->
+  <div class="results-group">
+
+    <div class="results-heading">
+      <h3>MoS₂ · Growth kinetics and fitting</h3>
+      <span>400 °C</span>
+    </div>
+
+    <div class="results-plots">
+
+      <figure class="results-plot">
+        <div class="results-frame">
+          <img
+            src="../assets/images/MoS2_%_area.png"
+            alt="MoS₂ experimental and KMC-predicted growth conversion"
+            loading="lazy"
+          >
+        </div>
+        <figcaption>
+          Growth conversion (%)
+        </figcaption>
+      </figure>
+
+      <figure class="results-plot">
+        <div class="results-frame">
+          <img
+            src="../assets/images/MoS2_Physical_area.jpg"
+            alt="MoS₂ experimental and KMC-predicted converted growth area"
+            loading="lazy"
+          >
+        </div>
+        <figcaption>
+          Converted growth area (µm²)
+        </figcaption>
+      </figure>
+
+    </div>
+
+  </div>
+
+  <!-- MoSe2 results -->
+  <div class="results-group">
+
+    <div class="results-heading">
+      <h3>MoSe₂ · Growth kinetics and fitting</h3>
+      <span>450 °C</span>
+    </div>
+
+    <div class="results-plots">
+
+      <figure class="results-plot">
+        <div class="results-frame">
+          <img
+            src="../assets/images/MoSe2_%_area.png"
+            alt="MoSe₂ experimental and KMC-predicted growth conversion"
+            loading="lazy"
+          >
+        </div>
+        <figcaption>
+          Growth conversion (%)
+        </figcaption>
+      </figure>
+
+      <figure class="results-plot">
+        <div class="results-frame">
+          <img
+            src="../assets/images/MoSe2_Physical_area.png"
+            alt="MoSe₂ experimental and KMC-predicted converted growth area"
+            loading="lazy"
+          >
+        </div>
+        <figcaption>
+          Converted growth area (µm²)
+        </figcaption>
+      </figure>
+
+    </div>
+
+  </div>
+
 </section>
 
 <section class="section" id="contribution">
