@@ -1,39 +1,235 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Kinetic Monte Carlo Modeling of 2D Materials Growth | Aryan</title>
-  <meta name="description" content="Detailed research project page: Kinetic Monte Carlo Modeling of 2D Materials Growth.">
-  <link rel="stylesheet" href="../assets/css/style.css">
-  <link rel="stylesheet" href="../assets/css/project-detail.css">
-  <script src="../assets/js/site.js" defer></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Experimental image analysis and kinetic Monte Carlo modelling of triangular MoS2 and MoSe2 growth.">
+<title>Triangular Growth Analysis and KMC Modelling | aryan.phd</title>
+<style>
+:root{--ink:#171717;--muted:#666;--line:#d8d8d8;--paper:#fff;--soft:#f8f8f8;--page:1080px}
+*{box-sizing:border-box;font-family:"Times New Roman",Times,serif!important}
+html{scroll-behavior:smooth;scroll-padding-top:75px}
+body{margin:0;background:var(--paper);color:var(--ink);font-size:16px;line-height:1.5}
+a{color:inherit;text-underline-offset:4px}a:hover{opacity:.65}
+img{display:block;max-width:100%}
+.wrap{width:min(var(--page),calc(100% - 64px));margin-inline:auto}
+.breadcrumb{border-top:1px solid var(--line);padding:25px 0;font-size:12px;color:var(--muted)}
+.breadcrumb a{text-decoration:none;color:var(--ink)}
+.eyebrow{margin:0 0 13px;font:700 10px Arial,sans-serif;letter-spacing:1.8px;text-transform:uppercase;color:var(--muted)}
+h1,h2,h3,p{margin-top:0}h1,h2,h3{font-weight:400;letter-spacing:-.7px}
+h1{font-size:clamp(35px,4.8vw,53px);line-height:1.12;margin-bottom:21px}
+h2{font-size:34px;line-height:1.2;margin-bottom:12px}
+h3{font-size:22px;line-height:1.3;margin-bottom:10px}
+p{margin-bottom:15px}.muted{color:var(--muted)}
+.hero{display:grid;grid-template-columns:1.02fr .98fr;align-items:center;gap:55px;padding:18px 0 48px;border-bottom:1px solid var(--line)}
+.hero-copy{max-width:520px}.hero .lead{font-size:17px;line-height:1.85;color:#505050}
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:23px}
+.tag{font-size:11px;line-height:1.5;padding:6px 11px;border:1px solid var(--line);border-radius:2px}
+.hero-figure{margin:0;min-width:0}
+.hero-image{width:100%;height:350px;object-fit:contain;background:var(--soft);border:1px solid var(--line);padding:10px}
+.section-nav{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.97);border-bottom:1px solid var(--line)}
+.section-nav-inner{display:flex;gap:30px;overflow-x:auto;padding:15px 0}
+.section-nav a{font-size:11px;color:#555;text-decoration:none;white-space:nowrap}
+.section{padding:53px 0;border-bottom:1px solid var(--line)}
+.section-top{display:grid;grid-template-columns:.75fr 1.25fr;gap:40px;margin-bottom:28px;align-items:start}
+.section-top .intro{max-width:610px;color:#5e5e5e;font-size:14px}
+.section-number{display:block;font-size:13px;letter-spacing:1.6px;color:var(--muted);margin-bottom:11px;font-weight:400}
+.subheading{display:flex;align-items:baseline;justify-content:space-between;gap:20px;margin:30px 0 17px}
+.subheading h3{margin:0}.subheading p{margin:0;font-size:11px;color:var(--muted)}
+.figure-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:17px}
+.figure-card{margin:0;min-width:0}
+.figure-frame{aspect-ratio:4/3;background:var(--soft);border:1px solid var(--line);overflow:hidden;display:flex;align-items:center;justify-content:center}
+.figure-frame img{width:100%;height:100%;object-fit:contain}
+.figure-placeholder{padding:20px;text-align:center;color:#777;font-size:12px;line-height:1.65;max-width:300px}
+.figure-placeholder strong{display:block;font-size:13px;font-weight:600;color:#454545;margin-bottom:5px}
+.figure-card figcaption{font-size:11px;line-height:1.6;color:var(--muted);margin-top:10px;min-height:38px}
+.wide-figure{max-width:1000px;width:100%;margin:0 auto}
+.wide-figure .figure-frame{aspect-ratio:auto;background:#fff;border:0;padding:0}
+.wide-figure img{width:100%;height:auto;object-fit:contain}
+.finding-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:30px}
+.finding{padding:19px;border:1px solid var(--line);min-width:0}
+.finding .index{font-size:10px;letter-spacing:1.5px;color:var(--muted)}
+.finding h3{margin:10px 0 7px;font-size:19px}.finding p{font-size:13px;color:#5c5c5c;margin:0}
+.contribution-list{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.contribution-list li{display:grid;grid-template-columns:35px 1fr;gap:14px;padding:15px 0;border-bottom:1px solid var(--line);font-size:14px}
+.contribution-list .n{font-size:11px;color:var(--muted);padding-top:3px}
+.references{list-style:none;padding:0;margin:0;counter-reset:ref}
+.references li{counter-increment:ref;display:grid;grid-template-columns:30px 1fr;gap:13px;padding:17px 0;border-bottom:1px solid var(--line);font-size:13px;line-height:1.8}
+.references li:before{content:"[" counter(ref) "]";color:var(--muted);font-size:11px;padding-top:2px}
+.references a{font-size:11px;font-weight:600;white-space:nowrap}
+.end-links{display:flex;justify-content:space-between;gap:20px;padding:27px 0;font-size:12px}
+.end-links a{text-decoration:none}
+footer{margin-top:35px;padding:22px 5% 30px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:15px 25px;flex-wrap:wrap;font-size:15px;color:#555}
+@media(max-width:760px){.wrap{width:calc(100% - 36px)}.hero{grid-template-columns:1fr;gap:25px;padding-top:10px}.hero-image{height:auto;aspect-ratio:4/3}.section{padding:39px 0}.section-top{grid-template-columns:1fr;gap:10px}.section-nav-inner{gap:22px}.figure-grid,.finding-grid{grid-template-columns:repeat(2,minmax(0,1fr))}h2{font-size:30px}}
+@media(max-width:480px){.figure-grid,.finding-grid{grid-template-columns:1fr}.figure-card figcaption{min-height:0}.subheading{align-items:flex-start;flex-direction:column;gap:5px}h1{font-size:37px}.hero .lead{font-size:15px}.end-links{flex-direction:column}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+.site-header{
+  width:100%;
+  border-bottom:1px solid var(--line);
+  background:var(--paper);
+}
+.site-header-inner{
+  width:min(1200px,calc(100% - 40px));
+  min-height:92px;
+  margin:0 auto;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:32px;
+}
+.site-brand{
+  font-size:34px;
+  line-height:1;
+  letter-spacing:-1.2px;
+  text-decoration:none;
+  white-space:nowrap;
+}
+.site-nav{
+  display:flex;
+  align-items:center;
+  gap:36px;
+}
+.site-nav a{
+  font-size:18px;
+  text-decoration:none;
+  white-space:nowrap;
+  color:var(--ink);
+  padding:5px 0 3px;
+  border-bottom:2px solid transparent;
+}
+
+@media(max-width:760px){
+  .site-header-inner{align-items:flex-start;flex-direction:column;gap:18px;padding:22px 0}
+  .site-brand{font-size:30px}
+  .site-nav{width:100%;gap:23px;overflow-x:auto;padding-bottom:3px}
+  .site-nav a{font-size:16px}
+}
+
+</style>
 </head>
 <body>
-  <a class="skip" href="#main">Skip to content</a>
-  <header class="header"><div class="wrap nav"><a class="brand" href="../index.html">aryan.phd</a><button class="menu" aria-expanded="false" aria-label="Toggle navigation">Menu</button><nav class="links" aria-label="Main navigation"><a href="../index.html">Home</a><a href="../about.html">About</a><a aria-current="page" href="../research.html">Research</a><a href="../experience.html">Experience</a><a href="../notebook.html">Notebook</a><a href="../contact.html">Contact</a></nav></div></header>
-  <main class="pd wrap" id="main">
-    <p class="pd-breadcrumb"><a href="../research.html">← Back to research archive</a><span>/</span><span>Growth kinetics · Computational modeling</span></p>
-    <header class="pd-hero">
-      <div><p class="pd-eyebrow">Research project · Ongoing</p><h1>Kinetic Monte Carlo Modeling of 2D Materials Growth</h1><p class="pd-lede">KMC modeling of 2D crystal growth, focusing on nucleation, island expansion, edge-versus-plane growth, and quantitative comparison with morphology observations.</p><ul class="pd-tags"><li>KMC</li><li>Python</li><li>Parameter fitting</li><li>Growth kinetics</li></ul></div>
-     <figure class="pd-figure">
-  <img
-    src="../assets/images/KmC.jpg"
-    alt="KMC simulation of 2D crystal growth showing nucleation and island expansion."
-    class="pd-figure-image"
-    loading="lazy"
-  >
+<header class="site-header">
+  <div class="site-header-inner">
+    <a class="site-brand" href="../index.html">aryan.phd</a>
+    <nav class="site-nav" aria-label="Main navigation">
+      <a href="../index.html">Home</a>
+      <a href="../about.html">About</a>
+      <a href="../research.html">Research</a>
+      <a href="../experience.html">Experience</a>
+      <a href="../notebook.html">Notebook</a>
+      <a href="../contact.html">Contact</a>
+    </nav>
+  </div>
+</header>
+<main class="wrap">
+<div class="breadcrumb"><a href="../research.html">← Back to research archive</a><span> / </span><span>Growth modelling</span></div>
+<article>
+<section class="hero" aria-labelledby="project-title">
+<div class="hero-copy">
+<p class="eyebrow">Research project · 02</p>
+<h1 id="project-title">Experimental Growth Analysis and KMC Modelling of Triangular MoS₂ and MoSe₂</h1>
+<p class="lead">Connecting image-based quantification of experimentally grown triangular crystals with a triangular-lattice Kinetic Monte Carlo model to investigate edge- and plane-mediated growth kinetics.</p>
+<div class="tags"><span class="tag">MoS₂</span><span class="tag">MoSe₂</span><span class="tag">Image analysis</span><span class="tag">Kinetic Monte Carlo</span><span class="tag">Differential Evolution</span></div>
+</div>
+<figure class="hero-figure">
+<img class="hero-image" src="../assets/images/KMC_Project_Overview.png" alt="Overview of experimental triangular growth analysis and KMC modelling">
+<figcaption>Experimental image analysis and computational growth modelling.</figcaption>
 </figure>
-      <!-- <figure class="pd-figure"><div class="pd-figure-placeholder"><strong>Figure placeholder</strong><span>Add a real image to <code>../assets/images/projects/</code> and update the <code>src</code> path.</span></div></figure> -->
-    </header>
-    <nav class="pd-toc" aria-label="On this page"><a href="#overview">Overview</a><a href="#methods">Methods</a><a href="#results">Results &amp; data</a><a href="#discussion">Interpretation</a><a href="#references">References</a></nav>
-    <section class="pd-section" id="overview"><p class="pd-eyebrow">01 / Overview</p><h2>Research question</h2><p>How well can a kinetic Monte Carlo model reproduce 2D crystal morphology, and how sensitive are the simulated outcomes to the kinetic parameters?</p><h3>Project scope</h3><p>KMC modeling of 2D crystal growth, focusing on nucleation, island expansion, edge-versus-plane growth, and quantitative comparison with morphology observations.</p><p class="pd-note"><strong>Reporting rule:</strong> label work as completed, ongoing, exploratory, or planned. State your own contribution accurately and do not imply that preliminary calculations are validated results.</p></section>
-    <section class="pd-section" id="methods"><p class="pd-eyebrow">02 / Methods</p><h2>Materials, methods &amp; workflow</h2><p>KMC simulations for MoS₂ and MoSe₂; morphology-based metrics; differential-evolution parameter exploration; RMSE-based selection; independent runs for final evaluation.</p><h3>Method details to document</h3><ul><li>System/sample and its identifier.</li><li>Experimental or computational settings, units, and software/instrument versions.</li><li>Processing, fitting, or convergence criteria.</li><li>Analysis steps and the scripts used to generate figures/tables.</li><li>Which steps you performed independently and which were performed with guidance or by collaborators.</li></ul></section>
-    <section class="pd-section" id="results"><p class="pd-eyebrow">03 / Results</p><h2>Results &amp; supporting data</h2><p>Report optimization and validation separately. For final reporting, state the selected parameter set, objective function, training/selection protocol, number of independent runs, uncertainty or spread, and the exact experimental/simulation comparison. Do not present the optimization ensemble as independent validation.</p><div class="pd-table-wrap"><table><thead><tr><th>Result / figure</th><th>Dataset or run</th><th>Conditions / units</th><th>Status</th></tr></thead><tbody><tr><td>[Add result]</td><td>[File / sample ID]</td><td>[Conditions and units]</td><td>[Verified / preliminary]</td></tr><tr><td>[Add result]</td><td>[File / sample ID]</td><td>[Conditions and units]</td><td>[Verified / preliminary]</td></tr></tbody></table></div><p class="pd-small">Replace the example rows with real results or remove the table if it is not useful. Do not publish placeholder rows.</p><h3>Data files</h3><ul><li><strong>Raw data:</strong> <code>[relative path or approved repository link]</code></li><li><strong>Processed data:</strong> <code>[relative path]</code></li><li><strong>Analysis script:</strong> <code>[relative path or repository URL]</code></li></ul></section>
-    <section class="pd-section" id="discussion"><p class="pd-eyebrow">04 / Interpretation</p><h2>What the results mean</h2><p>Explain the main trend and what evidence supports it. Separate direct observation from interpretation, discuss uncertainty and limitations, and compare with published work only when the comparison is appropriate.</p><h3>Limitations / next steps</h3><ul><li>[State a limitation of the current dataset or model.]</li><li>[State the next calculation, experiment, or validation step.]</li></ul></section>
-    <section class="pd-section" id="references"><p class="pd-eyebrow">05 / References</p><h2>References &amp; resources</h2><p>Cite the KMC methods and any experimental morphology dataset used for comparison. If the experimental data are from your own lab, identify them as unpublished data only if sharing is approved.</p><ol class="pd-references"><li>[Author(s)], “[Paper / method title],” <em>[Journal / source]</em>, [year]. <a href="#references">DOI or stable URL</a> — replace with a real reference or delete this example.</li></ol><h3>Downloadable material</h3><ul><li><a href="#results">Project report / summary (add approved PDF link)</a></li><li><a href="#results">Presentation or poster (add approved PDF link)</a></li><li><a href="#results">Dataset / code repository (add verified link)</a></li></ul><p class="pd-note">Only link files that exist in your site folder or a verified public repository. Confirm that unpublished results, collaborator materials, and institution-owned data are approved for public sharing.</p></section>
-    <footer class="pd-footer"><a href="../research.html">← Research archive</a><a href="../experience.html">Related research experience →</a></footer>
-  </main>
-  <footer class="footer"><div class="wrap footer-inner"><a class="brand" href="../index.html">aryan.phd</a><span>Research portfolio</span><span>Project details · October 2026</span></div></footer>
+</section>
+<nav class="section-nav" aria-label="Project sections"><div class="section-nav-inner">
+<a href="#experimental">Experimental analysis</a><a href="#modelling">KMC modelling</a><a href="#results">Results & data</a><a href="#contribution">My contribution</a><a href="#references">References</a>
+</div></nav>
+
+<section class="section" id="experimental">
+<div class="section-top"><div><span class="section-number">EXPERIMENTAL ANALYSIS</span><h2>Triangular growth and image quantification</h2></div>
+<p class="intro">Experimental triangular MoS₂ and MoSe₂ crystals were analysed at successive growth stages. Python-based image processing was used to detect each crystal, define edge and centre regions, and quantify growth conversion and physical area.</p></div>
+<div class="subheading"><h3>MoS₂ · Image-based growth analysis</h3><p>400 °C · Five growth stages</p></div>
+<div class="figure-grid">
+<figure class="figure-card"><div class="figure-frame"><img src="../assets/images/MoS2_Image_Analysis_Flowchart.png" alt="MoS2 image analysis flowchart"></div><figcaption><strong>Image-processing algorithm.</strong> Triangle detection, region definition and growth classification.</figcaption></figure>
+<figure class="figure-card"><div class="figure-frame"><img src="../assets/images/MoS2_Experimental_Images.png" alt="MoS2 experimental image stages"></div><figcaption><strong>Experimental stages.</strong> Optical images processed at each growth time.</figcaption></figure>
+<figure class="figure-card"><div class="figure-frame"><img src="../assets/images/MoS2_Growth_Quantification.png" alt="MoS2 growth quantification"></div><figcaption><strong>Growth quantification.</strong> Edge, centre and total conversion and area.</figcaption></figure>
+</div>
+<div class="subheading"><h3>MoSe₂ · Image-based growth analysis</h3><p>450 °C · Five growth stages</p></div>
+<div class="figure-grid">
+<figure class="figure-card"><div class="figure-frame"><img src="../assets/images/MoSe2_Image_Analysis_Flowchart.png" alt="MoSe2 image analysis flowchart"></div><figcaption><strong>Image-processing algorithm.</strong> Triangle detection and growth-region segmentation.</figcaption></figure>
+<figure class="figure-card"><div class="figure-frame"><img src="../assets/images/MoSe2_Experimental_Images.png" alt="MoSe2 experimental image stages"></div><figcaption><strong>Experimental stages.</strong> Image sequence used for growth analysis.</figcaption></figure>
+<figure class="figure-card"><div class="figure-frame"><img src="../assets/images/MoSe2_Growth_Quantification.png" alt="MoSe2 growth quantification"></div><figcaption><strong>Growth quantification.</strong> Edge, centre and total conversion and area.</figcaption></figure>
+</div>
+<p class="muted" style="font-size:12px;margin-top:18px">MoS₂ segmentation: nominal G/B threshold 0.84 (low/high: 0.79/0.89); physical edge shell: 3.5 µm. Threshold variation was used to estimate uncertainty and generate error bars.</p>
+</section>
+
+<section class="section" id="modelling">
+<div class="section-top"><div><span class="section-number">COMPUTATIONAL MODELLING</span><h2>Triangular-lattice KMC model and parameter fitting</h2></div>
+<p class="intro">The experimental triangle was represented as a triangular lattice with edge and plane regions. A stochastic KMC algorithm was implemented to simulate competing edge and plane growth events. Differential Evolution was used to fit kinetic parameters against experimental conversion data.</p></div>
+<div class="figure-grid">
+<figure class="figure-card"><div class="figure-frame"><img src="../assets/images/Triangular_Lattice_Geometry.png" alt="Triangular lattice geometry"></div><figcaption><strong>Geometry construction.</strong> Triangular lattice with edge and plane cell labelling.</figcaption></figure>
+<figure class="figure-card"><div class="figure-frame"><img src="../assets/images/KMC_Algorithm_Flowchart.png" alt="KMC algorithm flowchart"></div><figcaption><strong>KMC algorithm.</strong> Initialization, event rates, event selection and time evolution.</figcaption></figure>
+<figure class="figure-card"><div class="figure-frame"><img src="../assets/images/KMC_Fitting_Workflow.png" alt="KMC fitting workflow"></div><figcaption><strong>Parameter fitting.</strong> Differential Evolution optimization and final ensemble simulation.</figcaption></figure>
+</div>
+</section>
+
+<section class="section" id="results">
+<div class="section-top"><div><span class="section-number">RESULTS & DATA</span><h2>Experimental–KMC growth kinetics</h2></div>
+<p class="intro">Fitted KMC curves are compared with experimental edge, centre and total growth. Both percentage conversion and physical growth area are presented on linear and logarithmic scales, with experimental uncertainty shown as error bars.</p></div>
+<div class="subheading"><h3>MoS₂ · Growth kinetics and fitting</h3><p>400 °C</p></div>
+<figure class="figure-card wide-figure"><div class="figure-frame"><img src="../assets/images/MoS2_KMC_Growth_Fit.png" alt="MoS2 KMC growth kinetics and fitted curves"></div><figcaption>Experimental and KMC-predicted growth conversion and physical area, shown on linear and logarithmic scales.</figcaption></figure>
+<div class="subheading"><h3>MoSe₂ · Growth kinetics and fitting</h3><p>450 °C</p></div>
+<figure class="figure-card wide-figure"><div class="figure-frame"><img src="../assets/images/MoSe2_KMC_Growth_Fit.png" alt="MoSe2 KMC growth kinetics and fitted curves"></div><figcaption>Experimental and KMC-predicted growth conversion and physical area, shown on linear and logarithmic scales.</figcaption></figure>
+<div class="finding-grid">
+<div class="finding"><span class="index">01 / MoS₂</span><h3>Fitted kinetic parameters</h3><p>Edge barrier: 1.1568 eV · Plane barrier: 0.8356 eV</p></div>
+<div class="finding"><span class="index">02 / MoSe₂</span><h3>Fitted kinetic parameters</h3><p>Edge barrier: 1.0215 eV · Plane barrier: 0.8810 eV</p></div>
+<div class="finding"><span class="index">03 / Model evaluation</span><h3>Ensemble analysis</h3><p>Multiple KMC runs, RMSE evaluation and comparison with experimental uncertainty.</p></div>
+</div>
+</section>
+
+<section class="section" id="contribution">
+<div class="section-top"><div><span class="section-number">RESEARCH ROLE</span><h2>My contribution</h2></div></div>
+<ol class="contribution-list">
+<li><span class="n">01</span><span>Developed Python-based image-analysis algorithms for triangular crystal detection, edge/centre segmentation and growth conversion quantification.</span></li>
+<li><span class="n">02</span><span>Implemented threshold-based uncertainty analysis and generated experimental growth plots with error bars.</span></li>
+<li><span class="n">03</span><span>Developed the triangular-lattice geometry algorithm and edge-/plane-resolved Kinetic Monte Carlo model.</span></li>
+<li><span class="n">04</span><span>Implemented Differential Evolution parameter fitting, ensemble simulations, RMSE analysis and experimental–KMC comparisons for MoS₂ and MoSe₂.</span></li>
+</ol>
+</section>
+
+<section class="section" id="references">
+<div class="section-top"><div><span class="section-number">LITERATURE</span><h2>References</h2></div></div>
+<ol class="references">
+<li>
+  <div>
+    Wang, H., Zhu, D., Jiang, F., Zhao, P., Wang, H., Zhang, Z., Chen, X. and Jin, C.,
+    “Revealing the microscopic CVD growth mechanism of MoSe₂ and the role of hydrogen gas during the growth procedure,”
+    <em>Nanotechnology</em>, 29(31), 314001 (2018).
+    <br><a href="https://doi.org/10.1088/1361-6528/aac397" target="_blank" rel="noopener">Read paper ↗</a>
+  </div>
+</li>
+<li>
+  <div>
+    “Edge Reconstruction-Dependent Growth Kinetics of MoS₂,”
+    <em>ACS Nano</em> (2023). This study examines how MoS₂ edge reconstruction and growth conditions influence island-growth kinetics.
+    <br><a href="https://doi.org/10.1021/acsnano.2c05397" target="_blank" rel="noopener">Read paper ↗</a>
+  </div>
+</li>
+<li>
+  <div>
+    Gillespie, D. T., “Exact stochastic simulation of coupled chemical reactions,”
+    <em>The Journal of Physical Chemistry</em>, 81(25), 2340–2361 (1977).
+    <br><a href="https://doi.org/10.1021/j100540a008" target="_blank" rel="noopener">Read paper ↗</a>
+  </div>
+</li>
+<li>
+  <div>
+    Storn, R. and Price, K., “Differential Evolution – A Simple and Efficient Heuristic for Global Optimization over Continuous Spaces,”
+    <em>Journal of Global Optimization</em>, 11, 341–359 (1997).
+    <br><a href="https://doi.org/10.1023/A:1008202821328" target="_blank" rel="noopener">Read paper ↗</a>
+  </div>
+</li>
+</ol>
+</section>
+<div class="end-links"><a href="../research.html">← Back to research archive</a><a href="../experience.html#iith">Related research experience ↗</a></div>
+</article>
+</main>
+<footer><span>aryan.phd · Research portfolio</span><span>Triangular growth analysis and KMC modelling · 2026</span><a href="../research.html">Back to research archive</a></footer>
 </body>
 </html>
